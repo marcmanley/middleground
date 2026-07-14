@@ -6,6 +6,9 @@ temporary screenshots/
 
 # Raw, unoptimized source photos (originals can be multi-MB each).
 # The site only ever references the optimized copies in media/images/web/.
-media/images/*.png
-media/images/*.jpg
-media/images/*.jpeg
+
+# removed these for now.
+
+# media/images/*.png
+# media/images/*.jpg
+# media/images/*.jpeg
