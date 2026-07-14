@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imam Marc Manley — Middle Ground</title>
+<meta name="description" content="Meet Imam Marc Manley, Resident Imam of Middle Ground and host of the Middle Ground Podcast.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          sky:   '#418FBF',
+          stone: '#DAD8D6',
+          earth: '#733A19',
+          clay:  '#E85610',
+          ink:   '#0D0D0D',
+          cream: '#FAF7F2'
+        },
+        fontFamily: {
+          display: ['Caslonian', 'Cormorant Garamond', 'Georgia', 'serif'],
+          arabic:  ['Adobe Arabic', 'Noto Naskh Arabic', 'Traditional Arabic', 'serif']
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  :root { color-scheme: light; }
+
+  body { background: #FAF7F2; }
+
+  [dir="rtl"] .font-display { font-family: 'Adobe Arabic', 'Noto Naskh Arabic', 'Traditional Arabic', serif; }
+  [dir="rtl"] .tracking-wide,
+  [dir="rtl"] .tracking-widest { letter-spacing: 0 !important; }
+
+  .hairline { box-shadow: 0 1px 0 0 rgba(13,13,13,0.12); }
+  .hairline-top { box-shadow: 0 -1px 0 0 rgba(13,13,13,0.12); }
+
+  .shadow-soft {
+    box-shadow:
+      0 1px 2px rgba(115,58,25,0.06),
+      0 8px 24px -8px rgba(65,143,191,0.18),
+      0 24px 48px -24px rgba(13,13,13,0.20);
+  }
+  .shadow-soft-lg {
+    box-shadow:
+      0 2px 4px rgba(115,58,25,0.08),
+      0 16px 40px -12px rgba(65,143,191,0.22),
+      0 40px 80px -32px rgba(13,13,13,0.28);
+  }
+
+  .btn-focus:focus-visible {
+    outline: 2px solid #E85610;
+    outline-offset: 3px;
+  }
+
+  .bio-copy a { color: #E85610; text-decoration: underline; text-underline-offset: 2px; }
+  .bio-copy a:hover { color: #733A19; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  }
+
+  ::selection { background: #418FBF; color: #FAF7F2; }
+</style>
+</head>
+
+<body class="font-display bg-cream text-ink antialiased">
+
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:start-4 focus:z-[100] focus:bg-ink focus:text-cream focus:px-4 focus:py-2 focus:rounded btn-focus">
+  Skip to content
+</a>
+
+<!-- ============ HEADER ============ -->
+<header class="sticky top-0 z-50 bg-cream/95 backdrop-blur hairline">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="flex items-center justify-between h-20">
+
+      <a href="index.html" class="flex items-center gap-3 shrink-0">
+        <img src="brand_assets/Middle%20Ground%20final%20logo%20square-2.png" alt="Middle Ground" class="h-11 w-11 rounded-full">
+        <span class="text-xl tracking-tight leading-none">
+          Middle Ground
+        </span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-9 text-[15px] tracking-wide uppercase">
+        <a href="index.html#prayer" class="hover:text-clay transition-colors btn-focus">Prayer</a>
+        <a href="imam.html" class="text-clay btn-focus" aria-current="page">Imam</a>
+        <a href="index.html#learning" class="hover:text-clay transition-colors btn-focus">Learning</a>
+        <a href="../blog/index.html" class="hover:text-clay transition-colors btn-focus">Blog</a>
+        <a href="index.html#media" class="hover:text-clay transition-colors btn-focus">Media</a>
+        <a href="index.html#contact" class="hover:text-clay transition-colors btn-focus">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button id="menuToggle" type="button" aria-label="Menu" class="lg:hidden p-2 -me-2 btn-focus">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobileNav" class="hidden lg:hidden pb-6 flex flex-col gap-4 text-base tracking-wide uppercase">
+      <a href="index.html#prayer" class="btn-focus">Prayer</a>
+      <a href="imam.html" class="text-clay btn-focus">Imam</a>
+      <a href="index.html#learning" class="btn-focus">Learning</a>
+      <a href="../blog/index.html" class="btn-focus">Blog</a>
+      <a href="index.html#media" class="btn-focus">Media</a>
+      <a href="index.html#contact" class="btn-focus">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ IMAM HERO ============ -->
+<section class="relative overflow-hidden bg-sky">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 pt-16 sm:pt-20 pb-20 sm:pb-28">
+    <div class="grid lg:grid-cols-[0.85fr_1.15fr] gap-14 lg:gap-16 items-center">
+
+      <div class="relative mx-auto w-72 sm:w-80 lg:w-[22rem]">
+        <svg class="absolute -inset-6 w-[calc(100%+3rem)] h-[calc(100%+3rem)]" viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="50" cy="50" r="48" fill="none" stroke="#FAF7F2" stroke-width="0.5" stroke-dasharray="2 3.2" opacity="0.5"/>
+        </svg>
+        <div class="relative aspect-square rounded-full overflow-hidden border-4 border-cream shadow-soft-lg">
+          <img src="media/images/web/imam-portrait.jpg" alt="Imam Marc Manley" class="w-full h-full object-cover object-center">
+        </div>
+      </div>
+
+      <div class="text-center lg:text-start">
+        <p class="text-[13px] sm:text-sm tracking-[0.3em] uppercase text-earth mb-6">
+          Resident Imam
+        </p>
+        <h1 class="text-5xl sm:text-7xl leading-[0.98] tracking-tight text-cream">
+          Imam Marc<br>Manley
+        </h1>
+        <p class="mt-7 text-lg sm:text-xl italic text-cream/85 max-w-lg mx-auto lg:mx-0">
+          Leading prayer, teaching, and conversation at Middle Ground — and hosting the Middle Ground Podcast.
+        </p>
+        <div class="mt-9 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+          <a href="index.html#podcast" class="bg-clay text-cream text-sm tracking-wide uppercase px-7 py-3.5 rounded-full hover:bg-earth transition-colors shadow-soft btn-focus">
+            Listen to the Podcast
+          </a>
+          <a href="mailto:contact@muslim.center" class="border border-cream/40 text-cream text-sm tracking-wide uppercase px-7 py-3.5 rounded-full hover:border-cream transition-colors btn-focus">
+            Get in Touch
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ BIO ============ -->
+<section class="py-24 sm:py-32 px-5 sm:px-8">
+  <div class="max-w-3xl mx-auto text-center lg:text-start">
+    <h2 class="text-3xl sm:text-4xl tracking-tight mb-8">
+      About Imam Marc
+    </h2>
+    <div class="bio-copy space-y-6 text-lg text-ink/70 leading-relaxed">
+      <p>
+        I currently serve as the imam and religious director at <a href="https://muslim.center" target="_blank" rel="noopener noreferrer">Middle Ground</a>. I started my path towards being an imam back in Detroit, where I began my Islamic studies under the tutelage of <a href="https://www.alimprogram.org/dr-ali-sulaiman-ali.html" target="_blank" rel="noopener noreferrer">Dr. Ali Sulaiman Ali</a>. I subsequently spent a number of years studying the <em>Warsh</em> recitation of the Qur'an from a <em>hafidh</em> from Algeria.
+      </p>      <p>
+        Years later I found myself in Philadelphia, America's premier city for indigenous Islam, where, under the support of teachers such as <a href="https://www.linkedin.com/in/anwar-muhaimin-587b8513/" target="_blank" rel="noopener noreferrer">Shaykh Anwar Muhaimin at Quba Masjid</a> and <a href="https://law.rutgers.edu/directory/view/az319" target="_blank" rel="noopener noreferrer">Adnan Zulficar</a>, I took the position of Muslim Chaplain at the University of Pennsylvania. From there I also developed the first Muslim chaplaincy program at Drexel University. Not long after, the <a href="https://ranchomasjid.org/" target="_blank" rel="noopener noreferrer">Islamic Center of Inland Empire</a> called, offering the position of Imam and Director. I left ICIE in 2015 to open <a href="https://muslim.center" target="_blank" rel="noopener noreferrer">Middle Ground</a>. You can read more about what Middle Ground is there, but to say the least, it's been a life-changing experience that's still unfolding.
+      </p>    </div>
+  </div>
+</section>
+
+<!-- ============ FOCUS AREAS ============ -->
+<section class="bg-stone/30 py-24 sm:py-32 px-5 sm:px-8">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl sm:text-4xl tracking-tight mb-16 text-center lg:text-start">
+      How Imam Marc Serves the Community
+    </h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+      <div>
+        <p class="text-sm text-clay mb-2">01</p>
+        <h3 class="text-xl mb-2">Friday Khutbah</h3>
+        <p class="text-ink/60 text-sm leading-relaxed">Weekly reflections, in person and online</p>
+      </div>
+      <div>
+        <p class="text-sm text-clay mb-2">02</p>
+        <h3 class="text-xl mb-2">Counseling &amp; Guidance</h3>
+        <p class="text-ink/60 text-sm leading-relaxed">By appointment, for the community</p>
+      </div>
+      <div>
+        <p class="text-sm text-clay mb-2">03</p>
+        <h3 class="text-xl mb-2">Teaching &amp; Halaqas</h3>
+        <p class="text-ink/60 text-sm leading-relaxed">Qur'an, seerah, and youth circles</p>
+      </div>
+      <div>
+        <p class="text-sm text-clay mb-2">04</p>
+        <h3 class="text-xl mb-2">The Middle Ground Podcast</h3>
+        <p class="text-ink/60 text-sm leading-relaxed">New episodes every other week</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PODCAST CALLOUT ============ -->
+<section class="py-24 sm:py-32 px-5 sm:px-8">
+  <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
+    <div class="relative mx-auto w-64 sm:w-72 order-2 lg:order-1">
+      <svg class="absolute -inset-5 w-[calc(100%+2.5rem)] h-[calc(100%+2.5rem)]" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="48" fill="none" stroke="#733A19" stroke-width="0.5" stroke-dasharray="2 3.2" opacity="0.4"/>
+      </svg>
+      <div class="relative aspect-square rounded-full overflow-hidden border-4 border-cream shadow-soft-lg">
+        <img src="media/images/web/imam-secondary.jpg" alt="Imam Marc Manley" class="w-full h-full object-cover object-center">
+      </div>
+    </div>
+    <div class="text-center lg:text-start order-1 lg:order-2">
+      <p class="text-[13px] tracking-[0.3em] uppercase text-clay mb-4">
+        Beyond the Khutbah
+      </p>
+      <h2 class="text-3xl sm:text-4xl tracking-tight mb-5">
+        Hear More on the Podcast
+      </h2>
+      <p class="text-ink/65 text-lg leading-relaxed mb-8 max-w-md mx-auto lg:mx-0">
+        The Middle Ground Podcast is where the longer conversations happen — faith, doubt, culture, and everything the khutbah doesn't have time for.
+      </p>
+      <a href="index.html#podcast" class="inline-block bg-clay text-cream text-sm tracking-wide uppercase px-7 py-3.5 rounded-full hover:bg-earth transition-colors shadow-soft btn-focus">
+        Explore the Podcast
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-earth text-cream pt-16 pb-10 px-5 sm:px-8 hairline-top">
+  <div class="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
+    <div>
+      <div class="flex items-center gap-3 mb-4">
+        <img src="brand_assets/Middle%20Ground%20final%20logo%20square-2.png" alt="Middle Ground" class="h-9 w-9 rounded-full">
+        <span class="text-lg">Middle Ground</span>
+      </div>
+      <p class="text-cream/70 text-sm leading-relaxed">
+        A place for prayer, community, and learning.
+      </p>
+    </div>
+    <div>
+      <p class="text-xs tracking-widest uppercase text-cream/50 mb-4">Explore</p>
+      <ul class="space-y-2.5 text-cream/80 text-sm">
+        <li><a href="index.html#prayer" class="hover:text-clay transition-colors btn-focus">Prayer Times</a></li>
+        <li><a href="imam.html" class="hover:text-clay transition-colors btn-focus">The Imam</a></li>
+        <li><a href="index.html#learning" class="hover:text-clay transition-colors btn-focus">Learning</a></li>
+        <li><a href="../blog/index.html" class="hover:text-clay transition-colors btn-focus">Blog</a></li>
+        <li><a href="index.html#media" class="hover:text-clay transition-colors btn-focus">Media</a></li>
+        <li><a href="index.html#podcast" class="hover:text-clay transition-colors btn-focus">Podcast</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="text-xs tracking-widest uppercase text-cream/50 mb-4">Jumu&rsquo;ah</p>
+      <p class="text-2xl mb-2">1:00 PM</p>
+      <p class="text-cream/70 text-sm leading-relaxed">Every Friday, year-round.<br>Daily prayer times shared via WhatsApp.</p>
+    </div>
+    <div>
+      <p class="text-xs tracking-widest uppercase text-cream/50 mb-4">Connect</p>
+      <p class="text-cream/80 text-sm leading-relaxed mb-4">
+        870 N Mountain Ave STE 102<br>Upland, CA 91786
+      </p>
+      <p class="text-cream/80 text-sm">
+        <a href="mailto:contact@muslim.center" class="hover:text-clay transition-colors btn-focus">contact@muslim.center</a><br>
+        <a href="tel:+19094519770" class="hover:text-clay transition-colors btn-focus" dir="ltr">909-451-9770</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto pt-6 hairline-top flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-cream/60">
+    <p>&copy; 2026 Middle Ground. All rights reserved.</p>
+    <div class="flex gap-6">
+      <a href="#" class="hover:text-clay transition-colors btn-focus">Privacy</a>
+      <a href="index.html#contact" class="hover:text-clay transition-colors btn-focus">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var menuToggle = document.getElementById('menuToggle');
+  var mobileNav = document.getElementById('mobileNav');
+
+  menuToggle.addEventListener('click', function () {
+    mobileNav.classList.toggle('hidden');
+  });
+</script>
+
+</body>
+</html>

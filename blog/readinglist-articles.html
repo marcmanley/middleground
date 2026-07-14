@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reading List (Articles) — Middle Ground</title>
+<meta name="description" content="Imam Marc Manley's reading list of academic and online articles.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          sky:   '#418FBF',
+          stone: '#DAD8D6',
+          earth: '#733A19',
+          clay:  '#E85610',
+          ink:   '#0D0D0D',
+          cream: '#FAF7F2'
+        },
+        fontFamily: {
+          display: ['Caslonian', 'Cormorant Garamond', 'Georgia', 'serif'],
+          arabic:  ['Adobe Arabic', 'Noto Naskh Arabic', 'Traditional Arabic', 'serif']
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  :root { color-scheme: light; }
+  body { background: #FAF7F2; }
+
+  [dir="rtl"] .font-display,
+  [dir="rtl"] .font-arabic { font-family: 'Adobe Arabic', 'Noto Naskh Arabic', 'Traditional Arabic', serif; }
+  [dir="rtl"] .tracking-wide,
+  [dir="rtl"] .tracking-widest { letter-spacing: 0 !important; }
+
+  .hairline { box-shadow: 0 1px 0 0 rgba(13,13,13,0.12); }
+  .hairline-top { box-shadow: 0 -1px 0 0 rgba(13,13,13,0.12); }
+
+  .shadow-soft {
+    box-shadow:
+      0 1px 2px rgba(115,58,25,0.06),
+      0 8px 24px -8px rgba(65,143,191,0.18),
+      0 24px 48px -24px rgba(13,13,13,0.20);
+  }
+
+  .btn-focus:focus-visible { outline: 2px solid #E85610; outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  }
+
+  ::selection { background: #418FBF; color: #FAF7F2; }
+
+  .article-prose blockquote {
+    font-family: 'Caslonian', 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.55;
+    color: #733A19;
+    border-inline-start: 3px solid #DAD8D6;
+    padding-inline-start: 1.5rem;
+    margin: 2.5rem 0;
+  }
+  .article-prose blockquote[dir="rtl"] {
+    font-family: 'Adobe Arabic', 'Noto Naskh Arabic', serif;
+    font-style: normal;
+    font-size: 1.6rem;
+    line-height: 2.1;
+    border-inline-start: none;
+    border-inline-end: 3px solid #DAD8D6;
+    padding-inline-start: 0;
+    padding-inline-end: 1.5rem;
+    text-align: right;
+  }
+  .article-prose p { margin-top: 1.5rem; margin-bottom: 1.5rem; line-height: 1.8; }
+  .article-prose h3 { font-size: 1.5rem; margin-top: 2.5rem; margin-bottom: 1rem; }
+  .article-prose ul { margin: 1.5rem 0; padding-inline-start: 1.5rem; list-style: disc; }
+  .article-prose li { margin-bottom: 0.5rem; line-height: 1.6; }
+  .article-prose a { color: #E85610; text-decoration: underline; text-underline-offset: 2px; }
+  .article-prose a:hover { color: #733A19; }
+  .article-prose .drop-cap::first-letter {
+    font-family: 'Caslonian', 'Cormorant Garamond', Georgia, serif;
+    font-size: 3.5rem;
+    line-height: 0.8;
+    float: left;
+    margin-inline-end: 0.5rem;
+    color: #733A19;
+  }
+
+  .reading-list { columns: 1; column-gap: 3rem; }
+  @media (min-width: 640px) { .reading-list { columns: 2; } }
+  .reading-list li { break-inside: avoid; margin-bottom: 0.85rem; line-height: 1.5; font-size: 0.95rem; }
+</style>
+</head>
+
+<body class="font-display bg-cream text-ink antialiased">
+
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:start-4 focus:z-[100] focus:bg-ink focus:text-cream focus:px-4 focus:py-2 focus:rounded btn-focus">
+  Skip to content
+</a>
+
+<!-- ============ HEADER ============ -->
+<header class="sticky top-0 z-50 bg-cream/95 backdrop-blur hairline">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="flex items-center justify-between h-20">
+
+      <a href="../index.html" class="flex items-center gap-3 shrink-0">
+        <img src="../brand_assets/Middle%20Ground%20final%20logo%20square-2.png" alt="Middle Ground" class="h-11 w-11 rounded-full">
+        <span class="text-xl tracking-tight leading-none">Middle Ground</span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-9 text-[15px] tracking-wide uppercase">
+        <a href="../index.html#prayer" class="hover:text-clay transition-colors btn-focus">Prayer</a>
+        <a href="../imam.html" class="hover:text-clay transition-colors btn-focus">Imam</a>
+        <a href="../index.html#learning" class="hover:text-clay transition-colors btn-focus">Learning</a>
+        <a href="index.html" class="text-clay btn-focus" aria-current="page">Blog</a>
+        <a href="../index.html#media" class="hover:text-clay transition-colors btn-focus">Media</a>
+        <a href="../index.html#contact" class="hover:text-clay transition-colors btn-focus">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button id="menuToggle" type="button" aria-label="Menu" class="lg:hidden p-2 -me-2 btn-focus">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobileNav" class="hidden lg:hidden pb-6 flex flex-col gap-4 text-base tracking-wide uppercase">
+      <a href="../index.html#prayer" class="btn-focus">Prayer</a>
+      <a href="../imam.html" class="btn-focus">Imam</a>
+      <a href="../index.html#learning" class="btn-focus">Learning</a>
+      <a href="index.html" class="text-clay btn-focus">Blog</a>
+      <a href="../index.html#media" class="btn-focus">Media</a>
+      <a href="../index.html#contact" class="btn-focus">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="max-w-3xl mx-auto px-5 sm:px-8 pt-14 sm:pt-20 pb-24">
+
+  <a href="index.html" class="inline-block text-sm tracking-wide uppercase text-ink/50 hover:text-clay transition-colors btn-focus mb-10">
+    &larr; Back to Blog
+  </a>
+
+  <div class="flex flex-wrap items-center gap-2 mb-6">
+    <span class="inline-block text-xs tracking-widest uppercase text-earth bg-stone/40 rounded-full px-3 py-1">Resources</span>
+  </div>
+
+  <h1 class="text-4xl sm:text-6xl leading-[1.05] tracking-tight mb-3">Reading List</h1>
+  <p class="text-xl sm:text-2xl italic text-ink/60 mb-8">Articles</p>
+
+  <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-ink/60 hairline-top hairline pt-5 pb-6 mb-10">
+    <a href="../imam.html" class="flex items-center gap-2 hover:text-clay transition-colors btn-focus">
+      <img src="../media/images/web/hero-imam.jpg" alt="" class="h-7 w-7 rounded-full object-cover object-center">
+      <span class="text-ink">Imam Marc Manley</span>
+    </a>
+    <span class="text-ink/30">&middot;</span>
+    <time datetime="2024-02-29T13:41">February 29, 2024 &middot; 1:41 PM</time>
+  </div>
+
+  <div class="article-prose text-lg text-ink/80">
+    <p>In addition to my <a href="readinglist.html">book reading list</a>, I also have a big (mostly electronic) stack of articles that I&rsquo;m also reading.</p>
+  </div>
+  <ul class="reading-list mt-8 mb-4 text-ink/75">
+      <li><strong>Abd-Allah</strong> &mdash; Innovation and Creativity in Islam</li>
+      <li><strong>Abd-Allah</strong> &mdash; Islam and the Cultural Imperative</li>
+      <li><strong>Abd-Allah</strong> &mdash; Living Islam with Purpose</li>
+      <li><strong>Abd-Allah</strong> &mdash; Mercy</li>
+      <li><strong>Abd-Allah</strong> &mdash; One God Many Names</li>
+      <li><strong>Abd-Allah</strong> &mdash; Seek Knowledge in China</li>
+      <li><strong>Adler</strong> &mdash; Juggling on a high wire - Multitasking effects on performance</li>
+      <li><strong>Afroz</strong> &mdash; From Moors to Marronage - The Islamic Heritage of the Maroons in Jamaica</li>
+      <li><strong>After Virtue</strong> &mdash; Chapter Summary</li>
+      <li><strong>Agnew</strong> &mdash; Leisure and Delinquency</li>
+      <li><strong>Ahmed</strong> &mdash; Mapping Scholar Bukhara</li>
+      <li><strong>Ajetunmobi</strong> &mdash; A Critical Study of Mukhtasar Khalil</li>
+      <li><strong>Al-Akoub</strong> &mdash; Izutsu's Study of the Qur'an from an Arab Perspective</li>
+      <li><strong>al-Faruqi</strong> &mdash; Music Musicians and Muslim Law</li>
+      <li><strong>al-Fawzan</strong> &mdash; Ruling on Mawlid</li>
+      <li><strong>al-Hanbali</strong> &mdash; Refutation of Universalism</li>
+      <li><strong>al-Harithy</strong> &mdash; Architectural Form and Meaning in Light of Al Jurjani's Literary Theory</li>
+      <li><strong>Albayrak</strong> &mdash; Reception of Toshihiko Izutsu's Qur'anic Studies in the Muslim World</li>
+      <li><strong>Algar</strong> &mdash; Some Notes on the Naqshbandi Tariqat in Bosnia</li>
+      <li><strong>Algar</strong> &mdash; The Hamzeviye A Deviant Movement in Bosnian Sufism</li>
+      <li><strong>Ali</strong> &mdash; The Challenge of Dawa: Political Islam as Ideology and Movement and How to Counter It</li>
+      <li><strong>Almond</strong> &mdash; Doing Violence Upon God</li>
+      <li><strong>Almond</strong> &mdash; Honesty of the Perflexed</li>
+      <li><strong>Almond</strong> &mdash; How Not to Deconstruct a Dominican</li>
+      <li><strong>Almond</strong> &mdash; Islam Melancholy and Sad Concrete Minarets</li>
+      <li><strong>Almond</strong> &mdash; Leibniz Historicism and the Plague of Islam</li>
+      <li><strong>Almond</strong> &mdash; Meaning of Infinity in Sufi and Deconstructive Hermeneutics</li>
+      <li><strong>Almond</strong> &mdash; Mullahs Mystics Moderates and Moghuls</li>
+      <li><strong>Almond</strong> &mdash; The Shackles of Reason</li>
+      <li><strong>Altrocchi</strong> &mdash; Dante and Tufail</li>
+      <li><strong>Amanze</strong> &mdash; Islam in Botswana During the Colonial Period</li>
+      <li><strong>Anderson</strong> &mdash; Effects of Violent Video Games on Aggressive Behavior</li>
+      <li><strong>Anderson</strong> &mdash; Gunter Grass and The Tin Drum</li>
+      <li><strong>Andrews</strong> &mdash; Imagining the Middle East by Thierry Hentsch</li>
+      <li><strong>Anson</strong> &mdash; Intermittent Fasting</li>
+      <li><strong>Antliff</strong> &mdash; Fascism, Modernism, and Modernity</li>
+      <li><strong>Apple</strong> &mdash; Education markets and An Audit Culture</li>
+      <li>Arabic For Religious Devotion.xlsx</li>
+      <li><strong>Arana</strong> &mdash; A Social Survey on the Effects of Environmental Noise on the Residents of Pamplona Spain</li>
+      <li><strong>Ardizzone</strong> &mdash; Such fine families - Photography and race in the work of Caroline Bond Day</li>
+      <li><strong>Arnds</strong> &mdash; On the Awful German Fairy Tale</li>
+      <li><strong>Arnds</strong> &mdash; Representation Subversion and Eugenics in Günter Grass's The Tin Drum (review)</li>
+      <li><strong>Arrunada</strong> &mdash; Specialization and Rent Seeking in Moral Enforcement-The Case of Confession</li>
+      <li><strong>Arthur</strong> &mdash; Doom and Expertise</li>
+      <li><strong>Asad</strong> &mdash; Is Critique Secular</li>
+      <li><strong>Atterton</strong> &mdash; A God Problem</li>
+      <li><strong>Austin</strong> &mdash; Zen and the Brain-18</li>
+      <li><strong>Austin</strong> &mdash; Zen and the Brain-3</li>
+      <li><strong>Aydin</strong> &mdash; Changing Modes of Political Dialogue Across the Middle East and East Asia 1880-2010</li>
+      <li><strong>Azmat</strong> &mdash; Iqbal’s Conception of Religion</li>
+      <li><strong>BaHammam</strong> &mdash; Qur’anic insights into sleep</li>
+      <li><strong>Bailey</strong> &mdash; Control and desire-The issue of identity in popular discourses of addiction</li>
+      <li><strong>Baker</strong> &mdash; Nazism and the Petit Bourgeois Protagonist</li>
+      <li><strong>Bamyeh</strong> &mdash; Hermeneutics against Instrumental Reason</li>
+      <li><strong>Barak</strong> &mdash; Sex, Guys, and Cyberspace</li>
+      <li>Bartholomew-Shariah in Singapore</li>
+      <li><strong>Bashiardes</strong> &mdash; The microbiome in anti-cancer therapy</li>
+      <li><strong>Bellver</strong> &mdash; Al-Ghazali of al-Andalus - Ibn Barrajan, Mahdism, and the Emergence of Learned Sufism on the Iberian Peninsula</li>
+      <li><strong>Benjamin</strong> &mdash; Storyteller</li>
+      <li><strong>Benjamin</strong> &mdash; The Work of Art in the Age of Mechanical Reproduction</li>
+      <li>Berggren-Engineer of the Psyche</li>
+      <li><strong>Beydoun</strong> &mdash; Rrduced Away-From-Home Food Expenditure</li>
+      <li><strong>Beyong Orientalism</strong> &mdash; Displacements of Essentialism in Study Islam</li>
+      <li><strong>Bhabha</strong> &mdash; The Location of Culture</li>
+      <li><strong>Bisaha</strong> &mdash; Petrarchs Vision of the Muslim and Byzantine East</li>
+      <li><strong>Blomster</strong> &mdash; Demonic in History</li>
+      <li><strong>Bonnett</strong> &mdash; Geography Race and Whiteness-Invisible Traditions and Current Challenges</li>
+      <li>Borrower Certification and Authorization</li>
+      <li><strong>Bouma</strong> &mdash; Calvinism in American Theology Today</li>
+      <li><strong>Bourne</strong> &mdash; The Handicapped</li>
+      <li><strong>Bourne</strong> &mdash; Trans-National America</li>
+      <li><strong>Bowie</strong> &mdash; Muslim-Jewish Relations_19th</li>
+      <li><strong>Breiannis</strong> &mdash; Message to the White Man in America</li>
+      <li><strong>Brenner and Last</strong> &mdash; The Role of Language in West African Islam</li>
+      <li><strong>Brockopp</strong> &mdash; Early Islamic Jurisprudence</li>
+      <li><strong>Brockopp</strong> &mdash; Ibn Abd al-Hakam</li>
+      <li><strong>Brockopp</strong> &mdash; Mosque Library Kairouan</li>
+      <li><strong>Brooks</strong> &mdash; The Chinese import ban and its impact on global plastic waste trade</li>
+      <li><strong>Brown</strong> &mdash; Critical Rigor vs. Juridical Pragmatism How Legal Theorists and Hadith Scholars</li>
+      <li><strong>Brown</strong> &mdash; Denominational Differences in Support for Race-Based Policies Among White Black Hispanic and Asian Americans</li>
+      <li><strong>Brown</strong> &mdash; Did the Prophet Say It or Not</li>
+      <li><strong>Bullivant</strong> &mdash; Germans as Victims</li>
+      <li><strong>Burdette</strong> &mdash; Hooking Up at College-Does Religion Make a Difference</li>
+      <li><strong>C. S. Lewis Onstage</strong> &mdash; The Most Reluctant Convert (The New Yorker 2017-3-20)</li>
+      <li><strong>Calvert</strong> &mdash; The First Amendment the Media and the Culture Wars_ Eight Import</li>
+      <li><strong>Cambre</strong> &mdash; Computer Anxiety</li>
+      <li><strong>Caplan</strong> &mdash; Relations Among Loneliness, Social Anxiety, and Problematic Internet Use</li>
+      <li><strong>Carpenter</strong> &mdash; Developments in the Philosophy of Technology in America</li>
+      <li><strong>Chase Bliss Audio</strong> &mdash; Dark World Instructions</li>
+      <li><strong>Chepesiuk</strong> &mdash; Decibel Hell</li>
+      <li><strong>Clarkson</strong> &mdash; Pornography Addiction and the Medicalization of Free Speech</li>
+      <li>Classical Arabic-Core Problem Transcript</li>
+      <li><strong>Clifford</strong> &mdash; identity_politics</li>
+      <li><strong>Clifford</strong> &mdash; Indigenous Articulations</li>
+      <li><strong>Clifford</strong> &mdash; Rearticulating Anthropology</li>
+      <li><strong>Clifford</strong> &mdash; Traditional Futures</li>
+      <li><strong>Clifford</strong> &mdash; Varieties of Indigenous Experience</li>
+      <li><strong>Cooper</strong> &mdash; Sexual Addiction & Compulsivity-The Journal of Treatment & Prevention</li>
+      <li><strong>Cornell</strong> &mdash; Reasons Public and Divine - Liberal Democracy Shari a Fundamentalism and the Epistemological Crisis of Islam</li>
+      <li><strong>Crowley</strong> &mdash; A Teacher's Introduction to Deconstruction</li>
+      <li><strong>Cunliffe</strong> &mdash; Aspects of the Absurd in Günter Grass</li>
+      <li><strong>Cushman</strong> &mdash; Morality- Don’t be afraid – Science Can Make Us Better</li>
+      <li><strong>Dallmayr</strong> &mdash; Civilization and World Order</li>
+      <li><strong>Daston</strong> &mdash; When Science Went Modern</li>
+      <li><strong>Deaton</strong> &mdash; Mortality and Morbidity in the 21st Century</li>
+      <li><strong>Deeb</strong> &mdash; Al-Jurjani's Classification of Isti'ara with Special Reference to Aristotle</li>
+      <li><strong>Deroche</strong> &mdash; The codex Parisino-petropolitanus and the hijazi scripts</li>
+      <li><strong>Dillon</strong> &mdash; MUSLI M COMMUNITIE S I N CONTEMPORAR Y CHINA - TH E RESURGENC E O F ISLA M AFTE R TH E CULTURA L REVOLUTIO N</li>
+      <li><strong>Dodge</strong> &mdash; al-Azhar</li>
+      <li><strong>Drengson</strong> &mdash; Toward a Philosophy of Appropriate Technology</li>
+      <li><strong>Dunlosky</strong> &mdash; Improving Students’ Learning With Effective Learning Techniques- Promising Directions From Cognitive and Educational Psychology</li>
+      <li><strong>Dupree</strong> &mdash; Influence of the Past</li>
+      <li><strong>Dupree</strong> &mdash; Role of Technology in Society and the Need For Historical Perspective</li>
+      <li><strong>Dutton</strong> &mdash; Amal vs Hadith Sadl al-Yadayn</li>
+      <li><strong>Dutton</strong> &mdash; Intro Ibn Rushd Bidayat al-Mujtahid</li>
+      <li><strong>Dutton</strong> &mdash; Reflections on the Vocalisation of Early Qur'anic Manuscripts Part 1</li>
+      <li><strong>Dutton</strong> &mdash; Reflections on the Vocalisation of Early Qur'anic Manuscripts Part 2</li>
+      <li>Effects of MP3 Compression on Perceived Emotional Characteristics in Musical Instruments</li>
+      <li><strong>el-Zein</strong> &mdash; The Search for the Anthropology of Islam</li>
+      <li><strong>Elazar</strong> &mdash; From Statism to Federalism - A Paradigm Shift</li>
+      <li><strong>Elmore</strong> &mdash; Personal Study</li>
+      <li><strong>Euben</strong> &mdash; Comparative Political Theory-An Islamic Fundamentalist Critique of Rationalism</li>
+      <li><strong>Euben</strong> &mdash; Premodern, Antimodern or Postmodern? Islamic and Western Critiques of Modernity</li>
+      <li>Fatal Narratives</li>
+      <li><strong>Ferguson</strong> &mdash; Meaning and the External World</li>
+      <li><strong>Fierro</strong> &mdash; The Polemic about the karamat al-awliya' and the Development of Sufism in al-Andalus</li>
+      <li>Firearm Safety Certificate Study Guide</li>
+      <li><strong>Fisher</strong> &mdash; Core Principles of Cognitive Behavior Therapy</li>
+      <li><strong>Fisher</strong> &mdash; Internet Pornography-A Social Psychological Perspective on Internet Sexuality</li>
+      <li><strong>Fortier</strong> &mdash; Methods for Transmitting Islamic Knowledge in Mauritania</li>
+      <li><strong>Garrett-Goodyear</strong> &mdash; The Rapture of Endless Approximiation - The Role of the Narrator in Pnin</li>
+      <li><strong>Garroutte</strong> &mdash; Religiosity and Spiritual Engagement in Two American Indian Populations</li>
+      <li><strong>Gatling</strong> &mdash; The Guide after Rumi-Tradition and its Foil in Tajik Sufism</li>
+      <li><strong>Gelley</strong> &mdash; Art and Reality in Die Blechtrommel</li>
+      <li><strong>Gelley</strong> &mdash; The Represented World - Toward a Phenomenological Theory of Description in the Novel</li>
+      <li><strong>Ghaly</strong> &mdash; Writings on Disability in Islam</li>
+      <li><strong>Glazer</strong> &mdash; Passage From Arab Grammer - Glazer</li>
+      <li><strong>Goldberg</strong> &mdash; Racisms Without Racism</li>
+      <li><strong>Goldstein</strong> &mdash; Feminist Themes in French Utopian Socialism</li>
+      <li><strong>Gomberg</strong> &mdash; Patriotism Is like Racism</li>
+      <li><strong>Gomez-Perez</strong> &mdash; Young Men and Islam in the 1990s-Rethinking an Intergenerational Perspective</li>
+      <li><strong>Gottheil</strong> &mdash; Origin and History of the Minaret</li>
+      <li><strong>Graham</strong> &mdash; Traditional Islam</li>
+      <li><strong>Greed</strong> &mdash; Religion and Sustainable Urban Planning</li>
+      <li><strong>Green</strong> &mdash; Conversation with Josephine Harreld Love - Reminiscences of Times Past</li>
+      <li><strong>Green</strong> &mdash; Niebuhr's Critique of Rationalism</li>
+      <li><strong>Greenspun</strong> &mdash; Audio Analysis VI-Testing Audio Cables</li>
+      <li><strong>Griffel</strong> &mdash; What Do We Mean By Salafi</li>
+      <li><strong>Guj</strong> &mdash; Loss of the Self - La selva oscura of Mr Palomar</li>
+      <li><strong>Guomundsdottir</strong> &mdash; A Phonological Phonetic and Sociolinguistic Approach</li>
+      <li><strong>Guzmán</strong> &mdash; SOCIAL AND ETHNIC TENSIONS IN AL-ANDALUS</li>
+      <li><strong>Gygax</strong> &mdash; The Excellent Prismatic Spray - Volume1 Issue 2</li>
+      <li><strong>Habib</strong> &mdash; Questionings within Religious Thought-The Experience of Islam</li>
+      <li><strong>Hall</strong> &mdash; A Different Drummer - The Tin Drum Film and Novel</li>
+      <li><strong>Hallaq</strong> &mdash; ON THE AUTHORIT A TIVENESS OF SUNNI CONSENSUS</li>
+      <li><strong>Hallaq</strong> &mdash; On the Authoritativeness of Sunni Consensus</li>
+      <li><strong>Hallaq</strong> &mdash; Was the Gate of Ijtihad Closed</li>
+      <li><strong>Halloran</strong> &mdash; Modernization model for Islamic nations | The Japan Times</li>
+      <li><strong>Hanley</strong> &mdash; When Did Egyptians Stop Being Ottomans</li>
+      <li><strong>Harvie</strong> &mdash; Intermittent Fasting</li>
+      <li><strong>Hasan</strong> &mdash; Argument for the Authority of Ijma</li>
+      <li><strong>Hasan</strong> &mdash; Comparative Study of Ijma</li>
+      <li><strong>Hasan</strong> &mdash; Concept of Infallibility in Islam</li>
+      <li><strong>Hasan</strong> &mdash; Critique of Qiyas Continued</li>
+      <li><strong>Hasan</strong> &mdash; Critique of Qiyas</li>
+      <li><strong>Hasan</strong> &mdash; Definition of Qiyas</li>
+      <li><strong>Hasan</strong> &mdash; Definition of Sabab and Its Kinds in Islamic Jurisprudence</li>
+      <li><strong>Hasan</strong> &mdash; Early Modes of Ijtihad</li>
+      <li><strong>Hasan</strong> &mdash; Ijma - An Integrating Force in the Muslim Community</li>
+      <li><strong>Hasan</strong> &mdash; Ijma In the Early Schools</li>
+      <li><strong>Hasan</strong> &mdash; Justification of Qiyas</li>
+      <li><strong>Hasan</strong> &mdash; Methods of Finding the Cause of Legal Injunction in Islamic Jurisprudence</li>
+      <li><strong>Hasan</strong> &mdash; Modern Trends in Ijma</li>
+      <li><strong>Hasan</strong> &mdash; Modes of Reasoning in Legal Cause</li>
+      <li><strong>Hasan</strong> &mdash; Origins of the Early Schools of Law</li>
+      <li><strong>Hasan</strong> &mdash; Political Role of Ijma</li>
+      <li><strong>Hasan</strong> &mdash; Principle of Istihsan</li>
+      <li><strong>Hasan</strong> &mdash; Principle of Qiyas in Islamic Law</li>
+      <li><strong>Hasan</strong> &mdash; Qur'an The Primary Source of Fiqh</li>
+      <li><strong>Hasan</strong> &mdash; Rationality of Islamic Legal Injunctions</li>
+      <li><strong>Hasan</strong> &mdash; Sources of Fiqh</li>
+      <li><strong>Hasan</strong> &mdash; Sources of Islamic Law</li>
+      <li><strong>Hasan</strong> &mdash; Subject Matter of Qiyas</li>
+      <li><strong>Hasan</strong> &mdash; Sunnah - Its Early Concept and Development</li>
+      <li><strong>Hasan</strong> &mdash; Sunnah as a Source of Fiqh-1</li>
+      <li><strong>Hasan</strong> &mdash; Sunnah as a Source of Fiqh</li>
+      <li><strong>Hasan</strong> &mdash; Theory of Naskh</li>
+      <li><strong>Hawes</strong> &mdash; Postmodernism and Power:Control</li>
+      <li><strong>Hayler</strong> &mdash; The Extent of Text-Producing Meaning Beyond Intuition</li>
+      <li><strong>Hazlett-Stevens</strong> &mdash; Relaxation</li>
+      <li><strong>Hedstrom</strong> &mdash; Book Culture and the Rise of Liberal Religion</li>
+      <li><strong>Helf</strong> &mdash; Psychoanalysis Shapes Consumer Culture</li>
+      <li><strong>Henkel</strong> &mdash; Location of Islam</li>
+      <li><strong>Herschbach</strong> &mdash; Technoloyg As Knowledge</li>
+      <li><strong>Hill</strong> &mdash; Higher Education as Moral Community-Institutional Influences on Religious Participation During College</li>
+      <li><strong>Hill</strong> &mdash; Making a Pilgrimage for Life</li>
+      <li><strong>Hindes</strong> &mdash; Rationality and Modern Society</li>
+      <li><strong>Hooker</strong> &mdash; Islam and Islamic Legal History in Southeast Asia</li>
+      <li><strong>Hoover</strong> &mdash; Islamic Universalism</li>
+      <li><strong>Horne</strong> &mdash; Intermittent Fasting</li>
+      <li><strong>Hoskins</strong> &mdash; Purity Soul Food and Sunni Islam-Explorations at the Intersection of Consumption and Resistance</li>
+      <li><strong>Houston</strong> &mdash; Sherman A. Jackson and the Possibility of a “Blackamerican Muslim” Prophetic Pragmatism</li>
+      <li>How To Write A Literary Analysis Essay</li>
+      <li><strong>Hughley</strong> &mdash; Cinethetic Racism White Redemption</li>
+      <li><strong>Hunter Nedelisky</strong> &mdash; Where New Science of Morality Goes Wrong</li>
+      <li><strong>Hunwick</strong> &mdash; The Arabic Literary Tradition of Nigeria</li>
+      <li><strong>Ibrahim</strong> &mdash; LITERATURE OF THE CONVERTS IN EARLY MODERN SPAIN- NATIONALISM AND RELIGIOUS DISSIMULATION OF MINORITIES</li>
+      <li><strong>Ibrahim</strong> &mdash; Oaths in the Qur'an - Bint al-Shati's Literary Contribution</li>
+      <li><strong>Ihde</strong> &mdash; Has the Philosophy of Technology Arrived</li>
+      <li><strong>Imamuddin</strong> &mdash; Islam in Balearic Islands</li>
+      <li>Institutions and Rationality in Politics</li>
+      <li><strong>Iwaki</strong> &mdash; An American Collection of Western Poems and the Early Career of Ishikawa Takuboku</li>
+      <li><strong>Jackson</strong> &mdash; A Defense of Tolerance</li>
+      <li><strong>Jackson</strong> &mdash; al-Jahiz On Translation</li>
+      <li><strong>Jackson</strong> &mdash; Alchemy of Domination</li>
+      <li><strong>Jackson</strong> &mdash; Between Preachers and Warriors</li>
+      <li><strong>Jackson</strong> &mdash; Domestic Terrorism</li>
+      <li><strong>Jackson</strong> &mdash; Fiction and Formalism - Towards A Functional Analysis of Usul al-Fiqh</li>
+      <li><strong>Jackson</strong> &mdash; From Prophetic Actions</li>
+      <li><strong>Jackson</strong> &mdash; Islam and Affirmative Action</li>
+      <li><strong>Jackson</strong> &mdash; Islamic Law and the State</li>
+      <li><strong>Jackson</strong> &mdash; Islamic Law Public Policy</li>
+      <li><strong>Jackson</strong> &mdash; Jihad and the Modern World</li>
+      <li><strong>Jackson</strong> &mdash; Kamali Freedom of Expression in Islam</li>
+      <li><strong>Jackson</strong> &mdash; Kramer vs. Kramer</li>
+      <li><strong>Jackson</strong> &mdash; Legal Pluralism</li>
+      <li><strong>Jackson</strong> &mdash; Legal Scaffolding</li>
+      <li><strong>Jackson</strong> &mdash; Literalism Empricisism and Induction</li>
+      <li><strong>Jackson</strong> &mdash; Muslim and Islamic Law and Sociopolitical Reality in US</li>
+      <li><strong>Jackson</strong> &mdash; Politically Speaking - Who Am I And What Do I Want As An American Muslim</li>
+      <li><strong>Jackson</strong> &mdash; Politically Speaking Who Am I And What Do I Want As An American Muslim</li>
+      <li><strong>Jackson</strong> &mdash; Primacy of Domestic Politics</li>
+      <li><strong>Jackson</strong> &mdash; Response to Vinicent Cornell</li>
+      <li><strong>Jackson</strong> &mdash; Review - Freedom of Expression</li>
+      <li><strong>Jackson</strong> &mdash; Setting the Record Straight</li>
+      <li><strong>Jackson</strong> &mdash; The Affects of Liberalism Secularism and Atheism on the American Mosque</li>
+      <li><strong>Jackson</strong> &mdash; The Alchemy of Domination</li>
+      <li><strong>Jacober</strong> &mdash; Does Adolescence Lead To Capitalism</li>
+      <li>Japan’s Colonialism and Indonesia</li>
+      <li><strong>Jarullah</strong> &mdash; al-Jurjani's Contribution to Arabic Literature</li>
+      <li><strong>Jonas</strong> &mdash; Toward a Philosophy of Technology</li>
+      <li><strong>Junco</strong> &mdash; In-class multitasking and academic performance</li>
+      <li><strong>Jung</strong> &mdash; Islam As A Problem Religion</li>
+      <li><strong>Kalberg</strong> &mdash; Weber's Types of Rationality</li>
+      <li><strong>Katz</strong> &mdash; Poverty and Policy in American History</li>
+      <li><strong>Keane</strong> &mdash; Yeat's Counter Enlightenment</li>
+      <li><strong>Kee</strong> &mdash; "Postmodern" Thinking and the Status of the Religious</li>
+      <li><strong>Khalifa</strong> &mdash; Creating Spaces for Urban Youth</li>
+      <li><strong>Knecht</strong> &mdash; Rice Representations and Reality</li>
+      <li><strong>Kobayashi</strong> &mdash; Racism Out of Place</li>
+      <li><strong>Konieczny</strong> &mdash; Sacred Places, Domestic Spaces-Material Culture Church and Home</li>
+      <li><strong>Konrad</strong> &mdash; From the Turkish Menace to Exoticism and Orientalism Islam as Antithesis of Europe</li>
+      <li><strong>Kopanski</strong> &mdash; Islam in Italy and in its Libyan Colony</li>
+      <li><strong>Koshy</strong> &mdash; Morphing Race into Ethnicity - Asian Americans and Critical Transformations of Whiteness</li>
+      <li><strong>Krimmer</strong> &mdash; Ein Volk von Opfern - Germans as Victims in Günter Grass’s Die Blechtrommel and Im Krebsgang</li>
+      <li><strong>Kring</strong> &mdash; Generation Text Goes to College</li>
+      <li><strong>Kruk</strong> &mdash; Hayy Ibn Yaqzan Robinson Crusoe</li>
+      <li><strong>Kühn</strong> &mdash; Brain Structure and Functional Connectivity Associated With Pornography Consumption</li>
+      <li><strong>Kuttner</strong> &mdash; Russian Jad_dism and the Islamic World</li>
+      <li><strong>La Bare</strong> &mdash; Future Wrapped in That Mysterious Japanese Way</li>
+      <li><strong>Lanuza</strong> &mdash; Youthful Atheism and Self-Stylization</li>
+      <li><strong>Lapidus</strong> &mdash; State and Religion in Islamic Societies</li>
+      <li><strong>Larkin</strong> &mdash; Al-Jurjani's Theory of Discourse</li>
+      <li><strong>Larkin</strong> &mdash; The Inimitability of the Qur'an - Two Perspectives</li>
+      <li><strong>Launay</strong> &mdash; Beyond the Stream</li>
+      <li><strong>Lecker</strong> &mdash; Zayd B. Thabit - A Jew with Two Sidelocks - Judaism and Literacy in Pre-Islamic Medina</li>
+      <li><strong>Lenoble</strong> &mdash; Founding Myths in Legal Rationality</li>
+      <li><strong>Levy</strong> &mdash; One Linear Mile-Towards a more hospitable architecture</li>
+      <li><strong>Linker</strong> &mdash; From Kant to Schelling-Counter-Enlightenment in the Name of Reason</li>
+      <li>Linksys WRT54 Wireless Router Manual</li>
+      <li><strong>Lipsitz</strong> &mdash; Possessive Investment</li>
+      <li><strong>Locke</strong> &mdash; Constructing the Oriental Other-Saens</li>
+      <li><strong>Lucas</strong> &mdash; The Legal Principles of Muhammad B. Ism___l Al-Bukh_r_ and Their Relationship to Classical</li>
+      <li><strong>Ludden</strong> &mdash; Birth and the Mother in Materialist Feminist Philosophy and Contemporary German Texts</li>
+      <li><strong>Lundervold</strong> &mdash; Harry Potter and the Different Accents</li>
+      <li><strong>Lyndon</strong> &mdash; Writing Trans-Saharan History- Methods, Sources and Interpretations Across the African Divide</li>
+      <li><strong>Machery</strong> &mdash; Two Dogmas of Neo-Empiricism</li>
+      <li><strong>MacIntyre</strong> &mdash; The Virtue of Tradition</li>
+      <li><strong>Mailer</strong> &mdash; White Negro</li>
+      <li><strong>Makdisi</strong> &mdash; Scholasticism and Humanism in Classical Isalm and Christian West</li>
+      <li><strong>Malinovich</strong> &mdash; Americanization of Islam in the Contemporary United States</li>
+      <li><strong>Manela</strong> &mdash; Race Civilizatrion and Internation Society</li>
+      <li><strong>Marcell</strong> &mdash; Charles Beard-Civilization and the Revolt Against Empiricism</li>
+      <li><strong>Martin</strong> &mdash; Japan – To what extent did the Meiji Restoration lead a secularising agenda</li>
+      <li><strong>Masud</strong> &mdash; Abu Ishaq Shatibi His Life and Works</li>
+      <li><strong>Masud</strong> &mdash; Recent Studies of Shatibis al-Muwafaqat</li>
+      <li><strong>Masumi</strong> &mdash; Ibn Hazms Allegations Against the Leading Imams</li>
+      <li><strong>Mayhew</strong> &mdash; In Defense of Modernity - Talcott Parsons and the Utilitarian Tradition</li>
+      <li><strong>McDougall</strong> &mdash; Becoming Sinless-Converting to Islam in the Christian Solomon Islands</li>
+      <li><strong>McKenna</strong> &mdash; Relationship Formation on the Internet-What’s the Big Attraction?</li>
+      <li><strong>McKinnon</strong> &mdash; Opium as Dialectics of Religion-Metaphor, Expression and Protest</li>
+      <li><strong>McLean</strong> &mdash; Dragons and Dice</li>
+      <li><strong>Melchert</strong> &mdash; Ibn Mujahid and the Establishment of Seven Qur'anic Readings</li>
+      <li>Meuter- The influence of technology anxiety on consumer use and experiences with self-service technologies</li>
+      <li><strong>Mills</strong> &mdash; Racial Liberalism</li>
+      <li><strong>Millward</strong> &mdash; Aspects of Modernism in Shia Islam</li>
+      <li><strong>Mir</strong> &mdash; Elephants Birds of Prey and Heaps of Pebbles</li>
+      <li><strong>Missbach</strong> &mdash; Mental imagery and food consumption</li>
+      <li><strong>Moeller</strong> &mdash; The shrinking human gut microbiome</li>
+      <li><strong>Montgomery</strong> &mdash; The Metaphysical Umar</li>
+      <li><strong>Muhammad</strong> &mdash; No Racial Barrier Left to Break (Except All of Them)</li>
+      <li><strong>Müller</strong> &mdash; Eurocentrism, Human Rights, and Humanism</li>
+      <li><strong>Münzel</strong> &mdash; Cardiovascular effects of environmental noise exposure</li>
+      <li>Mushaf al-Madina and the King Fahd Holy Qur'an Printing Complex</li>
+      <li><strong>Nafi</strong> &mdash; Tasawwuf and Reform in Pre-Modern Islamic Culture</li>
+      <li><strong>Nakamura</strong> &mdash; Imam Ghazali's Cosmology - Jabarat</li>
+      <li><strong>Nasr</strong> &mdash; On the Question of Biological Origins</li>
+      <li><strong>Nichols</strong> &mdash; How America Lost Faith in Expertise</li>
+      <li><strong>Nieuwenhuijze</strong> &mdash; Religion vs. Science in Islam</li>
+      <li><strong>Noor</strong> &mdash; Islam and Sleep - Pages-from-2WCII-SI2-117</li>
+      <li><strong>Norton</strong> &mdash; The Myth of the Counter-Enlightenment</li>
+      <li><strong>Novak</strong> &mdash; Gothic Fiction and the Grotesque</li>
+      <li><strong>Obiedat</strong> &mdash; Defining the Good in the Quran</li>
+      <li><strong>OConnell</strong> &mdash; Fine-Tuning of a Golden Ear-High-End Audio and the Evolutionary Model of Technology</li>
+      <li><strong>Offenhuber</strong> &mdash; Putting Matter in Place</li>
+      <li><strong>Ogunnaike</strong> &mdash; Inception and Ibn Arabi</li>
+      <li><strong>Olson</strong> &mdash; Whiteness and the Polarization of American Politics</li>
+      <li><strong>Olster</strong> &mdash; Inconstant Harmony In The Tin Drum</li>
+      <li><strong>Ozdemir</strong> &mdash; The Concept of Islamic Tradition in Fazlur Rahman’s Thought</li>
+      <li><strong>Papas</strong> &mdash; Toward a New History of Sufism The Turkish Case</li>
+      <li><strong>Patel</strong> &mdash; Whoever Imitates a People Becomes One of Them-A Hadith and its Interpreters</li>
+      <li><strong>Peczenik</strong> &mdash; Moral and Ontological Justification of Legal Reasoning</li>
+      <li><strong>Petts</strong> &mdash; Trajectories of Religious Participation from Adolescence to Young Adulthood</li>
+      <li><strong>Pirog</strong> &mdash; An Annotated Bibliography On Structural Racism In The US Food System-4th Edition</li>
+      <li><strong>Poskocil</strong> &mdash; Encounters between Blacks and White Liberals</li>
+      <li><strong>Pryor</strong> &mdash; Origins of the Commenda Contract</li>
+      <li><strong>Quindlen</strong> &mdash; The Past Is Another Country</li>
+      <li><strong>Quine</strong> &mdash; Two Dogmas of Empiricism</li>
+      <li><strong>Rabb</strong> &mdash; Non-Canonical Readings of the Qur'an</li>
+      <li><strong>Raeder</strong> &mdash; Mill’s Religion of Humanity-Consequences and Implications</li>
+      <li><strong>Rayson</strong> &mdash; George Schuyler-Paradox Among "Assimilationist" Writers</li>
+      <li>Reform in Finance- Riba vs. Interest in the Modern Economy</li>
+      <li>Religion of the Kharijites is Alien to Islam</li>
+      <li><strong>Richards</strong> &mdash; Fast Food Addiction and Market Power</li>
+      <li><strong>Richeimer</strong> &mdash; How Philosophy Lost Perceptual Expertise</li>
+      <li><strong>Riedlmayer</strong> &mdash; Erasing the Past The Destruction of Libraries and Archives in Bosnia-Herzegovina</li>
+      <li><strong>Rippin</strong> &mdash; Reception of Euro-American Scholarship on the Qur_an and Tafsir</li>
+      <li><strong>Robinson</strong> &mdash; Beyond Nation-State Paradigms</li>
+      <li><strong>Robinson</strong> &mdash; Technology and Religious Change Islam and the Impact of Print</li>
+      <li><strong>Robson</strong> &mdash; The Transmission of Abu Dawud's Sunan</li>
+      <li><strong>Rokeach</strong> &mdash; The Nature and Meaning of Dogmatism</li>
+      <li><strong>Rubin</strong> &mdash; Al-Walad li-l-Firash on the Islamic Campaign against Zina</li>
+      <li><strong>Rutledge</strong> &mdash; Futurist Fiction and Fantasy The Racial Establishment</li>
+      <li><strong>Rutledge</strong> &mdash; Speaking in Tongues</li>
+      <li><strong>Safi</strong> &mdash; Development-trends</li>
+      <li><strong>Safran</strong> &mdash; Rules of Purity and Confessional Boundaries - Maliki Debates about the Pollution of the</li>
+      <li><strong>Saint-Blancat</strong> &mdash; Islam in Diaspora - Between Reterritorialization and Extraterritoriality</li>
+      <li><strong>Salisbury</strong> &mdash; Do Animals Go to Heaven</li>
+      <li><strong>Salomon</strong> &mdash; The Salafi critique of Islamism</li>
+      <li><strong>Salvatore</strong> &mdash; Beyond Orientalism</li>
+      <li><strong>Sarles</strong> &mdash; An Epistolary Exchange</li>
+      <li><strong>Satel</strong> &mdash; In Praise of Stigma</li>
+      <li><strong>Schneider</strong> &mdash; Imprisonment in Pre-Classical and Classical Islamic Law</li>
+      <li><strong>Seesemann</strong> &mdash; The Takfir Debate Part 1</li>
+      <li><strong>Seidman</strong> &mdash; Modernity and the Problem of Meaning</li>
+      <li><strong>Shah</strong> &mdash; Early Arabic Grammarians' Contributions to the Collection and Authentication of Qur'anic Readings</li>
+      <li><strong>Shanklin</strong> &mdash; Profession of the Color Blind</li>
+      <li><strong>Shariati</strong> &mdash; Marxism and other western fallacies</li>
+      <li><strong>Sharpin</strong> &mdash; Invisible Science</li>
+      <li><strong>Shaw</strong> &mdash; Two Types of Liberalism</li>
+      <li><strong>Shorish</strong> &mdash; BACK TO JADIDISM THE FUTURE OF EDUCATION IN CENTRAL ASIA</li>
+      <li><strong>Shusterman</strong> &mdash; Art and Religion</li>
+      <li>Sinister Secret of Saltmarsh</li>
+      <li><strong>Sirry</strong> &mdash; al-Qasami-Salafi-Sufism</li>
+      <li><strong>Skowronek</strong> &mdash; Racism Liberalism and the American Political Tradition</li>
+      <li><strong>Slocombe</strong> &mdash; Postmodern Nihilism - Theory and Literature</li>
+      <li><strong>Slovic</strong> &mdash; Imagery, Affect, and Decision Making</li>
+      <li><strong>Smith</strong> &mdash; What Is Metaphysical Poetry</li>
+      <li><strong>Snell</strong> &mdash; What Difference Does Youth Group Make-A Longitudianl Analysis of Religious Youth Group Participation</li>
+      <li><strong>Southgate</strong> &mdash; Negative Images of Blacks in Some Medieval Iranian Writings</li>
+      <li><strong>Spann</strong> &mdash; Disparate Impact</li>
+      <li><strong>Springen</strong> &mdash; An Angelic Autumn</li>
+      <li><strong>Stebbins</strong> &mdash; The Semiotic Self and Serious Leisure</li>
+      <li><strong>Steig</strong> &mdash; Defining the Grotesque - An Attempt at Synthesis</li>
+      <li><strong>Stein</strong> &mdash; Ideology in the Study of American Racism Ethnicity and Poverty</li>
+      <li><strong>Stewart</strong> &mdash; First Shaykh Safavid</li>
+      <li><strong>Stikkers</strong> &mdash; The Spirit of Capitalism and the Caribbean Slave Trade</li>
+      <li>Swingline 39005 Heavy Duty Stapler</li>
+      <li><strong>Szabados</strong> &mdash; On 'Moral Expertise'</li>
+      <li><strong>Tachibana</strong> &mdash; A Study in Convergence</li>
+      <li><strong>Tamarkin</strong> &mdash; Black Anglophilia or The Sociability of Antislavery</li>
+      <li><strong>Tate</strong> &mdash; In Praise of Shadow Boxers</li>
+      <li><strong>Taylor</strong> &mdash; Dungeons and Dragons in African American Art Research</li>
+      <li><strong>Tebble</strong> &mdash; Exclusion for Democracy</li>
+      <li><strong>Teubner</strong> &mdash; Substantive-Reflexive</li>
+      <li><strong>Thmopson</strong> &mdash; Unmaking the Motor City in the Age of Mass Incarceration</li>
+      <li><strong>Toledano</strong> &mdash; Sijilmasi's Manual of Maghribi Amal</li>
+      <li>Tolson — The Hedgehog Review [Letter From The Editor]</li>
+      <li><strong>Trouillot</strong> &mdash; North Atlantic Universals</li>
+      <li><strong>Turner</strong> &mdash; Reconsidering Jihad</li>
+      <li><strong>Twohig</strong> &mdash; Skills Training</li>
+      <li><strong>Vaghefi</strong> &mdash; Spirituality and Brain Waves</li>
+      <li><strong>Vasalou</strong> &mdash; The Miraculous Eloquence of the Qur'an - General Trajectories and Individual Approaches</li>
+      <li><strong>Veenhoven</strong> &mdash; Has modernisation gone too far?</li>
+      <li><strong>Vinding</strong> &mdash; Challenged pragmatism-Conflicts of religion and law in the Danish labour market</li>
+      <li><strong>Vonalt</strong> &mdash; Barbaric, Mystical, Bored</li>
+      <li><strong>Waardendurg</strong> &mdash; Islam Higher Learning</li>
+      <li><strong>Walling</strong> &mdash; SOCIALISM AS IT IS</li>
+      <li><strong>Weiss</strong> &mdash; Muslims in Hong Kong</li>
+      <li><strong>White</strong> &mdash; Fiat Money Inflation in France-AAPX</li>
+      <li><strong>Wierzbicka</strong> &mdash; Japanese Key Words and Core Cultural Values</li>
+      <li><strong>Willhelm</strong> &mdash; Black-White Equality An Economic Doctrine for White Supremacy Part 1</li>
+      <li><strong>Willson</strong> &mdash; Grotesque Everyman</li>
+      <li><strong>Willson</strong> &mdash; The Grotesque Everyman in Günter Grass's Die Blechtrommel</li>
+      <li><strong>Wilson</strong> &mdash; Techno-euphoria-and-the-discourse-of-the-american-sublime</li>
+      <li><strong>Wolf-Power</strong> &mdash; Information Technology and Urban Labor Markets in the United States</li>
+      <li><strong>Wolf-Powers</strong> &mdash; Food Deserts and Real-Estate-Led Social Policy</li>
+      <li><strong>Wolf-Powers</strong> &mdash; Growing Food to Grow Cities</li>
+      <li><strong>Wood</strong> &mdash; Reflections of Mr Palomar and Mr Cogito</li>
+      <li><strong>Wood</strong> &mdash; The Reflections of Mr Palomar and Mr Cogito - Italo Calvino and Zbigniew Herbert</li>
+      <li><strong>Yarros</strong> &mdash; Socialism and Individualism in Evolution</li>
+      <li><strong>Yusuf</strong> &mdash; Climbing Mount Purgatorio</li>
+      <li><strong>Yusuf</strong> &mdash; Who Are the Disbelievers</li>
+      <li><strong>Zayd</strong> &mdash; The Dilemma of the Literary Approach to the Qur'an</li>
+  </ul>
+
+  <div class="flex flex-wrap gap-2 mt-4 mb-14">
+    <span class="text-xs tracking-widest uppercase text-ink/40 me-1 self-center">Tagged:</span>
+    <span class="text-xs uppercase tracking-wide border border-ink/20 rounded-full px-3 py-1 text-ink/60">Articles</span>
+    <span class="text-xs uppercase tracking-wide border border-ink/20 rounded-full px-3 py-1 text-ink/60">Reading List</span>
+  </div>
+
+  <a href="../imam.html" class="flex items-center gap-5 bg-stone/30 rounded-2xl p-6 hover:bg-stone/45 transition-colors btn-focus">
+    <img src="../media/images/web/imam-marc-window.jpg" alt="Imam Marc Manley" class="h-16 w-16 rounded-full object-cover object-center border-2 border-cream shadow-soft shrink-0">
+    <div>
+      <p class="text-xs tracking-widest uppercase text-earth mb-1">Written by</p>
+      <p class="text-xl">Imam Marc Manley</p>
+      <p class="text-sm text-ink/60 mt-0.5">Resident Imam, Middle Ground &middot; Host of the Middle Ground Podcast</p>
+    </div>
+  </a>
+
+</article>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-earth text-cream pt-16 pb-10 px-5 sm:px-8 hairline-top">
+  <div class="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
+    <div>
+      <div class="flex items-center gap-3 mb-4">
+        <img src="../brand_assets/Middle%20Ground%20final%20logo%20square-2.png" alt="Middle Ground" class="h-9 w-9 rounded-full">
+        <span class="text-lg">Middle Ground</span>
+      </div>
+      <p class="text-cream/70 text-sm leading-relaxed">A place for prayer, community, and learning.</p>
+    </div>
+    <div>
+      <p class="text-xs tracking-widest uppercase text-cream/50 mb-4">Explore</p>
+      <ul class="space-y-2.5 text-cream/80 text-sm">
+        <li><a href="../index.html#prayer" class="hover:text-clay transition-colors btn-focus">Prayer Times</a></li>
+        <li><a href="../imam.html" class="hover:text-clay transition-colors btn-focus">The Imam</a></li>
+        <li><a href="../index.html#learning" class="hover:text-clay transition-colors btn-focus">Learning</a></li>
+        <li><a href="index.html" class="hover:text-clay transition-colors btn-focus">Blog</a></li>
+        <li><a href="../index.html#media" class="hover:text-clay transition-colors btn-focus">Media</a></li>
+        <li><a href="../index.html#podcast" class="hover:text-clay transition-colors btn-focus">Podcast</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="text-xs tracking-widest uppercase text-cream/50 mb-4">Jumu&rsquo;ah</p>
+      <p class="text-2xl mb-2">1:00 PM</p>
+      <p class="text-cream/70 text-sm leading-relaxed">Every Friday, year-round.<br>Daily prayer times shared via WhatsApp.</p>
+    </div>
+    <div>
+      <p class="text-xs tracking-widest uppercase text-cream/50 mb-4">Connect</p>
+      <p class="text-cream/80 text-sm leading-relaxed mb-4">870 N Mountain Ave STE 102<br>Upland, CA 91786</p>
+      <p class="text-cream/80 text-sm">
+        <a href="mailto:contact@muslim.center" class="hover:text-clay transition-colors btn-focus">contact@muslim.center</a><br>
+        <a href="tel:+19094519770" class="hover:text-clay transition-colors btn-focus" dir="ltr">909-451-9770</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto pt-6 hairline-top flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-cream/60">
+    <p>&copy; 2026 Middle Ground. All rights reserved.</p>
+    <div class="flex gap-6">
+      <a href="#" class="hover:text-clay transition-colors btn-focus">Privacy</a>
+      <a href="../index.html#contact" class="hover:text-clay transition-colors btn-focus">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var menuToggle = document.getElementById('menuToggle');
+  var mobileNav = document.getElementById('mobileNav');
+  menuToggle.addEventListener('click', function () {
+    mobileNav.classList.toggle('hidden');
+  });
+</script>
+
+</body>
+</html>
