@@ -479,7 +479,7 @@
             <img src="media/images/web/hero-imam.jpg" alt="Imam Marc Manley" class="h-10 w-10 rounded-full object-cover object-center">
             <div>
               <p class="text-ink leading-tight">Imam Marc Manley</p>
-              <p class="text-[13px] text-ink/50 leading-tight">Middle Ground Podcast</p>
+              <p id="podcastEpisodeLabel" class="text-[13px] text-ink/50 leading-tight">Middle Ground Podcast</p>
             </div>
           </div>
           <div class="flex items-center gap-1">
@@ -723,6 +723,7 @@
     var thumb = document.getElementById('podcastProgressThumb');
     var currentTimeEl = document.getElementById('podcastCurrentTime');
     var remainingEl = document.getElementById('podcastRemaining');
+    var episodeLabel = document.getElementById('podcastEpisodeLabel');
 
     var PLAY_ICON = '<path d="M8 5v14l11-7z"/>';
     var PAUSE_ICON = '<rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/>';
@@ -738,6 +739,7 @@
       })
       .then(function (data) {
         audio.src = data.audioUrl;
+        if (data.title) episodeLabel.textContent = data.title;
         playBtn.disabled = false;
         playBtn.classList.remove('opacity-50');
       })
