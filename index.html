@@ -472,12 +472,57 @@
   <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
 
     <div class="relative mx-auto w-full max-w-sm order-2 lg:order-1">
-      <div class="absolute inset-0 translate-x-4 translate-y-4 rtl:translate-x-[-1rem] rounded-2xl overflow-hidden opacity-70" aria-hidden="true">
-        <img src="media/images/web/podcast-headphones.jpg" alt="" class="w-full h-full object-cover">
+      <div class="rounded-2xl border border-ink/10 bg-cream shadow-soft-lg p-4">
+
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-3">
+            <img src="media/images/web/hero-imam.jpg" alt="Imam Marc Manley" class="h-10 w-10 rounded-full object-cover object-center">
+            <div>
+              <p class="text-ink leading-tight">Imam Marc Manley</p>
+              <p class="text-[13px] text-ink/50 leading-tight">Middle Ground Podcast</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-1">
+            <button type="button" aria-label="Share episode" class="p-2 rounded-full hover:bg-ink/5 transition-colors btn-focus">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-ink/60"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 3.9M15.4 6.6L8.6 10.5"/></svg>
+            </button>
+            <button type="button" id="podcastLikeBtn" aria-label="Like episode" aria-pressed="false" class="p-2 rounded-full hover:bg-ink/5 transition-colors btn-focus">
+              <svg id="podcastHeartIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-ink/60"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="relative w-full aspect-square rounded-xl overflow-hidden">
+          <img src="media/images/web/podcast-cover.jpg" alt="The Middle Ground Podcast, with Imam Marc Manley" class="w-full h-full object-cover">
+          <div class="absolute inset-0 flex flex-col justify-end p-4" style="background: linear-gradient(0deg, rgba(13,13,13,0.85) 0%, rgba(13,13,13,0.25) 55%, rgba(13,13,13,0) 100%);">
+
+            <div class="mb-3">
+              <div class="flex justify-between text-[13px] text-cream/90">
+                <span id="podcastCurrentTime">0:00</span>
+                <span id="podcastRemaining">&minus;3:05</span>
+              </div>
+              <div id="podcastProgressTrack" class="group relative mt-1.5 h-1.5 w-full rounded-full bg-cream/25 cursor-pointer" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" tabindex="0">
+                <div id="podcastProgressFill" class="h-full rounded-full bg-cream transition-[width] duration-200 ease-linear" style="width:0%"></div>
+                <div id="podcastProgressThumb" class="absolute top-1/2 h-3 w-3 -translate-y-1/2 rounded-full bg-cream opacity-0 transition-opacity duration-300 group-hover:opacity-100" style="left:0%"></div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-center gap-8 text-cream">
+              <button type="button" id="podcastPrevBtn" aria-label="Restart episode" class="btn-focus hover:text-clay transition-colors">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h2v14H6zm3.5 7l10-7v14z"/></svg>
+              </button>
+              <button type="button" id="podcastPlayBtn" aria-label="Play episode" class="h-12 w-12 rounded-full bg-cream/15 flex items-center justify-center hover:bg-cream/25 transition-colors btn-focus">
+                <svg id="podcastPlayIcon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </button>
+              <button type="button" id="podcastNextBtn" aria-label="Skip forward 15 seconds" class="btn-focus hover:text-clay transition-colors">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 5h2v14h-2zM4.5 5l10 7-10 7z"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="relative rounded-2xl overflow-hidden shadow-soft-lg border border-ink/10 aspect-square">
-        <img src="media/images/web/podcast-cover.jpg" alt="The Middle Ground Podcast, with Imam Marc Manley" class="w-full h-full object-cover">
-      </div>
+
+      <audio id="podcastAudio" preload="none"></audio>
     </div>
 
     <div class="text-center lg:text-start order-1 lg:order-2">
@@ -664,6 +709,108 @@
         contactSubmit.classList.remove('opacity-60', 'pointer-events-none');
       });
   });
+
+  (function () {
+    var audio = document.getElementById('podcastAudio');
+    var playBtn = document.getElementById('podcastPlayBtn');
+    var playIcon = document.getElementById('podcastPlayIcon');
+    var prevBtn = document.getElementById('podcastPrevBtn');
+    var nextBtn = document.getElementById('podcastNextBtn');
+    var likeBtn = document.getElementById('podcastLikeBtn');
+    var heartIcon = document.getElementById('podcastHeartIcon');
+    var track = document.getElementById('podcastProgressTrack');
+    var fill = document.getElementById('podcastProgressFill');
+    var thumb = document.getElementById('podcastProgressThumb');
+    var currentTimeEl = document.getElementById('podcastCurrentTime');
+    var remainingEl = document.getElementById('podcastRemaining');
+
+    var PLAY_ICON = '<path d="M8 5v14l11-7z"/>';
+    var PAUSE_ICON = '<rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/>';
+
+    playBtn.disabled = true;
+    playBtn.classList.add('opacity-50');
+    fetch('/api/podcast')
+      .then(function (response) {
+        return response.json().then(function (data) {
+          if (!response.ok) throw new Error(data.error || 'Could not load episode.');
+          return data;
+        });
+      })
+      .then(function (data) {
+        audio.src = data.audioUrl;
+        playBtn.disabled = false;
+        playBtn.classList.remove('opacity-50');
+      })
+      .catch(function (err) {
+        console.error('Podcast player:', err);
+      });
+
+    function formatTime(seconds) {
+      if (!isFinite(seconds) || seconds < 0) seconds = 0;
+      var m = Math.floor(seconds / 60);
+      var s = Math.floor(seconds % 60);
+      return m + ':' + String(s).padStart(2, '0');
+    }
+
+    function updateProgress() {
+      var duration = audio.duration;
+      var current = audio.currentTime || 0;
+      var pct = duration ? (current / duration) * 100 : 0;
+      fill.style.width = pct + '%';
+      thumb.style.left = pct + '%';
+      track.setAttribute('aria-valuenow', Math.round(pct));
+      currentTimeEl.textContent = formatTime(current);
+      remainingEl.textContent = duration ? ('−' + formatTime(duration - current)) : '−0:00';
+    }
+
+    playBtn.addEventListener('click', function () {
+      if (!audio.src) return;
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    });
+
+    audio.addEventListener('play', function () {
+      playIcon.innerHTML = PAUSE_ICON;
+      playBtn.setAttribute('aria-label', 'Pause episode');
+    });
+    audio.addEventListener('pause', function () {
+      playIcon.innerHTML = PLAY_ICON;
+      playBtn.setAttribute('aria-label', 'Play episode');
+    });
+    audio.addEventListener('timeupdate', updateProgress);
+    audio.addEventListener('loadedmetadata', updateProgress);
+    audio.addEventListener('ended', function () {
+      audio.currentTime = 0;
+    });
+
+    prevBtn.addEventListener('click', function () {
+      if (!audio.src) return;
+      audio.currentTime = 0;
+    });
+    nextBtn.addEventListener('click', function () {
+      if (!audio.src) return;
+      audio.currentTime = Math.min(audio.currentTime + 15, audio.duration || audio.currentTime);
+    });
+
+    track.addEventListener('click', function (event) {
+      if (!audio.src || !audio.duration) return;
+      var rect = track.getBoundingClientRect();
+      var ratio = (event.clientX - rect.left) / rect.width;
+      audio.currentTime = ratio * audio.duration;
+    });
+
+    var liked = false;
+    likeBtn.addEventListener('click', function () {
+      liked = !liked;
+      likeBtn.setAttribute('aria-pressed', String(liked));
+      heartIcon.setAttribute('fill', liked ? 'currentColor' : 'none');
+      heartIcon.classList.toggle('text-clay', liked);
+      heartIcon.classList.toggle('text-ink/60', !liked);
+    });
+  })();
 </script>
 
 </body>
