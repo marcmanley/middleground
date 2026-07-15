@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hope &amp; Faith in Times of Absurdity — Middle Ground</title>
+<meta name="description" content="Episode 50 of the Middle Ground Podcast with Imam Marc Manley and brother Dawud Aleman, on absences, the past year, and cultivating hope and faith.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          sky:   '#418FBF',
+          stone: '#DAD8D6',
+          earth: '#733A19',
+          clay:  '#E85610',
+          ink:   '#0D0D0D',
+          cream: '#FAF7F2'
+        },
+        fontFamily: {
+          display: ['Caslonian', 'Cormorant Garamond', 'Georgia', 'serif'],
+          arabic:  ['Adobe Arabic', 'Noto Naskh Arabic', 'Traditional Arabic', 'serif']
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  :root { color-scheme: light; }
+  body { background: #FAF7F2; }
+
+  [dir="rtl"] .font-display { font-family: 'Adobe Arabic', 'Noto Naskh Arabic', 'Traditional Arabic', serif; }
+  [dir="rtl"] .tracking-wide,
+  [dir="rtl"] .tracking-widest { letter-spacing: 0 !important; }
+
+  .hairline { box-shadow: 0 1px 0 0 rgba(13,13,13,0.12); }
+  .hairline-top { box-shadow: 0 -1px 0 0 rgba(13,13,13,0.12); }
+
+  .shadow-soft {
+    box-shadow:
+      0 1px 2px rgba(115,58,25,0.06),
+      0 8px 24px -8px rgba(65,143,191,0.18),
+      0 24px 48px -24px rgba(13,13,13,0.20);
+  }
+
+  .btn-focus:focus-visible { outline: 2px solid #E85610; outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  }
+
+  ::selection { background: #418FBF; color: #FAF7F2; }
+
+  .article-prose p { margin-top: 1.5rem; margin-bottom: 1.5rem; line-height: 1.8; }
+  .article-prose a { color: #E85610; text-decoration: underline; text-underline-offset: 2px; }
+  .article-prose a:hover { color: #733A19; }
+  .article-prose p:first-of-type::first-letter {
+    font-family: 'Caslonian', 'Cormorant Garamond', Georgia, serif;
+    font-size: 3.5rem;
+    line-height: 0.8;
+    float: left;
+    margin-inline-end: 0.5rem;
+    color: #733A19;
+  }
+</style>
+</head>
+
+<body class="font-display bg-cream text-ink antialiased">
+
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:start-4 focus:z-[100] focus:bg-ink focus:text-cream focus:px-4 focus:py-2 focus:rounded btn-focus">
+  Skip to content
+</a>
+
+<!-- ============ HEADER ============ -->
+<header class="sticky top-0 z-50 bg-cream/95 backdrop-blur hairline">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="flex items-center justify-between h-20">
+
+      <a href="../index.html" class="flex items-center gap-3 shrink-0">
+        <img src="../brand_assets/Middle%20Ground%20final%20logo%20square-2.png" alt="Middle Ground" class="h-11 w-11 rounded-full">
+        <span class="text-xl tracking-tight leading-none">Middle Ground</span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-9 text-[15px] tracking-wide uppercase">
+        <a href="../index.html#learning" class="hover:text-clay transition-colors btn-focus">Learning</a>
+        <a href="../imam.html" class="hover:text-clay transition-colors btn-focus">Im&#257;m Marc</a>
+        <a href="index.html" class="text-clay btn-focus" aria-current="page">Blog</a>
+        <a href="https://middlegroundmuslimcenter.substack.com/" class="hover:text-clay transition-colors btn-focus" target="_blank" rel="noopener noreferrer">Substack</a>
+        <a href="https://www.youtube.com/@MiddleGroundMuslimCenter" class="hover:text-clay transition-colors btn-focus" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://donorbox.org/middleground" class="hover:text-clay transition-colors btn-focus" target="_blank" rel="noopener noreferrer">Donate</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button id="menuToggle" type="button" aria-label="Menu" class="lg:hidden p-2 -me-2 btn-focus">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobileNav" class="hidden lg:hidden pb-6 flex flex-col gap-4 text-base tracking-wide uppercase">
+      <a href="../index.html#learning" class="btn-focus">Learning</a>
+      <a href="../imam.html" class="btn-focus">Im&#257;m Marc</a>
+      <a href="index.html" class="text-clay btn-focus">Blog</a>
+      <a href="https://middlegroundmuslimcenter.substack.com/" class="btn-focus" target="_blank" rel="noopener noreferrer">Substack</a>
+      <a href="https://www.youtube.com/@MiddleGroundMuslimCenter" class="btn-focus" target="_blank" rel="noopener noreferrer">YouTube</a>
+      <a href="https://donorbox.org/middleground" class="btn-focus" target="_blank" rel="noopener noreferrer">Donate</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="max-w-3xl mx-auto px-5 sm:px-8 pt-14 sm:pt-20 pb-24">
+
+  <a href="index.html" class="inline-block text-sm tracking-wide uppercase text-ink/50 hover:text-clay transition-colors btn-focus mb-10">
+    &larr; Back to Blog
+  </a>
+
+  <span class="inline-block text-xs tracking-widest uppercase text-earth bg-stone/40 rounded-full px-3 py-1 mb-6">
+    Podcast
+  </span>
+
+  <h1 class="text-4xl sm:text-6xl leading-[1.05] tracking-tight mb-3">Hope &amp; Faith in Times of Absurdity</h1>
+  <p class="text-xl sm:text-2xl italic text-ink/60 mb-8">Episode 50 of the Middle Ground Podcast</p>
+
+  <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-ink/60 hairline-top hairline pt-5 pb-6 mb-10">
+    <a href="../imam.html" class="flex items-center gap-2 hover:text-clay transition-colors btn-focus">
+      <img src="../media/images/web/hero-imam.jpg" alt="" class="h-7 w-7 rounded-full object-cover object-center">
+      <span class="text-ink">Imam Marc Manley</span>
+    </a>
+    <span class="text-ink/30">&middot;</span>
+    <time datetime="2026-07-15T12:15">July 15, 2026 &middot; 12:15 PM</time>
+  </div>
+
+  <img src="../media/images/web/podcast-episode-50.jpg" alt="Middle Ground Podcast, Episode 50 &ndash; Hope &amp; Faith in Times of Absurdity" class="w-full rounded-xl shadow-soft mb-12">
+
+  <div class="article-prose text-lg text-ink/80">
+    <p>Welcome back! to Episode 50 of the Middle Ground Podcast with Imam Marc Manley and brother Dawud Aleman. We discuss our absences, life in the intervening year or so, and how we still cultivate hope and faith in the ridiculous times we&rsquo;re living in.</p>
+  </div>
+
+  <div class="max-w-sm mx-auto my-10">
+    <div class="rounded-2xl border border-ink/10 bg-cream shadow-soft-lg p-4">
+
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-3">
+          <img src="../media/images/web/hero-imam.jpg" alt="Imam Marc Manley" class="h-10 w-10 rounded-full object-cover object-center">
+          <div>
+            <p class="text-ink leading-tight">Imam Marc Manley</p>
+            <p id="podcastEpisodeLabel" class="text-[13px] text-ink/50 leading-tight">Middle Ground Podcast</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-1">
+          <button type="button" aria-label="Share episode" class="p-2 rounded-full hover:bg-ink/5 transition-colors btn-focus">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-ink/60"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 3.9M15.4 6.6L8.6 10.5"/></svg>
+          </button>
+          <button type="button" id="podcastLikeBtn" aria-label="Like episode" aria-pressed="false" class="p-2 rounded-full hover:bg-ink/5 transition-colors btn-focus">
+            <svg id="podcastHeartIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-ink/60"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="relative w-full aspect-square rounded-xl overflow-hidden">
+        <img src="../media/images/web/podcast-cover.jpg" alt="The Middle Ground Podcast, with Imam Marc Manley" class="w-full h-full object-cover">
+        <div class="absolute inset-0 flex flex-col justify-end p-4" style="background: linear-gradient(0deg, rgba(13,13,13,0.85) 0%, rgba(13,13,13,0.25) 55%, rgba(13,13,13,0) 100%);">
+
+          <div class="mb-3">
+            <div class="flex justify-between text-[16px] text-cream">
+              <span id="podcastCurrentTime">0:00</span>
+              <span id="podcastRemaining">&minus;3:05</span>
+            </div>
+            <div id="podcastProgressTrack" class="group relative mt-1.5 h-[7.5px] w-full rounded-full bg-cream/30 cursor-pointer" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" tabindex="0">
+              <div id="podcastProgressFill" class="h-full rounded-full bg-cream transition-[width] duration-200 ease-linear" style="width:0%"></div>
+              <div id="podcastProgressThumb" class="absolute top-1/2 h-[15px] w-[15px] -translate-y-1/2 rounded-full bg-cream opacity-0 transition-opacity duration-300 group-hover:opacity-100" style="left:0%"></div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-center gap-8 text-cream">
+            <button type="button" id="podcastPrevBtn" aria-label="Restart episode" class="btn-focus hover:text-clay transition-colors">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h2v14H6zm3.5 7l10-7v14z"/></svg>
+            </button>
+            <button type="button" id="podcastPlayBtn" aria-label="Play episode" class="h-12 w-12 rounded-full bg-cream/15 flex items-center justify-center hover:bg-cream/25 transition-colors btn-focus">
+              <svg id="podcastPlayIcon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <button type="button" id="podcastNextBtn" aria-label="Skip forward 15 seconds" class="btn-focus hover:text-clay transition-colors">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 5h2v14h-2zM4.5 5l10 7-10 7z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <audio id="podcastAudio" preload="none"></audio>
+
+    <a href="https://youtube.com/live/d_AuOh4CYnU" target="_blank" rel="noopener noreferrer" class="mt-4 flex items-center justify-center gap-2 text-[15px] tracking-widest uppercase border border-ink/25 rounded-full px-4 py-2.5 hover:border-clay hover:text-clay transition-colors btn-focus">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.6 9.4.6 9.4.6s7.6 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8zM9.6 15.5v-7l6.3 3.5-6.3 3.5z"/></svg>
+      Watch on YouTube
+    </a>
+  </div>
+
+  <p class="text-lg text-ink/80 leading-relaxed">Want new episodes as soon as they&rsquo;re out? <a href="https://www.imammarc.com/podcast" target="_blank" rel="noopener noreferrer" class="text-clay underline underline-offset-2 hover:text-earth transition-colors">Subscribe to the Middle Ground Podcast</a> to get every conversation delivered straight to your inbox.</p>
+
+  <div class="flex flex-wrap gap-2 mt-4 mb-14">
+    <span class="text-xs tracking-widest uppercase text-ink/40 me-1 self-center">Tagged:</span>
+    <span class="text-xs uppercase tracking-wide border border-ink/20 rounded-full px-3 py-1 text-ink/60">Middle Ground Podcast</span>
+    <span class="text-xs uppercase tracking-wide border border-ink/20 rounded-full px-3 py-1 text-ink/60">Hope</span>
+    <span class="text-xs uppercase tracking-wide border border-ink/20 rounded-full px-3 py-1 text-ink/60">Faith</span>
+    <span class="text-xs uppercase tracking-wide border border-ink/20 rounded-full px-3 py-1 text-ink/60">Iman</span>
+  </div>
+
+  <a href="../imam.html" class="flex items-center gap-5 bg-stone/30 rounded-2xl p-6 hover:bg-stone/45 transition-colors btn-focus">
+    <img src="../media/images/web/imam-marc-window.jpg" alt="Imam Marc Manley" class="h-16 w-16 rounded-full object-cover object-center border-2 border-cream shadow-soft shrink-0">
+    <div>
+      <p class="text-xs tracking-widest uppercase text-earth mb-1">Written by</p>
+      <p class="text-xl">Imam Marc Manley</p>
+      <p class="text-sm text-ink/60 mt-0.5">Resident Imam, Middle Ground &middot; Host of the Middle Ground Podcast</p>
+    </div>
+  </a>
+
+</article>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-earth text-cream pt-16 pb-10 px-5 sm:px-8 hairline-top">
+  <div class="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
+    <div>
+      <div class="flex items-center gap-3 mb-4">
+        <img src="../brand_assets/Middle%20Ground%20final%20logo%20square-2.png" alt="Middle Ground" class="h-9 w-9 rounded-full">
+        <span class="text-lg">Middle Ground</span>
+      </div>
+      <p class="text-cream/70 text-sm leading-relaxed">A place for prayer, community, and learning.</p>
+    </div>
+    <div>
+      <p class="text-xs tracking-widest uppercase text-cream/50 mb-4">Explore</p>
+      <ul class="space-y-2.5 text-cream/80 text-sm">
+        <li><a href="../index.html#prayer" class="hover:text-clay transition-colors btn-focus">Prayer Times</a></li>
+        <li><a href="../imam.html" class="hover:text-clay transition-colors btn-focus">The Imam</a></li>
+        <li><a href="../index.html#learning" class="hover:text-clay transition-colors btn-focus">Learning</a></li>
+        <li><a href="index.html" class="hover:text-clay transition-colors btn-focus">Blog</a></li>
+        <li><a href="../index.html#podcast" class="hover:text-clay transition-colors btn-focus">Podcast</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="text-xs tracking-widest uppercase text-cream/50 mb-4">Jumu&rsquo;ah</p>
+      <p class="text-2xl mb-2">1:00 PM</p>
+      <p class="text-cream/70 text-sm leading-relaxed">Every Friday, year-round.<br>Daily prayer times shared via WhatsApp.</p>
+    </div>
+    <div>
+      <p class="text-xs tracking-widest uppercase text-cream/50 mb-4">Connect</p>
+      <p class="text-cream/80 text-sm leading-relaxed mb-4">870 N Mountain Ave STE 102<br>Upland, CA 91786</p>
+      <p class="text-cream/80 text-sm">
+        <a href="mailto:contact@muslim.center" class="hover:text-clay transition-colors btn-focus">contact@muslim.center</a><br>
+        <a href="tel:+19094519770" class="hover:text-clay transition-colors btn-focus" dir="ltr">909-451-9770</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto pt-6 hairline-top flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-cream/60">
+    <p>&copy; 2026 Middle Ground. All rights reserved.</p>
+    <div class="flex gap-6">
+      <a href="#" class="hover:text-clay transition-colors btn-focus">Privacy</a>
+      <a href="../index.html#contact" class="hover:text-clay transition-colors btn-focus">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var menuToggle = document.getElementById('menuToggle');
+  var mobileNav = document.getElementById('mobileNav');
+  menuToggle.addEventListener('click', function () {
+    mobileNav.classList.toggle('hidden');
+  });
+
+  (function () {
+    var audio = document.getElementById('podcastAudio');
+    var playBtn = document.getElementById('podcastPlayBtn');
+    var playIcon = document.getElementById('podcastPlayIcon');
+    var prevBtn = document.getElementById('podcastPrevBtn');
+    var nextBtn = document.getElementById('podcastNextBtn');
+    var likeBtn = document.getElementById('podcastLikeBtn');
+    var heartIcon = document.getElementById('podcastHeartIcon');
+    var track = document.getElementById('podcastProgressTrack');
+    var fill = document.getElementById('podcastProgressFill');
+    var thumb = document.getElementById('podcastProgressThumb');
+    var currentTimeEl = document.getElementById('podcastCurrentTime');
+    var remainingEl = document.getElementById('podcastRemaining');
+    var episodeLabel = document.getElementById('podcastEpisodeLabel');
+
+    var PLAY_ICON = '<path d="M8 5v14l11-7z"/>';
+    var PAUSE_ICON = '<rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/>';
+
+    playBtn.disabled = true;
+    playBtn.classList.add('opacity-50');
+    fetch('/api/podcast')
+      .then(function (response) {
+        return response.json().then(function (data) {
+          if (!response.ok) throw new Error(data.error || 'Could not load episode.');
+          return data;
+        });
+      })
+      .then(function (data) {
+        audio.src = data.audioUrl;
+        if (data.title) episodeLabel.textContent = data.title;
+        playBtn.disabled = false;
+        playBtn.classList.remove('opacity-50');
+      })
+      .catch(function (err) {
+        console.error('Podcast player:', err);
+      });
+
+    function formatTime(seconds) {
+      if (!isFinite(seconds) || seconds < 0) seconds = 0;
+      var m = Math.floor(seconds / 60);
+      var s = Math.floor(seconds % 60);
+      return m + ':' + String(s).padStart(2, '0');
+    }
+
+    function updateProgress() {
+      var duration = audio.duration;
+      var current = audio.currentTime || 0;
+      var pct = duration ? (current / duration) * 100 : 0;
+      fill.style.width = pct + '%';
+      thumb.style.left = pct + '%';
+      track.setAttribute('aria-valuenow', Math.round(pct));
+      currentTimeEl.textContent = formatTime(current);
+      remainingEl.textContent = duration ? ('−' + formatTime(duration - current)) : '−0:00';
+    }
+
+    playBtn.addEventListener('click', function () {
+      if (!audio.src) return;
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    });
+
+    audio.addEventListener('play', function () {
+      playIcon.innerHTML = PAUSE_ICON;
+      playBtn.setAttribute('aria-label', 'Pause episode');
+    });
+    audio.addEventListener('pause', function () {
+      playIcon.innerHTML = PLAY_ICON;
+      playBtn.setAttribute('aria-label', 'Play episode');
+    });
+    audio.addEventListener('timeupdate', updateProgress);
+    audio.addEventListener('loadedmetadata', updateProgress);
+    audio.addEventListener('ended', function () {
+      audio.currentTime = 0;
+    });
+
+    prevBtn.addEventListener('click', function () {
+      if (!audio.src) return;
+      audio.currentTime = 0;
+    });
+    nextBtn.addEventListener('click', function () {
+      if (!audio.src) return;
+      audio.currentTime = Math.min(audio.currentTime + 15, audio.duration || audio.currentTime);
+    });
+
+    track.addEventListener('click', function (event) {
+      if (!audio.src || !audio.duration) return;
+      var rect = track.getBoundingClientRect();
+      var ratio = (event.clientX - rect.left) / rect.width;
+      audio.currentTime = ratio * audio.duration;
+    });
+
+    var liked = false;
+    likeBtn.addEventListener('click', function () {
+      liked = !liked;
+      likeBtn.setAttribute('aria-pressed', String(liked));
+      heartIcon.setAttribute('fill', liked ? 'currentColor' : 'none');
+      heartIcon.classList.toggle('text-clay', liked);
+      heartIcon.classList.toggle('text-ink/60', !liked);
+    });
+  })();
+</script>
+
+</body>
+</html>
