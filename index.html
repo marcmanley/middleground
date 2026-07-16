@@ -615,7 +615,7 @@
 
       <div class="hidden" aria-hidden="true">
         <label for="contact-company">Company</label>
-        <input id="contact-company" name="company" type="text" tabindex="-1" autocomplete="off">
+        <input id="contact-company" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
       </div>
 
       <button type="submit" id="contactSubmit" class="btn-gradient justify-self-center text-cream text-[18px] tracking-wide uppercase px-8 py-3.5 rounded-full shadow-soft btn-focus mt-2">
@@ -701,7 +701,7 @@
       name: document.getElementById('contact-name').value.trim(),
       email: document.getElementById('contact-email').value.trim(),
       message: document.getElementById('contact-message').value.trim(),
-      company: document.getElementById('contact-company').value,
+      _gotcha: document.getElementById('contact-company').value,
     };
 
     contactSubmit.disabled = true;
@@ -709,9 +709,9 @@
     contactStatus.textContent = 'Sending…';
     contactStatus.className = 'text-[16px] text-cream/80';
 
-    fetch('/api/contact', {
+    fetch('https://formspree.io/f/mojgjnbv', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(payload),
     })
       .then(function (response) {
@@ -719,12 +719,15 @@
           .json()
           .catch(function () { return {}; })
           .then(function (data) {
-            if (!response.ok) throw new Error(data.error || 'Something went wrong. Please try again or email us directly.');
+            if (!response.ok) {
+              var message = (data.errors || []).map(function (e) { return e.message; }).join(' ');
+              throw new Error(message || 'Something went wrong. Please try again or email us directly.');
+            }
             return data;
           });
       })
       .then(function () {
-        contactStatus.textContent = 'Message sent — check your inbox for a confirmation. We’ll be in touch soon, in sha Allah.';
+        contactStatus.textContent = 'Message sent — we’ll be in touch soon, in sha Allah.';
         contactStatus.className = 'text-[16px] text-cream';
         contactForm.reset();
       })
