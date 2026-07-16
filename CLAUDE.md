@@ -46,6 +46,20 @@
 - **Spacing:** Use intentional, consistent spacing tokens — not random Tailwind steps.
 - **Depth:** Surfaces should have a layering system (base → elevated → floating), not all sit at the same z-plane.
 
+## Vercel Web Analytics
+- Every public HTML page must include the following Vercel Analytics code immediately before the closing `</head>` tag:
+
+```html
+<script>
+  window.va =
+    window.va ||
+    function () {
+      (window.vaq = window.vaq || []).push(arguments);
+    };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+```
+
 ## Hard Rules
 - Do not add sections, features, or content not in the reference
 - Do not "improve" a reference design — match it
