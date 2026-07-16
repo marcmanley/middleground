@@ -46,6 +46,9 @@
 - **Spacing:** Use intentional, consistent spacing tokens — not random Tailwind steps.
 - **Depth:** Surfaces should have a layering system (base → elevated → floating), not all sit at the same z-plane.
 
+## Footer "Explore" Column
+- The link to the Imam's bio page must always read **"Our Imām"** and point to `imam.html` (adjust relative path per page depth, e.g. `../imam.html` from `blog/`).
+
 ## Vercel Web Analytics
 - Every public HTML page must include the following Vercel Analytics code immediately before the closing `</head>` tag:
 
