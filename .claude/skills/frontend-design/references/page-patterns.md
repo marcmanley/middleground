@@ -28,6 +28,10 @@ Add exactly once before `</head>`:
 <script defer src="/_vercel/insights/script.js"></script>
 ```
 
+## Homepage "Check out our Blog!" section
+
+The first card must always be the most recent blog post (by publish date, per `blog/index.html`), in descending date order after that. When a new post is published, update `index.html`'s blog teaser section to match — do not leave it stale.
+
 ## Contact form
 
 Preserve the existing design and submit through:
