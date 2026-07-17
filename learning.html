@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learning — Middle Ground</title>
+<meta name="description" content="Classes for every age and stage at Middle Ground — Qur'an memorization, Arabic language, youth halaqa, and the new Muslim circle.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          sky:   '#418FBF',
+          stone: '#DAD8D6',
+          earth: '#733A19',
+          clay:  '#E85610',
+          ink:   '#0D0D0D',
+          cream: '#FAF7F2'
+        },
+        fontFamily: {
+          display: ['Caslonian', 'Cormorant Garamond', 'Georgia', 'serif'],
+          arabic:  ['Adobe Arabic', 'Noto Naskh Arabic', 'Traditional Arabic', 'serif']
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  :root { color-scheme: light; }
+
+  body { background: #FAF7F2; }
+
+  [dir="rtl"] .font-display { font-family: 'Adobe Arabic', 'Noto Naskh Arabic', 'Traditional Arabic', serif; }
+  [dir="rtl"] .tracking-wide,
+  [dir="rtl"] .tracking-widest { letter-spacing: 0 !important; }
+
+  .hairline { box-shadow: 0 1px 0 0 rgba(13,13,13,0.12); }
+  .hairline-top { box-shadow: 0 -1px 0 0 rgba(13,13,13,0.12); }
+
+  .shadow-soft {
+    box-shadow:
+      0 1px 2px rgba(115,58,25,0.06),
+      0 8px 24px -8px rgba(65,143,191,0.18),
+      0 24px 48px -24px rgba(13,13,13,0.20);
+  }
+  .shadow-soft-lg {
+    box-shadow:
+      0 2px 4px rgba(115,58,25,0.08),
+      0 16px 40px -12px rgba(65,143,191,0.22),
+      0 40px 80px -32px rgba(13,13,13,0.28);
+  }
+
+  .btn-focus:focus-visible {
+    outline: 2px solid #E85610;
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  }
+
+  ::selection { background: #418FBF; color: #FAF7F2; }
+</style>
+<script>
+  window.va =
+    window.va ||
+    function () {
+      (window.vaq = window.vaq || []).push(arguments);
+    };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</head>
+
+<body class="font-display bg-cream text-ink antialiased">
+
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:start-4 focus:z-[100] focus:bg-ink focus:text-cream focus:px-4 focus:py-2 focus:rounded btn-focus">
+  Skip to content
+</a>
+
+<!-- ============ HEADER ============ -->
+<header class="sticky top-0 z-50 bg-cream/95 backdrop-blur hairline">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="flex items-center justify-between h-20">
+
+      <a href="index.html" class="flex items-center gap-3 shrink-0">
+        <img src="brand_assets/Middle%20Ground%20final%20logo%20square-2.png" alt="Middle Ground" class="h-11 w-11 rounded-full">
+        <span class="text-xl tracking-tight leading-none">
+          Middle Ground
+        </span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-9 text-[15px] tracking-wide uppercase">
+        <a href="learning.html" class="text-clay btn-focus" aria-current="page">Learning</a>
+        <a href="blog/index.html" class="hover:text-clay transition-colors btn-focus">Blog</a>
+        <a href="about.html" class="hover:text-clay transition-colors btn-focus">About</a>
+        <a href="https://middlegroundmuslimcenter.substack.com/" class="hover:text-clay transition-colors btn-focus" target="_blank" rel="noopener noreferrer">Substack</a>
+        <a href="https://www.youtube.com/@MiddleGroundMuslimCenter" class="hover:text-clay transition-colors btn-focus" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://donorbox.org/middleground" class="hover:text-clay transition-colors btn-focus" target="_blank" rel="noopener noreferrer">Donate</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button id="menuToggle" type="button" aria-label="Menu" class="lg:hidden p-2 -me-2 btn-focus">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobileNav" class="hidden lg:hidden pb-6 flex flex-col gap-4 text-base tracking-wide uppercase">
+      <a href="learning.html" class="text-clay btn-focus">Learning</a>
+      <a href="blog/index.html" class="btn-focus">Blog</a>
+      <a href="about.html" class="btn-focus">About</a>
+      <a href="https://middlegroundmuslimcenter.substack.com/" class="btn-focus" target="_blank" rel="noopener noreferrer">Substack</a>
+      <a href="https://www.youtube.com/@MiddleGroundMuslimCenter" class="btn-focus" target="_blank" rel="noopener noreferrer">YouTube</a>
+      <a href="https://donorbox.org/middleground" class="btn-focus" target="_blank" rel="noopener noreferrer">Donate</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ LEARNING ============ -->
+<section class="py-24 sm:py-32 px-5 sm:px-8">
+  <div class="max-w-6xl mx-auto">
+    <h1 class="text-4xl sm:text-5xl tracking-tight mb-4">Learning</h1>
+    <p class="text-ink/65 text-[27.5px] leading-relaxed max-w-2xl mb-16">
+      Imām Marc teaches a variety of classes throughout the year. The schedule below is what he is currently teaching. Class days and times can occasionally change <em>so always check the schedule</em> here on the website for the most up-to-date times.
+    </p>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white border-[3px] border-[#418fbf] rounded-2xl p-6 shadow-soft hover:shadow-soft-lg transition-shadow">
+        <div class="flex items-center gap-3 mb-4 min-h-[72px]">
+          <span class="h-9 w-9 rounded-full bg-clay text-cream flex items-center justify-center text-[15px] font-bold shrink-0">01</span>
+          <h3 class="text-[26px] leading-snug">Ḥalaqah (Study Circle)</h3>
+        </div>
+        <p class="text-ink/60 text-[18px] leading-relaxed mb-5">
+          This Ḥalaqah discusses a variety of important topics related to faith and everyday life. New Muslims, the youth and the family will feel right at home. It&rsquo;s also an opportunity to ask questions.
+        </p>
+        <div class="grid grid-cols-2 gap-2 text-center pt-4 hairline-top">
+          <div>
+            <p class="text-[16px] tracking-widest uppercase text-ink/40 mb-1">Day</p>
+            <p class="text-[20px] text-earth font-medium">Friday</p>
+          </div>
+          <div>
+            <p class="text-[16px] tracking-widest uppercase text-ink/40 mb-1">Time</p>
+            <p class="text-[20px] text-earth font-medium">After Maghrib (8:15PM)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white border-[3px] border-[#418fbf] rounded-2xl p-6 shadow-soft hover:shadow-soft-lg transition-shadow">
+        <div class="flex items-center gap-3 mb-4 min-h-[72px]">
+          <span class="h-9 w-9 rounded-full bg-clay text-cream flex items-center justify-center text-[15px] font-bold shrink-0">02</span>
+          <h3 class="text-[26px] leading-snug">Fajr Club</h3>
+        </div>
+        <p class="text-ink/60 text-[18px] leading-relaxed mb-5">
+          FC has gained a well-earned reputation as being an opportunity to really connect with others in the community by bonding over Imām Marc&rsquo;s famous coffee! Breakfast is served and its all hands on deck!
+        </p>
+        <div class="grid grid-cols-2 gap-2 text-center pt-4 hairline-top">
+          <div>
+            <p class="text-[16px] tracking-widest uppercase text-ink/40 mb-1">Day</p>
+            <p class="text-[20px] text-earth font-medium">Sunday</p>
+          </div>
+          <div>
+            <p class="text-[16px] tracking-widest uppercase text-ink/40 mb-1">Time</p>
+            <p class="text-[20px] text-earth font-medium">5:15AM</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white border-[3px] border-[#418fbf] rounded-2xl p-6 shadow-soft hover:shadow-soft-lg transition-shadow">
+        <div class="flex items-center gap-3 mb-4 min-h-[72px]">
+          <span class="h-9 w-9 rounded-full bg-clay text-cream flex items-center justify-center text-[15px] font-bold shrink-0">03</span>
+          <h3 class="text-[26px] leading-snug">Understanding the Qur&rsquo;ān</h3>
+        </div>
+        <p class="text-ink/60 text-[18px] leading-relaxed mb-5">
+          This is Imām Marc&rsquo;s tafsīr class, a class which explains the Qur&rsquo;ān and dives deeper into its meaning.
+        </p>
+        <div class="grid grid-cols-2 gap-2 text-center pt-4 hairline-top">
+          <div>
+            <p class="text-[16px] tracking-widest uppercase text-ink/40 mb-1">Day</p>
+            <p class="text-[20px] text-earth font-medium">Sunday</p>
+          </div>
+          <div>
+            <p class="text-[16px] tracking-widest uppercase text-ink/40 mb-1">Time</p>
+            <p class="text-[20px] text-earth font-medium">7AM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEACHING BANNER ============ -->
+<section>
+  <img src="media/images/web/imam-marc-teaching-4.jpg" alt="Imam Marc Manley teaching" class="w-full h-[280px] sm:h-[380px] md:h-[480px] object-cover">
+</section>
+
+<!-- ============ FAMILY NOTE ============ -->
+<section class="py-20 sm:py-28 px-5 sm:px-8">
+  <div class="max-w-3xl mx-auto text-center">
+    <p class="text-ink/70 text-[27.5px] leading-relaxed">
+      By default all of the classes and activities at Middle Ground are for men and women. Children are also welcome to attend so long as they are under parental observation. We feel strongly that the best way to learn is as a family.
+    </p>
+    <a href="contact.html" class="mt-10 inline-block bg-clay text-cream text-[18px] tracking-wide uppercase px-7 py-3.5 rounded-full hover:bg-earth transition-colors shadow-soft btn-focus">
+      Check Out the Class Schedule
+    </a>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-earth text-cream pt-16 pb-10 px-5 sm:px-8 hairline-top">
+  <div class="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
+    <div>
+      <div class="flex items-center gap-3 mb-4">
+        <img src="brand_assets/Middle%20Ground%20final%20logo%20square-2.png" alt="Middle Ground" class="h-9 w-9 rounded-full">
+        <span class="text-lg">Middle Ground</span>
+      </div>
+      <p class="text-cream/70 text-[18px] leading-relaxed">
+        A place for prayer, community, and learning.
+      </p>
+    </div>
+    <div>
+      <p class="text-[15px] tracking-widest uppercase text-cream/50 mb-4">Explore</p>
+      <ul class="space-y-2.5 text-cream/80 text-[18px]">
+        <li><a href="index.html#prayer" class="hover:text-clay transition-colors btn-focus">Prayer Times</a></li>
+        <li><a href="imam.html" class="hover:text-clay transition-colors btn-focus">Our Imām</a></li>
+        <li><a href="about.html" class="hover:text-clay transition-colors btn-focus">About</a></li>
+        <li><a href="learning.html" class="hover:text-clay transition-colors btn-focus">Learning</a></li>
+        <li><a href="blog/index.html" class="hover:text-clay transition-colors btn-focus">Blog</a></li>
+        <li><a href="index.html#podcast" class="hover:text-clay transition-colors btn-focus">Podcast</a></li>
+        <li><a href="contact.html" class="hover:text-clay transition-colors btn-focus">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="text-[15px] tracking-widest uppercase text-cream/50 mb-4">Jumu&rsquo;ah</p>
+      <p class="text-2xl mb-2">1:00 PM</p>
+      <p class="text-cream/70 text-[18px] leading-relaxed">Every Friday, year-round.<br>Daily prayer times shared via <a href="https://chat.whatsapp.com/F6ii6nNyDQ4LpauI2nUJER?s=cl&p=i&ilr=0&amv=1" target="_blank" rel="noopener noreferrer" class="hover:text-clay transition-colors btn-focus underline underline-offset-2">WhatsApp</a>.</p>
+    </div>
+    <div>
+      <p class="text-[15px] tracking-widest uppercase text-cream/50 mb-4">Connect</p>
+      <p class="text-cream/80 text-[18px] leading-relaxed mb-4">
+        870 N Mountain Ave STE 102<br>Upland, CA 91786
+      </p>
+      <p class="text-cream/80 text-[18px]">
+        <a href="mailto:contact@muslim.center" class="hover:text-clay transition-colors btn-focus">contact@muslim.center</a><br>
+        <a href="tel:+19094519770" class="hover:text-clay transition-colors btn-focus" dir="ltr">909-451-9770</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto pt-6 hairline-top flex flex-col sm:flex-row justify-between items-center gap-3 text-[15px] text-cream/60">
+    <p>&copy; 2026 Middle Ground. All rights reserved.</p>
+    <div class="flex gap-6">
+      <a href="#" class="hover:text-clay transition-colors btn-focus">Privacy</a>
+      <a href="contact.html" class="hover:text-clay transition-colors btn-focus">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var menuToggle = document.getElementById('menuToggle');
+  var mobileNav = document.getElementById('mobileNav');
+
+  menuToggle.addEventListener('click', function () {
+    mobileNav.classList.toggle('hidden');
+  });
+</script>
+
+</body>
+</html>
