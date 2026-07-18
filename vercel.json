@@ -1,5 +1,5 @@
 {
   "installCommand": "echo 'no install needed'",
-  "buildCommand": "echo 'no build needed'",
+  "buildCommand": "npm run build",
   "outputDirectory": "."
 }
