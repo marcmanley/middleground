@@ -119,7 +119,8 @@ function collectPages() {
       let finalUrl = ownUrl;
       if (canonicalHref) {
         const canonicalUrl = resolveCanonicalUrl(canonicalHref);
-        if (canonicalUrl !== ownUrl) {
+        const stripTrailingSlash = (url) => url.replace(/\/+$/, '') || url;
+        if (stripTrailingSlash(canonicalUrl) !== stripTrailingSlash(ownUrl)) {
           // This page declares its canonical URL lives elsewhere -- skip the
           // duplicate. (The canonical target, if it's a real local page, will
           // be picked up on its own when we scan its file.)

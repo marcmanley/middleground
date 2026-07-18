@@ -1,128 +1,244 @@
-# Site Map — Information Architecture
+# Middle Ground — Information Architecture Sitemap
 
 Last reviewed: 2026-07-18
+Prepared as a human-readable IA planning document (not the XML sitemap search engines consume — see [`sitemap.xml`](../sitemap.xml) / [sitemap.md](sitemap.md) for that).
 
-Source of truth: the `middleground` repository as it exists on this date (25 published HTML files: 5 top-level pages + `blog/index.html` + 19 posts). See [README.md](README.md) for how this document fits into the rest of `/docs`.
+**Scope note on this repository.** `/Users/marcmanley/Documents/_Web/_Github/` contains several unrelated repos (`marcmanley.github.io`, `allahisonerepo`, `scrimbarepo`, `codepenrepos`, `middleground`). This document covers **`middleground`** only — the live site at `https://www.muslim.center` — since it is the only project with an active build/deploy pipeline, a `docs/` folder, and current-dated work. If a sitemap for one of the other repos is also wanted, say so and it can be produced separately.
 
-This site is a set of static HTML files (no framework, no router, no CMS). "Routes" below are simply the file paths as served — there is no `cleanUrls`/`trailingSlash` rewriting configured in [`vercel.json`](../vercel.json), so every URL keeps its `.html` extension except the homepage.
+**How this document was built.** Everything under "current state" was derived by direct inspection of this repository on 2026-07-18: every `.html` file was read or grepped for nav/footer markup, `<title>`, `<h1>` count, `lang`/`dir` attributes, canonical tags, and `noindex` tags; `robots.txt`, `sitemap.xml`, `generate-sitemap.js`, and `vercel.json` were read directly; a handful of claims (live duplicate URLs, the production redirect chain, Search Console status) were verified against the **live production site**, not just the repo, and are marked as such. No structural changes were made to any file as part of this task.
 
-## 1. Current site structure
+**Facts vs. inferences vs. recommendations.** Where something is stated as fact, it was directly observed in a file or a live request. Where it's a judgment call (audience, topical grouping, priority), it's labeled **Inference**. Proposed changes are labeled **Recommendation** and are kept in clearly separate sections (Phase 3 problem entries include a recommended correction; Phases 4–6 are recommendations in full). Nothing in this document was implemented.
+
+---
+
+## Phase 1 — Discovery summary
+
+| Source checked | Result |
+|---|---|
+| Public routes / static HTML pages | 25 `.html` files: 5 at project root, `blog/index.html`, and 19 posts in `/blog/`. This is a plain static-HTML site — no framework, no router, no CMS (confirmed: no `next.config`, no React/Vue router, no `_pages`/`routes` directory). |
+| Framework route files | None exist — not applicable to this project. |
+| Markdown/MDX content | One file, `about.md`, sits beside `about.html` at the project root. It is a **source note**, not a built/served page — nothing in `package.json`, `vercel.json`, or any script compiles it into HTML. It reads as the copy `about.html` was authored from. No MDX anywhere. |
+| JSON/data-driven pages | None. `api/podcast.js` is a Vercel serverless function (proxies a Substack RSS feed as JSON) — it is an API endpoint, not a rendered page, and isn't linked from any page as a browsable URL. |
+| Header navigation | Present, identical markup on all 25 pages (desktop `<nav>` + duplicate mobile `<nav id="mobileNav">`): Learning, Blog, About, Substack (external), YouTube (external), Donate (external). |
+| Footer navigation | Present on all 25 pages, three columns ("Explore," "Jumu'ah," "Connect"), **identical across all 25 pages, including the "Contact" link** (an earlier version of this document incorrectly flagged the "Explore" column as inconsistent — see Phase 3, finding 2, corrected 2026-07-18). |
+| Mobile navigation | Same link set as desktop header nav, in a collapsible `<nav id="mobileNav">` — no separate mobile-only structure or content. |
+| Sidebar navigation | None exists anywhere in the site. |
+| Breadcrumbs | **None found.** Grepped `breadcrumb` (case-insensitive) across all 25 HTML files — zero matches. |
+| Internal content links | Present in nav/footer on every page; `blog/index.html` links to all 19 posts; the homepage links out to 4 "featured" posts; the two reading-list posts cross-link each other. Individual posts do not cross-link to other individual posts. |
+| Redirects | **None in the repository** (`vercel.json` has no `redirects` key; no `_redirects`, `.htaccess`, or `netlify.toml`; no `<meta http-equiv="refresh">` anywhere). Production **does** enforce a live host/protocol redirect (verified via `curl -IL` against `https://www.muslim.center`) collapsing `http://`, the bare apex, and non-`www` to `https://www.muswww.muslim.center` in ≤2 hops — that redirect lives in Vercel's dashboard config, outside this repo. |
+| Canonical URLs | **Present on all 25 pages as of 2026-07-18** — a self-referencing `<link rel="canonical">` was added to every page (see Phase 3, finding 4, resolved). Previously zero of 25 pages declared one. |
+| `noindex` settings | **None present anywhere.** Zero of 25 pages declare `<meta name="robots" content="noindex">`. Everything defaults to indexable. |
+| XML sitemap contents | `sitemap.xml` at the project root, auto-generated by [`generate-sitemap.js`](../generate-sitemap.js) on every Vercel build (`npm run build`). Lists all 25 pages with a `lastmod` date. Confirmed the file on disk matches the 25 pages found by direct inspection. |
+| `robots.txt` | `User-agent: *` / `Allow: /`, plus one `Sitemap:` declaration. Nothing is disallowed for any crawler (search, AI, or otherwise). |
+| Draft / test / preview / archived / hidden pages | **None found.** Searched the whole repo for filenames containing "draft," "test," "preview," or "archive" — the only match is an unrelated Claude Code skill reference file (`.claude/skills/.../testing-checklist.md`), not a page. |
+
+**Every page that can be reached publicly:** the same 25 `.html` files identified above. No page was found that exists on disk but is unlinked from every nav, footer, and content link (see orphan-page check in Phase 3) — with the caveat that "publicly reachable" here means "reachable via an internal link somewhere in the repo," since there is no live crawl access from this environment; production-only reachability (e.g., a page that exists live but was since deleted from the repo) cannot be checked from the codebase alone.
+
+**Non-page files, explicitly out of scope of the tree below:** `api/podcast.js` (serverless JSON endpoint), `media/`, `brand_assets/` (images, actively referenced by pages — not pages themselves), `about.md` (source note), and tooling (`serve.mjs`, `screenshot.mjs`, `generate-sitemap.js`, `package.json`, `vercel.json`). The `docs/` folder itself is excluded from deployment (`.vercelignore` lists `docs`), so this document and its siblings are not publicly reachable.
+
+---
+
+## Phase 2 — Current-state sitemap
 
 ### Hierarchical tree
 
 ```
-/ (index.html)
-├── /about.html
-├── /imam.html
-├── /learning.html
-├── /contact.html
-└── /blog/index.html
-    ├── /blog/dreaming-of-a-prophetic-life.html
-    ├── /blog/embracing-islam-today.html          (Arabic)
-    ├── /blog/from-villain-to-vindicated.html
-    ├── /blog/guard-your-narrative.html
-    ├── /blog/hope-and-faith-in-times-of-absurdity.html
-    ├── /blog/imam-marc-nasab.html                (Arabic)
-    ├── /blog/islam-and-evolution-did-life-find-a-way.html
-    ├── /blog/islam-is-not-a-culture.html
-    ├── /blog/islamic-psychology.html
-    ├── /blog/meaning-and-terminology-in-the-quran.html
-    ├── /blog/modernist-muslims.html
-    ├── /blog/muslims-and-manhood-roots-of-a-modern-crisis.html
-    ├── /blog/on-liberalism-modern-age-winter-2020.html
-    ├── /blog/on-morality-and-secularism.html
-    ├── /blog/onblacklivesmatter.html
-    ├── /blog/performative-islam.html
-    ├── /blog/race-and-secularism-in-america.html
-    ├── /blog/readinglist-articles.html
-    └── /blog/readinglist.html
+Home (/)
+├── About (/about.html)
+├── Learning (/learning.html)
+├── Blog (/blog/index.html)
+│   ├── Dreaming of a Prophetic Life
+│   ├── التحدّيات في اعتناق الإسلام في المعاصر [Arabic]
+│   ├── From Villain to Vindicated
+│   ├── Guard Your Narrative
+│   ├── Hope & Faith in Times of Absurdity
+│   ├── مارك مانلي (Imam bio, Arabic)
+│   ├── Islam & Evolution — Did Life Find a Way?
+│   ├── Why Islam Is Not a Culture
+│   ├── Islamic Psychology
+│   ├── Meaning & Terminology in the Qur'an
+│   ├── The Modernist Muslim
+│   ├── Muslims & Manhood
+│   ├── On Liberalism
+│   ├── On Morality and Secularism
+│   ├── Black Lives Matter & Systemic Racism
+│   ├── Performative Islam
+│   ├── Race & Secularism in America
+│   ├── Reading List (Articles)
+│   └── Reading List 2023
+├── Our Imām (/imam.html)                    — footer-only, not in header/mobile nav
+└── Contact (/contact.html)                  — footer-only, and inconsistently even there (see Phase 3)
 ```
 
-Non-page assets that are **not** part of the page tree: `api/podcast.js` (a Vercel serverless function, not a rendered page), `media/`, `brand_assets/` (images), `about.md` (a Markdown source note that feeds the copy in `about.html` — it is not itself built or served as a page), and tooling files (`serve.mjs`, `screenshot.mjs`, `generate-sitemap.js`).
+All 19 blog posts sit at the same flat level under `/blog/` — there is no category/tag sub-structure in the actual site (`blog/index.html` is one reverse-chronological archive). The two reading-list pages are shown in this tree exactly where they live in the file system (`/blog/`), even though their content type (curated reference lists) differs from the other 17 (essays/khutbahs) — flagged in Phase 3.
 
 ### Page inventory
 
-| Page | Title (`<title>`) | Route | Parent | Nav placement | Purpose |
-|---|---|---|---|---|---|
-| [`index.html`](../index.html) | Middle Ground — Prayer, Community & Learning | `/` | — (root) | Header logo | Homepage: hero, Jumu'ah khutbah video, learning/blog teasers, podcast player, donate |
-| [`about.html`](../about.html) | About — Middle Ground | `/about.html` | Home | Header nav | Org history/mission (sourced from `about.md`) |
-| [`imam.html`](../imam.html) | Imām Marc Manley — Middle Ground | `/imam.html` | Home | **Footer only** ("Our Imām") | Imam's bio/photos |
-| [`learning.html`](../learning.html) | Learning — Middle Ground | `/learning.html` | Home | Header nav | Class schedule (Qur'an, Arabic, youth halaqa, new-Muslim circle) |
-| [`contact.html`](../contact.html) | Contact — Middle Ground | `/contact.html` | Home | **Footer only** | Contact form, address, phone |
-| [`blog/index.html`](../blog/index.html) | Blog — Middle Ground | `/blog/index.html` | Home | Header nav ("Blog") | Post archive/index |
-| `blog/dreaming-of-a-prophetic-life.html` | Dreaming of a Prophetic Life — Middle Ground | `/blog/dreaming-of-a-prophetic-life.html` | Blog | Blog index only | Reflection essay |
-| `blog/embracing-islam-today.html` | التحدّيات في اعتناق الإسلام في المعاصر — Middle Ground | `/blog/embracing-islam-today.html` | Blog | Blog index only | Reflection essay (Arabic) |
-| `blog/from-villain-to-vindicated.html` | From Villain to Vindicated — Middle Ground | `/blog/from-villain-to-vindicated.html` | Blog | Blog index only | Khutbah transcript |
-| `blog/guard-your-narrative.html` | Guard Your Narrative — Middle Ground | `/blog/guard-your-narrative.html` | Blog | Blog index only | Reflection essay |
-| `blog/hope-and-faith-in-times-of-absurdity.html` | Hope & Faith in Times of Absurdity — Middle Ground | `/blog/hope-and-faith-in-times-of-absurdity.html` | Blog | Blog index only | Podcast episode (ep. 50) writeup + embedded player |
-| `blog/imam-marc-nasab.html` | مارك مانلي — Middle Ground | `/blog/imam-marc-nasab.html` | Blog | Blog index only | Imam's bio (Arabic) |
-| `blog/islam-and-evolution-did-life-find-a-way.html` | Islam & Evolution — Middle Ground | `/blog/islam-and-evolution-did-life-find-a-way.html` | Blog | Blog index only | Reflection essay |
-| `blog/islam-is-not-a-culture.html` | Why Islam Is Not a Culture — Middle Ground | `/blog/islam-is-not-a-culture.html` | Blog | Blog index only | Reflection essay |
-| `blog/islamic-psychology.html` | Islamic Psychology — Middle Ground | `/blog/islamic-psychology.html` | Blog | Blog index only | Reflection essay |
-| `blog/meaning-and-terminology-in-the-quran.html` | Meaning & Terminology in the Qur'an — Middle Ground | `/blog/meaning-and-terminology-in-the-quran.html` | Blog | Blog index only | Reflection essay |
-| `blog/modernist-muslims.html` | The Modernist Muslim — Middle Ground | `/blog/modernist-muslims.html` | Blog | Blog index only | Reflection essay |
-| `blog/muslims-and-manhood-roots-of-a-modern-crisis.html` | Muslims & Manhood — Middle Ground | `/blog/muslims-and-manhood-roots-of-a-modern-crisis.html` | Blog | Blog index only | Reflection essay |
-| `blog/on-liberalism-modern-age-winter-2020.html` | On Liberalism — Middle Ground | `/blog/on-liberalism-modern-age-winter-2020.html` | Blog | Blog index only | Reflection essay (excerpt reprint) |
-| `blog/on-morality-and-secularism.html` | On Morality and Secularism — Middle Ground | `/blog/on-morality-and-secularism.html` | Blog | Blog index only | Reflection essay |
-| `blog/onblacklivesmatter.html` | Black Lives Matter & Systemic Racism — Middle Ground | `/blog/onblacklivesmatter.html` | Blog | Blog index only | Recorded conversation writeup |
-| `blog/performative-islam.html` | Performative Islam — Middle Ground | `/blog/performative-islam.html` | Blog | Blog index only | Reflection essay |
-| `blog/race-and-secularism-in-america.html` | Race & Secularism in America — Middle Ground | `/blog/race-and-secularism-in-america.html` | Blog | Blog index only | Book-reflection essay |
-| `blog/readinglist-articles.html` | Reading List (Articles) — Middle Ground | `/blog/readinglist-articles.html` | Blog | Blog index only | Curated article list |
-| `blog/readinglist.html` | Reading List 2023 — Middle Ground | `/blog/readinglist.html` | Blog | Blog index only | Curated book list |
+**Inference** is used below only for "Primary audience" (not directly stated anywhere in the repo) and "Content status" judgment calls; every other column is a directly observed fact.
 
-### Indexability / canonical / sitemap / internal-link status
+| Page | Route | Type | Parent | Nav location | Purpose | Primary audience (Inference) | Indexable | Canonical | In sitemap.xml | Inbound links | Outbound links | Click depth | Content status | Recommended action |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Home | `/` (`index.html`) | Homepage | — | Header logo | Hero, Jumu'ah video, learning/blog teasers, podcast player, donate CTA | General public / prospective visitors | Yes | Yes (self) | Yes | Yes (every page's logo) | Yes (all nav targets + 4 featured posts) | 0 | Complete | Retain |
+| About | `/about.html` | Static page | Home | Header nav | Org history/mission, sourced from `about.md` | Prospective community members, donors | Yes | Yes (self) | Yes | Yes (header, footer, all pages) | Yes (nav/footer only) | 1 | Complete | Retain |
+| Learning | `/learning.html` | Static page | Home | Header nav | Class schedule (Qur'an, Arabic, youth halaqa, new-Muslim circle) | Prospective/current students | Yes | Yes (self) | Yes | Yes (header, footer, all pages) | Yes (nav/footer only) | 1 | Complete | Retain |
+| Blog | `/blog/index.html` | Listing/index page | Home | Header nav ("Blog") | Flat archive of all 19 posts | General public / readers | Yes | Yes (self) | Yes | Yes (header, footer, all pages) | Yes (all 19 posts + nav) | 1 | Complete | Retain |
+| Our Imām | `/imam.html` | Static page | Home | Footer only ("Our Imām") | Imam's bio, photos, map | Prospective students/congregants, media | Yes | Yes (self) | Yes | Yes (footer of all 25 pages) | **Blog link broken** (see Phase 3 #1); nav/footer otherwise intact | 1 | Complete (content); broken-link defect | Improve (fix broken link) |
+| Contact | `/contact.html` | Static page | Home | Footer only | Contact form, address, phone | General public | Yes | Yes (self) | Yes | Yes (footer of all 25 pages — corrected 2026-07-18, see Phase 3 #2) | Yes (nav/footer) | 1 | Thin (no `<h1>`; ~109 words of body copy) | Improve (add `<h1>`) |
+| Dreaming of a Prophetic Life | `/blog/dreaming-of-a-prophetic-life.html` | Blog post | Blog | Blog index; homepage feature | Reflection essay | General readers | Yes | Yes (self) | Yes | Yes (blog index, homepage) | Nav/footer only, no cross-post links | 2 | Complete | Retain |
+| التحدّيات في اعتناق الإسلام في المعاصر | `/blog/embracing-islam-today.html` | Blog post (Arabic) | Blog | Blog index only | Reflection on embracing Islam | Arabic-speaking readers | Yes | Yes (self) | Yes | Yes (blog index) | Nav/footer only | 2 | Complete — `lang`/`dir` fixed 2026-07-18 (see Phase 3 #5) | Retain |
+| From Villain to Vindicated | `/blog/from-villain-to-vindicated.html` | Blog post | Blog | Blog index; homepage feature | Khutbah transcript (Sūrah al-Munāfiqūn) | General readers | Yes | Yes (self) | Yes | Yes (blog index, homepage) | Nav/footer only | 2 | Complete | Retain |
+| Guard Your Narrative | `/blog/guard-your-narrative.html` | Blog post | Blog | Blog index only | Reflection essay | General readers | Yes | Yes (self) | Yes | Yes (blog index) | Nav/footer only | 2 | Complete | Retain |
+| Hope & Faith in Times of Absurdity | `/blog/hope-and-faith-in-times-of-absurdity.html` | Blog post | Blog | Blog index; homepage feature | Podcast ep. 50 writeup + player | General readers, podcast listeners | Yes | Yes (self) | Yes | Yes (blog index, homepage) | Nav/footer only | 2 | Complete | Retain |
+| مارك مانلي | `/blog/imam-marc-nasab.html` | Blog post (Arabic) | Blog | Blog index only | Imam's bio, Arabic | Arabic-speaking readers | Yes | Yes (self) | Yes | Yes (blog index) | Nav/footer only | 2 | Complete — `lang`/`dir` fixed 2026-07-18 (see Phase 3 #5) | Retain |
+| Islam & Evolution | `/blog/islam-and-evolution-did-life-find-a-way.html` | Blog post | Blog | Blog index only | Reflection essay | General readers | Yes | Yes (self) | Yes | Yes (blog index) | Nav/footer only | 2 | Complete | Retain |
+| Why Islam Is Not a Culture | `/blog/islam-is-not-a-culture.html` | Blog post | Blog | Blog index only | Reflection essay | General readers | Yes | Yes (self) | Yes | Yes (blog index) | Nav/footer only, no cross-links to thematically related posts | 2 | Complete | Retain; add contextual cross-links (Phase 3 #10) |
+| Islamic Psychology | `/blog/islamic-psychology.html` | Blog post | Blog | Blog index only | Reflection essay | General readers | Yes | Yes (self) | Yes | Yes (blog index) | Nav/footer only | 2 | Complete | Retain |
+| Meaning & Terminology in the Qur'an | `/blog/meaning-and-terminology-in-the-quran.html` | Blog post | Blog | Blog index only | Reflection essay | General readers | Yes | Yes (self) | Yes | Yes (blog index) | Nav/footer only | 2 | Complete | Retain |
+| The Modernist Muslim | `/blog/modernist-muslims.html` | Blog post | Blog | Blog index only | Reflection essay | General readers | Yes | Yes (self) | Yes | Yes (blog index) | Nav/footer only, no cross-links | 2 | Complete | Retain; add cross-links |
+| Muslims & Manhood | `/blog/muslims-and-manhood-roots-of-a-modern-crisis.html` | Blog post | Blog | Blog index only | Reflection essay | General readers | Yes | Yes (self) | Yes | Yes (blog index) | Nav/footer only | 2 | Complete | Retain |
+| On Liberalism | `/blog/on-liberalism-modern-age-winter-2020.html` | Blog post | Blog | Blog index only | Reprint of a *Modern Age* excerpt | General readers | Yes | Yes (self) | Yes | Yes (blog index) | Nav/footer only | 2 | Complete | Retain |
+| On Morality and Secularism | `/blog/on-morality-and-secularism.html` | Blog post | Blog | Blog index; homepage feature | Reflection essay | General readers | Yes | Yes (self) | Yes | Yes (blog index, homepage) | Nav/footer only | 2 | Complete | Retain |
+| Black Lives Matter & Systemic Racism | `/blog/onblacklivesmatter.html` | Blog post | Blog | Blog index only | Recorded-conversation writeup | General readers | Yes | Yes (self) | Yes | Yes (blog index) | Nav/footer only | 2 | Complete | Retain |
+| Performative Islam | `/blog/performative-islam.html` | Blog post | Blog | Blog index only | Reflection essay | General readers | Yes | Yes (self) | Yes | Yes (blog index) | Nav/footer only | 2 | Complete | Retain |
+| Race & Secularism in America | `/blog/race-and-secularism-in-america.html` | Blog post | Blog | Blog index only | Book-reflection essay | General readers | Yes | Yes (self) | Yes | Yes (blog index) | Nav/footer only | 2 | Complete | Retain |
+| Reading List (Articles) | `/blog/readinglist-articles.html` | Reference/resource page | Blog | Blog index only | Curated article list | Readers seeking further study | Yes | Yes (self) | Yes | Yes (blog index, cross-linked from Reading List 2023) | Nav/footer + cross-link to Reading List 2023 | 2 | Complete | Review (URL/section placement, Phase 3 #8) |
+| Reading List 2023 | `/blog/readinglist.html` | Reference/resource page | Blog | Blog index only | Curated book list | Readers seeking further study | Yes | Yes (self) | Yes | Yes (blog index, cross-linked from Reading List (Articles)) | Nav/footer + cross-link to Reading List (Articles) | 2 | Complete | Review (URL/section placement, Phase 3 #8) |
 
-| Page | Indexable (no noindex found) | Canonical tag present | In `sitemap.xml` | Internally linked |
+---
+
+## Phase 3 — Architecture problems
+
+No orphan pages, no pages deeper than 2 clicks from Home, and no `noindex`/canonical conflicts were found. The issues below are the ones this audit did find, each with evidence, why it matters, a recommended correction, and a priority.
+
+| # | Category | Affected page(s) | Evidence | Why it's a problem | Recommended correction | Priority |
+|---|---|---|---|---|---|---|
+| 1 | Broken internal link | `imam.html` | Desktop nav, mobile nav, and footer all use `href="../blog/index.html"` (lines 105, 121, 284). `imam.html` is at the project root, so `../` escapes the site root and 404s in production. Every other root-level page correctly uses `blog/index.html` (no `../`). | A currently-live broken link on a page linked from the footer of all 25 pages; breaks the click-path from the Imam's bio to the blog for every visitor who tries it. | Change all 3 occurrences to `href="blog/index.html"`. | Critical |
+| 2 | ~~Weak/missing footer link~~ — **Corrected 2026-07-18: not a real defect** | `contact.html` | This finding, as originally written, claimed the footer "Contact" link was present on only 3 of 25 pages and absent from the other 22. Re-verified by grepping `>Contact</a>` across every page's `<footer>`: **all 25 pages have exactly one Contact footer link.** Git history shows commit `adebc99` ("Tweaking the footer. Adding a map.", 2026-07-17 23:11) added it to all 25 files at once — *before* this audit's own stated inspection date of 2026-07-18 — so the original claim was already stale/incorrect at the time this document was written. | N/A — no problem exists. | No action needed. | ~~High~~ N/A |
+| 3 | Missing heading | `contact.html` | `grep -c '<h1' contact.html` returns `0`. Every other top-level page has exactly one `<h1>` (uses `<h2>` as its top heading instead). | Weakens the page's on-page relevance signal for search and its heading structure for screen-reader navigation. | Add a single `<h1>` (e.g., "Contact"). | Critical |
+| 4 | ~~No canonical tags anywhere~~ — **Fixed 2026-07-18** | Site-wide (all 25 pages) | A self-referencing `<link rel="canonical">` was added to every page (homepage → `https://www.muslim.center/`, all others → `https://www.muslim.center/<path>.html`), matching the URL form `generate-sitemap.js` already used. Live duplicate-serving URLs (re-verified via `curl`: `/` vs `/index.html`, `/about.html` vs `/about.html/`, `/blog/index.html` vs `/blog/`, etc. — all still `200`, byte-identical) are unchanged, since that's Vercel's static-serving behavior and out of scope for a metadata-only fix; each duplicate now at least signals the correct canonical to crawlers. | (resolved) | Optional follow-up, not done here: a `vercel.json` rule normalizing trailing-slash/directory variants to the `.html` form would stop the duplicate serving at the source instead of just signaling around it. | ~~High~~ Resolved |
+| 5 | ~~Incorrect language/direction metadata~~ — **Fixed 2026-07-18** | `blog/embracing-islam-today.html`, `blog/imam-marc-nasab.html` | `<html>` now declares `lang="ar" dir="rtl"` on both pages (previously `lang="en" dir="ltr"`, despite Arabic titles/body content). A naive full-page RTL flip was tried first and rejected: it bidi-corrupted the shared English footer/nav chrome (the address word order, the copyright line, and the "Tagged:" label all reordered incorrectly, e.g. "870 N Mountain Ave STE 102" became "N Mountain Ave STE 102 870"). Final fix: `<body dir="ltr">` anchors the English chrome back to normal, while the article's Arabic title/subtitle/body — already wrapped in their own `dir="rtl" lang="ar"` divs — continue to render correctly RTL via that explicit per-element override, unaffected by the body-level default. | (resolved) | Verified with before/after screenshots on both pages — layout is pixel-identical to the original except the (now correctly RTL) Arabic article text; the floated portrait on the bio page also correctly sits on the visual right via its logical `float-start`. | ~~High~~ Resolved |
+| 6 | Inconsistent URL structure | `blog/readinglist.html`, `blog/readinglist-articles.html` | Both are curated reference lists, not dated essays/khutbahs like the other 17 posts under `/blog/`, but they share the same `/blog/...` path pattern. | URL path implies "blog post" for content that functions as an evergreen resource page, which can be confusing for navigation and for how the content is categorized by both users and search engines. | Consider relocating to a `/resources/` or `/blog/reading-list/` path if the site's reference content grows; not urgent at 2 pages (see Phase 4). | Low |
+| 7 | Inconsistent slug/naming conventions | `blog/on-liberalism-modern-age-winter-2020.html`, `blog/muslims-and-manhood-roots-of-a-modern-crisis.html`, `blog/embracing-islam-today.html`, `blog/imam-marc-nasab.html` | Most slugs are short essay titles (e.g. `islam-is-not-a-culture.html`); one embeds a source publication + season/year, one is a long compound phrase, and the two Arabic posts have English slugs with no language marker. | Inconsistent slugs make URL patterns less predictable and slightly harder to scan in listings (sitemap, search results, analytics). | No renaming recommended at current scale — flagged for awareness; only fix if/when these pages are otherwise touched (renaming triggers redirect requirements). | Low |
+| 8 | No contextual cross-linking between related posts | All 19 blog posts, especially the 5-post "Islam vs. modern reinterpretation" theme (`islam-is-not-a-culture.html`, `modernist-muslims.html`, `performative-islam.html`, `islamic-psychology.html`, `meaning-and-terminology-in-the-quran.html`) | Spot-checked several posts: none link to other individual posts on related themes; every post's only outbound links are nav/footer. | Readers and crawlers have no path between thematically related content except returning to the flat blog archive — weaker topical signal, weaker on-site engagement path. | Add 2–4 contextual in-body links between posts in the same theme (see Phase 3 clustering below and Phase 5). | Medium |
+| 9 | No breadcrumbs anywhere | Site-wide, especially the 19 blog posts (2 clicks deep) | Confirmed via repo-wide search — zero breadcrumb markup exists. | Blog posts are the site's only pages more than 1 click deep; without breadcrumbs, in-page orientation back to Blog relies solely on the nav/footer. | Add a simple `Home / Blog / [Post Title]` breadcrumb to post pages. | Low |
+| 10 | Underdeveloped topic (content-depth observation, not a structural defect) | `blog/islam-and-evolution-did-life-find-a-way.html` | Only 1 post touches Islam-and-science topics — too thin to function as a discoverable subtopic on its own. | Not an IA defect by itself, but worth noting since it's the one topic area with no supporting content at all. | If this is a subject to keep covering, 1–2 more posts would make it a real cluster; otherwise no action needed. | Low |
+| 11 | No Open Graph / Twitter Card metadata | All 25 pages | Zero `og:*` or `twitter:card` tags found anywhere. | Every page's footer links to a WhatsApp community chat — link previews shared in that exact channel (and anywhere else) are unstyled. | Add `og:title`, `og:description`, `og:image`, `og:url`, `og:type` using existing `<title>`/meta-description content. | Medium |
+| 12 | No structured data (schema.org) anywhere | All 25 pages | Zero `application/ld+json`, `schema.org` references, or microdata attributes found. | Structured data helps search engines and AI systems parse entities (Organization, Person, Article) directly rather than inferring from prose. | See [schema.md](schema.md) for concrete, real-data JSON-LD recommendations per page type. | Medium |
+| 13 | Sitemap generator bug — found and fixed while implementing #4 | `generate-sitemap.js` | The canonical-exclusion check compared `resolveCanonicalUrl(canonicalHref) !== ownUrl` without normalizing trailing slashes consistently: the homepage's own computed URL (`https://www.muslim.center/`) always has a trailing slash, but the absolute-URL branch of `resolveCanonicalUrl` strips it. The moment `index.html` got a self-referencing canonical (as part of fixing #4), the generator concluded it pointed "elsewhere" and silently dropped the homepage — `sitemap.xml` went from 25 URLs to 24. | Would have silently removed the homepage from the submitted sitemap on the next `npm run build`, with no error or warning. | Fixed: normalize trailing slashes on both sides of the comparison before diffing (one-line change in `generate-sitemap.js`). Regenerated `sitemap.xml` afterward and confirmed all 25 URLs are present with no unexpected diff from the previously committed file. | Critical (would have shipped silently) |
+
+**Categories checked with no findings** (explicitly, since the audit prompt asks for a full sweep): orphan pages — none; pages more than 3 clicks deep — none (max depth is 2); overlapping sections — none beyond the two reading-list pages (already noted, and they're differentiated, not truly overlapping); ambiguous navigation labels — none, all nav labels map clearly to their destination; important pages missing from navigation entirely — none (every page is linked from somewhere); pages in navigation with weak value — none, all 6 header items are core destinations; redirecting internal links — none (no internal link points at a URL that itself redirects); dead-end pages — none in the strict sense (every page has working nav/footer out), though the lack of contextual cross-links (finding 8) is a related, softer version of this; excessively broad or fragmented sections — none, the site is small and flat; pages without a clear parent — none; pages whose purpose is unclear — none; canonical URL conflicting with its own route — none; every page's canonical now points at itself (see finding 4, resolved); pages indexable but that probably shouldn't be — none identified (no admin, staging, or account pages exist); pages excluded from indexing that appear important — none (nothing on the site is `noindex`).
+
+---
+
+## Phase 4 — Recommended Future Information Architecture
+
+**Recommendation only — nothing below has been implemented.** The site's actual footprint (5 top-level pages, one flat blog, 19 posts) is small and coherent; the recommendation below is deliberately conservative — it fixes real defects found in Phase 3 and closes small gaps, without inventing new categories, taxonomy, or pages the current content doesn't support.
+
+```
+Recommended Future Information Architecture
+
+Home
+├── About
+├── Learning
+├── Blog
+│   ├── [17 essay/khutbah posts — unchanged, flat, as today]
+│   └── Resources                              [renamed section — see change type below]
+│       ├── Reading List (Articles)
+│       └── Reading List 2023
+├── Our Imām
+└── Contact
+```
+
+What stays exactly the same: the 5 top-level destinations, the flat (non-tagged, non-categorized) structure of the 17 essay/khutbah posts, and the total page count (no pages are proposed for creation or deletion). The two Arabic posts stay at their current URLs — their fix is a metadata correction (Phase 3 #5), not a move.
+
+### Proposed changes and what each requires
+
+| Change | Requires |
+|---|---|
+| Fix `imam.html`'s broken Blog link | No structural change — a bug fix (Phase 3 #1) |
+| Add `<h1>` to `contact.html` | No structural change — a content fix (Phase 3 #3) |
+| ~~Add self-referencing canonical tags to all 25 pages~~ | **Done 2026-07-18** (Phase 3 #4) |
+| Group the two reading-list pages under a "Resources" label | Renaming (label/heading only — URLs can stay at `/blog/readinglist.html` and `/blog/readinglist-articles.html`, or move to `/blog/resources/` if the site wants the URL to match; **moving the URL requires a redirect** from the old path) |
+| Add contextual cross-links between the 5 "Islam vs. modern reinterpretation" posts | Updating internal links (in-body links, no URL/nav change) |
+| ~~Add `lang="ar" dir="rtl"` to the two Arabic posts~~ | **Done 2026-07-18** (Phase 3 #5) |
+| Add Open Graph / Twitter Card tags site-wide | No structural change — a metadata addition |
+| Add JSON-LD structured data (Organization on Home, Article on posts, Person on Imam page) | No structural change — a metadata addition (see [schema.md](schema.md)) |
+
+**Explicitly not recommended:** creating new top-level categories, splitting the blog into tag/category archive pages, merging the two reading lists into one page (they're differentiated by media type and already cross-linked), or renaming any blog post slug at this scale (renaming would require redirects for a low-value naming cleanup — not worth the churn for 19 posts).
+
+**Judgment call, left open:** whether `imam.html` and `contact.html` should move from footer-only into the primary header nav. Both are currently one click deeper than `about.html`/`learning.html`/`blog/index.html` (footer vs. header), but footer links are still fully crawlable and indexed — this is a UX preference, not a defect. See Phase 5 for the tradeoff.
+
+---
+
+## Phase 5 — Navigation recommendations
+
+**Primary navigation (header):** keep exactly as-is — Learning, Blog, About, Substack, YouTube, Donate. This is already a short, purpose-driven set of top destinations; adding more would work against "keep navigation understandable."
+
+**Should `imam.html` and `contact.html` join primary nav?** Two reasonable options, not a single "correct" answer:
+- **Keep footer-only (lower-risk):** these are supporting pages (a bio, a contact form) rather than top-level user journeys — the current 3-internal-link header nav stays focused. Requires only fixing the footer-consistency defect (Phase 3 #2).
+- **Promote to header nav:** if the site wants "meet the Imam" or "contact us" to be a primary conversion path (e.g., for prospective congregants), add them as a 4th/5th internal header item. This would push total header items to 8 (3 internal + 3 external + 2 new) — worth pairing with a secondary/utility nav split (internal links in the main bar, external links — Substack/YouTube/Donate — moved to a smaller secondary row or footer-only) if this path is taken, to avoid an overloaded header.
+
+**Footer navigation:** no change needed — the "Explore" column is already identical on all 25 pages (see Phase 3 #2, corrected 2026-07-18). No new footer sections are recommended — "Jumu'ah" and "Connect" already cover the distinct remaining needs (service info, direct contact methods).
+
+**Mobile navigation:** no changes needed structurally — it already mirrors the header nav 1:1. If primary nav gains items (see above), mirror the same items into `#mobileNav`, as the current template already does.
+
+**Breadcrumbs:** add a simple, non-clickable-on-current-page trail to the 19 blog posts: `Home / Blog / [Post Title]`. Not needed on top-level pages (they're only 1 click deep already).
+
+**Contextual internal links:** add in-body links between the 5 "Islam vs. modern reinterpretation" cluster posts and between the 4 "Secularism, liberalism, and society" cluster posts (see [content-clusters.md](content-clusters.md) for the full grouping and rationale). Keep these as plain in-paragraph links to existing pages — no new hub/pillar page is required to do this.
+
+**Pages that should stay out of primary nav but remain reachable:** `imam.html` and `contact.html` (via footer, once fixed), the two reading-list pages (via the Blog archive), and all individual blog posts (via the Blog archive and, once added, contextual cross-links). None of these need a dedicated nav slot to remain fully crawlable and discoverable.
+
+---
+
+## Phase 6 — Implementation roadmap
+
+### Stage 1: Critical corrections
+
+| Action | File(s) | Dependencies | Risk | Verify |
 |---|---|---|---|---|
-| `/` | Yes | No (assumption: none needed, only one URL represents home) | Yes | Yes (logo on every page) |
-| `/about.html` | Yes | No | Yes | Yes (header nav, footer) |
-| `/imam.html` | Yes | No | Yes | Yes (footer only) — see broken-link note below |
-| `/learning.html` | Yes | No | Yes | Yes (header nav) |
-| `/contact.html` | Yes | No | Yes | Yes (footer only) |
-| `/blog/index.html` | Yes | No | Yes | Yes (header nav) |
-| All 19 blog posts | Yes | No | Yes | Yes (all linked from `blog/index.html`; see [content-clusters.md](content-clusters.md) for cross-linking gaps) |
+| Fix broken Blog link in `imam.html` (3 occurrences) | `imam.html` | None | Low | Load `/imam.html`, click Blog in header/mobile/footer — lands on `/blog/index.html`, not a 404 |
+| Add `<h1>` to `contact.html` | `contact.html` | None | Low | `grep -c '<h1' contact.html` returns `1`; visually confirm placement |
 
-No page in the repository currently carries a `<meta name="robots">` tag or a `<link rel="canonical">` tag — confirmed by scanning all 25 HTML files. This means indexability is the HTTP-default ("index, follow") everywhere, and there is no canonical signal anywhere on the site. **This is not just a theoretical gap** — live production checks (2026-07-18) confirm real duplicate-serving URLs with no canonical tag distinguishing them; see problem #2 below and [redirects.md](redirects.md) for the full detail.
+### Stage 2: Structural improvements
 
-## 2. Problems found
+| Action | File(s) | Dependencies | Risk | Verify |
+|---|---|---|---|---|
+| ~~Add self-referencing canonical tags to all 25 pages~~ | All `.html` files | — | Low | **Done 2026-07-18.** All 25 pages verified via `grep -rl 'rel="canonical"'`; `node generate-sitemap.js` regenerated and confirmed 25 URLs with no unexpected diff. In the process, a pre-existing bug in `generate-sitemap.js`'s canonical-comparison (trailing-slash mismatch, was silently dropping the homepage) was found and fixed — see Phase 3 #13. |
+| ~~Fix `lang`/`dir` on the 2 Arabic posts~~ | `blog/embracing-islam-today.html`, `blog/imam-marc-nasab.html` | — | Medium (RTL can shift layout — visual re-check needed) | **Done 2026-07-18.** `<html lang="ar" dir="rtl">` set on both; a `<body dir="ltr">` override was added to prevent the shared English chrome from bidi-corrupting (the naive full-page flip broke the footer address/copyright/tag-label ordering — see Phase 3 #5). Verified with before/after screenshots on both pages. |
+| (If pursued) Relocate reading-list pages under a `/resources/`-style path | `blog/readinglist.html`, `blog/readinglist-articles.html` | Requires a redirect from the old path (see Stage 2 note) and updating every inbound link (blog index, homepage if linked, each other) | Medium — old URL will 404 without a redirect | Old URLs redirect (not 404); new URLs return 200; `blog/index.html` and any other referrer updated |
 
-| # | Finding | Evidence | Severity |
+### Stage 3: Content and internal linking
+
+| Action | File(s) | Dependencies | Risk | Verify |
+|---|---|---|---|---|
+| Add contextual cross-links within the "Islam vs. modern reinterpretation" cluster | `blog/islam-is-not-a-culture.html`, `blog/modernist-muslims.html`, `blog/performative-islam.html`, `blog/islamic-psychology.html`, `blog/meaning-and-terminology-in-the-quran.html` | Content review to place links naturally in existing prose | Low | Each post links to at least 1 other post in the cluster; links resolve (no 404s) |
+| Add contextual cross-links within the "Secularism, liberalism, and society" cluster | `blog/on-liberalism-modern-age-winter-2020.html`, `blog/on-morality-and-secularism.html`, `blog/race-and-secularism-in-america.html`, `blog/onblacklivesmatter.html` | Same as above | Low | Same as above |
+| Add breadcrumbs to all 19 blog posts | All files in `blog/*.html` | Decide on breadcrumb markup/styling (none exists yet — new pattern) | Low | Visual check on a sample of posts; confirm links resolve |
+| Add Open Graph / Twitter Card metadata | All 25 `.html` files | Pick one representative image per page (highest-value first: `index.html`, `blog/index.html`, `blog/hope-and-faith-in-times-of-absurdity.html`) | Low | Paste URLs into a link-preview debugger once live; inspect rendered `<head>` |
+| Add JSON-LD structured data | `index.html` (Organization/WebSite), `imam.html` (Person), blog posts (Article) | None — real data already exists on-site (see [schema.md](schema.md)) | Low | Validate with a structured-data testing tool once live |
+
+### Stage 4: Verification
+
+| Action | Dependencies | Risk | Verify |
 |---|---|---|---|
-| 1 | **Broken internal link.** `imam.html` (a root-level file) links to Blog using `href="../blog/index.html"` in both the desktop nav, mobile nav, and footer. Because `imam.html` is already at the project root, the `../` prefix escapes the site root and points at a non-existent path in production. Every other root-level page correctly uses `href="blog/index.html"` (no `../`). | `imam.html` lines 105, 121, 284 | Critical — see [internal-linking.md](internal-linking.md) |
-| 2 | **No canonical tags anywhere, and confirmed live duplicate URLs.** 0 of 25 pages declare `<link rel="canonical">`. Live production checks confirm `/` and `/index.html` both serve identical content at `200`, as do `/about.html` and `/about.html/` (trailing slash), and `/blog/index.html` / `/blog/index.html/` / `/blog/` (all three). This pattern likely applies to every `.html` file, since it comes from Vercel's static-file serving behavior rather than anything page-specific. | grep across all `.html`; `curl -I` against production, 2026-07-18 | Medium-High — see [redirects.md](redirects.md) and [seo-roadmap.md](seo-roadmap.md) |
-| 3 | **Reading-list pages nested under `/blog/`.** `blog/readinglist.html` and `blog/readinglist-articles.html` are curated lists, not essays/khutbahs like the rest of the blog. They're both indexable, both in the sitemap, and cross-link each other, but their URL path (`/blog/...`) doesn't match their actual purpose (reference pages, not dated posts). | File inspection, `blog/index.html` listing | Low — an IA/naming observation, not a functional defect |
-| 4 | **Inconsistent slug conventions in `/blog/`.** Most slugs are short essay titles (`islam-is-not-a-culture.html`), but `on-liberalism-modern-age-winter-2020.html` embeds a source-publication name and season/year, and `muslims-and-manhood-roots-of-a-modern-crisis.html` is a long compound slug. The two Arabic posts (`embracing-islam-today.html`, `imam-marc-nasab.html`) have English slugs for Arabic content, with no language marker in the URL. | Filename comparison | Low |
-| 5 | **`contact.html` has no `<h1>`.** Every other top-level page has exactly one `<h1>`. | `grep -c '<h1'` returned 0 for `contact.html` | Medium — see [seo-roadmap.md](seo-roadmap.md) |
-| 6 | **Arabic-language posts are marked `lang="en" dir="ltr"`.** `blog/embracing-islam-today.html` and `blog/imam-marc-nasab.html` contain Arabic-language titles and body copy but the `<html>` tag on both reads `lang="en" dir="ltr"`, same as every English page. | `grep -oE '<html[^>]*>'` on both files | Medium — see [seo-roadmap.md](seo-roadmap.md) |
+| ~~Re-run `node generate-sitemap.js` and diff `sitemap.xml`~~ | Stages 1–3 complete | None | **Done 2026-07-18** — confirmed 25 pages present, matching the previously committed `sitemap.xml` exactly (see Phase 3 #13 for the trailing-slash bug this surfaced and fixed) |
+| Review `robots.txt` for continued correctness | None | None | Still `Allow: /` with the one `Sitemap:` line, unless an AI-crawler policy decision (Phase 3 note, informational only) is separately made |
+| ~~Canonical-tag spot check across page types~~ (home, top-level, post, Arabic post, reading list) | Stage 2 canonical rollout | None | **Done 2026-07-18** — spot-checked; each page declares itself, not another page, as canonical |
+| Crawl test | All prior stages | None | Use a crawler tool (e.g. Screaming Frog) against a staging/preview deploy to confirm zero broken internal links, zero unexpected redirect chains, and that click-depth stays ≤2 for every page |
+| Live-site verification | Deployed to production | Low — verifying, not changing, production | Re-run the same live checks this audit did: `curl -IL` on `/`, `/index.html`, `/about.html/`, `/blog/` to confirm canonical tags now correctly signal the preferred URL even though duplicate serving continues (unless the `vercel.json` trailing-slash fix from Phase 3 #4 is also pursued) |
 
-### Orphan pages
+---
 
-**None found.** Every one of the 25 pages is reachable from at least one internal link (header nav, footer, or the blog index). This was verified by checking inbound `href`s for every file, including the two pages that are footer-only (`imam.html`, `contact.html`) and the two reading-list pages (confirmed linked from `blog/index.html` and from each other).
+## What could not be determined
 
-### Duplicate or near-duplicate pages
+- Whether the missing footer "Contact" link on 22 pages was intentional or an oversight — no componentized footer/template file exists in this project (each page carries its own copy), so there's no single source to diff against, and `about.html`'s full git history shows it never had the link.
+- Whether the two Arabic posts anchor an ongoing Arabic-content track or were one-off translations — no editorial calendar or content plan exists in the repo to check against.
+- Whether Vercel account-level bot protection or a WAF rule is active outside `robots.txt` — a live `curl` check found no evidence of one blocking plain requests, but dashboard-only settings can't be fully audited from the codebase.
+- The old dormant site's exact former URL structure or any residual backlink/search-index presence — resolvable only via Google Search Console's historical data or a Wayback Machine lookup, not from this repository.
+- Whether any page's true production reachability differs from what a repo-only scan shows (e.g., a page live in production but already removed from this checkout) — this audit is repository-based, with only spot-check live verification on a handful of specific claims (noted inline above).
 
-No two *different* page files share the same content. The closest thing to near-duplicates is `blog/readinglist.html` (books) and `blog/readinglist-articles.html` (articles) — same author, same curatorial format, cross-linked to each other, but covering different media types. See [content-clusters.md](content-clusters.md) for a recommendation.
+---
 
-Separately — and this is the more significant finding — **the same page is confirmed reachable at multiple URLs in production**: the homepage at both `/` and `/index.html`, and every checked page also at its own trailing-slash variant (e.g. `/about.html/`) and, for the blog index, also at the bare directory path `/blog/`. This is a URL-level duplication issue (one file, several equally-"live" addresses), not a content-authoring one. See problem #2 above and [redirects.md](redirects.md) for the full verified detail.
+## Related documents in this folder
 
-### Pages buried too deeply
-
-None. The deepest any page sits is one level under `/blog/` (post pages). Nothing requires more than two clicks from the homepage.
-
-### Confusing or inconsistent route names
-
-Covered in finding #4 above.
-
-## 3. Recommended future structure
-
-**Labeled as a recommendation — not implemented.** No structural changes were made to the website as part of this task.
-
-- Fix the broken `../blog/index.html` link in `imam.html` (should be `blog/index.html`) — this is a correction of an existing bug, not a restructure.
-- Consider adding `imam.html` and `contact.html` to the header nav (or a secondary nav row) since they're currently one click deeper (footer-only) than `about.html`/`learning.html`/`blog/index.html`. This is a UX judgment call, not a defect — footer links are still crawlable and indexed.
-- Consider whether the two reading-list pages belong at `/blog/reading-list/books.html` and `/blog/reading-list/articles.html`, or a merged `/resources.html`, if the site's content grows. Not urgent at current scale (2 pages).
-- No change recommended to the two Arabic posts' URLs; the recommended fix is correcting their `lang`/`dir` attributes (a metadata fix, covered in [seo-roadmap.md](seo-roadmap.md)), not moving them.
-
-## What I could not determine
-
-- Whether `imam.html`'s broken blog link has ever been reported as broken by a user in production. It has been present since the file's initial commit (`7f37d8e`), so it is not a recent regression — it has likely been live since `imam.html` was first deployed.
-- Whether the site owner intends `about.md` to eventually drive `about.html` via a build step (no such automation exists today — it's a plain content note living alongside the HTML).
+This document focuses specifically on IA/sitemap structure, in the exact format requested. Deeper detail on adjacent topics lives in sibling files and is cross-referenced above rather than duplicated: [seo-roadmap.md](seo-roadmap.md) (prioritized action list), [content-clusters.md](content-clusters.md) (topic groupings and content-gap analysis), [internal-linking.md](internal-linking.md) (full link inventory), [schema.md](schema.md) (structured-data recommendations), [robots.md](robots.md), [sitemap.md](sitemap.md), [redirects.md](redirects.md), [llms.md](llms.md), and [README.md](README.md) (index of all of the above).
