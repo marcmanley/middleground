@@ -91,12 +91,12 @@
 ## Favicons and Site Icons
 - Every public HTML page must reference the approved site favicon.
 - The canonical favicon source for this project is: `media/images/logo-favicon.png`
-- Favicon paths must be written correctly relative to each page's directory.
+- Favicon markup must use a root-relative path: `<link rel="icon" type="image/png" href="/media/images/logo-favicon.png">`. Do not use page-relative paths (e.g. `../media/images/logo-favicon.png`) — the site deploys at the domain root, so root-relative paths resolve identically on every page regardless of nesting depth.
 - Before adding favicon markup, check whether equivalent favicon markup already exists.
 - Do not create duplicate favicon declarations.
 - Do not replace, redesign, crop, recolor, or regenerate the approved favicon unless explicitly authorized.
 - All newly created public HTML pages must include the favicon declaration in the document `<head>`.
-- When moving or nesting a page, verify that its favicon path still resolves correctly.
+- Because the path is root-relative, moving or nesting a page never requires updating its favicon path.
 - Before completing any sitewide HTML task, verify that favicon references are present and valid on all created or modified public pages.
 
 ## Hard Rules
