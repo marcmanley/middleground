@@ -121,6 +121,38 @@
 - Before adding this block, check whether equivalent `og:`/`twitter:` metadata already exists on the page — do not create duplicates.
 - Before completing any sitewide HTML task, verify that every public page has exactly one of each required `og:`/`twitter:` tag (except `og:url` on `404.html`), and that every `og:image`/`twitter:image` URL is absolute and points to a file that actually exists.
 
+## Structured Data (Schema.org)
+- Every public HTML page (everything except `404.html`) must contain page-appropriate Schema.org JSON-LD in a single `<script type="application/ld+json">` block, inserted immediately before the favicon `<link rel="icon">` tag.
+- `404.html` must not carry substantive structured data — it has no canonical URL and describes nothing real.
+- Use a single `@context`/`@graph` document per page. Never emit more than one `<script type="application/ld+json">` block on a page.
+- **Reusable entities — permanent `@id` values, defined once, referenced everywhere else:**
+  - WebSite → `https://www.muslim.center/#website` (fully defined on `index.html` only)
+  - Organization → `https://www.muslim.center/#organization`, type `ReligiousOrganization` (fully defined on `index.html` only)
+  - Mosque → `https://www.muslim.center/#mosque`, type `Mosque` (fully defined on `index.html` only) — the physical location; reached from the Organization via its `location` property. It is not a second organization.
+  - PostalAddress → `https://www.muslim.center/#address` (fully defined on `index.html` only)
+  - Person (Imam Marc Manley) → `https://www.muslim.center/imam.html#person` (fully defined on `imam.html` only)
+  - Blog collection → `https://www.muslim.center/blog/#blog` (fully defined on `blog/index.html` only)
+- On every other page, reference these entities with a bare `{"@id": "..."}` object only — never re-declare their properties. This is how duplicate entities are avoided across 25+ hand-authored pages with no shared templating.
+- Page-type mapping (do not deviate without a reason as strong as what justified these):
+  - Homepage (`index.html`) → `WebSite` + `ReligiousOrganization` (+ `Mosque`, `PostalAddress` as their supporting nodes)
+  - `about.html` → `AboutPage`, `about` → Organization
+  - `imam.html` → `ProfilePage` wrapping the full `Person` node
+  - `learning.html` → `WebPage` (not `LearningResource` — the page is a class schedule, not itself a standalone instructional resource; only switch to `LearningResource` if a future page genuinely is one)
+  - `contact.html` → `ContactPage`, `about` → Organization (whose `address` is the PostalAddress)
+  - `blog/index.html` → combined `["Blog", "CollectionPage"]` node
+  - Individual blog posts → `BlogPosting`, with `author` → Person, `publisher` → Organization, `isPartOf` → Blog collection
+  - A future dedicated donation page → `WebPage`, `about` → Organization (no such page exists today; the donate CTA is a homepage section linking off-site to `donorbox.org`, which needs no schema of its own)
+- `BreadcrumbList` — add wherever page hierarchy exists (every page except the homepage), using canonical URLs, as its own node in the same `@graph`. This is invisible JSON-LD only; do not add a visible breadcrumb UI as part of this — that would be a visual/content change, out of scope for a schema task.
+- **Never invent:**
+  - Dates — `datePublished` may only be added when a page's own `<time datetime="...">` value is a real, distinct publish date. 13 of the 19 blog posts share one identical bulk-migration timestamp (`2024-02-29T13:41`); that is not a real per-post publish date, so `datePublished` must stay omitted on those posts. No page currently shows a "last updated" date anywhere, so `dateModified` stays omitted sitewide until a page actually displays one.
+  - Coordinates — the Mosque's `GeoCoordinates` (`34.104841, -117.67083`) came from the Google Place ID already embedded in the site's own footer map iframe (`Middle Ground Mosque`, CID `0x80c331a5cab6cad9:0xab6f18bce8eadfe3`), not a lookup or a guess. Never add or change coordinates without an equally traceable source.
+  - Authors, events, podcast metadata, or publication facts not already stated in the page's own visible copy or metadata.
+  - `Event` schema for Jumu'ah or classes — the site never publishes a stable, structured schedule (daily prayer times are WhatsApp-only; class times change). Do not add `Event` schema until a page publishes one.
+  - `PodcastSeries`/`PodcastEpisode` schema — the homepage/imam-page podcast player is populated client-side from a live RSS feed (`/api/podcast`); "latest episode" isn't stable, static HTML content a crawler sees. Revisit only if a dedicated, server-rendered podcast page is ever built.
+- Reuse existing on-page copy for `headline`/`name`/`description`/`image` (title tag, meta description, `og:image`) rather than writing new copy — same rule as the Open Graph block above.
+- Before completing any sitewide or new-page HTML task, validate: every JSON-LD block is syntactically valid, every `{"@id": ...}` reference resolves to an entity defined somewhere on the site, no entity is redefined (with full properties) in more than one place, and no page introduces a conflicting `@type` for an existing `@id`.
+- Any new page type introduced in the future (event page, podcast page, donation page, etc.) must get an appropriate Schema.org model, following the reuse pattern above, before it is deployed.
+
 ## Hard Rules
 - Do not add sections, features, or content not in the reference
 - Do not "improve" a reference design — match it
