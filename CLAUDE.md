@@ -63,9 +63,19 @@
 <script defer src="/_vercel/insights/script.js"></script>
 ```
 
+## HTML Standards and Validation Rules
+- Never introduce obsolete or non-conforming HTML attributes.
+- Never use the obsolete `frameborder` attribute on iframe elements. Use CSS or the Tailwind `border-0` utility instead.
+- When removing `frameborder` from an existing iframe, preserve all other attributes, behavior, dimensions, URLs, and surrounding layout — remove only that one attribute.
+- Never change iframe URLs, dimensions, permissions, titles, loading behavior, referrer policy, or surrounding layout unless explicitly authorized.
+- Standards-compliance fixes must always be the smallest possible change.
+- Never perform unrelated cleanup, formatting, or restructuring while making validation fixes.
+- Before completing HTML work, check that no `frameborder=` attributes (or other obsolete HTML attributes) remain in files created or modified during the task.
+
 ## Hard Rules
 - Do not add sections, features, or content not in the reference
 - Do not "improve" a reference design — match it
 - Do not stop after one screenshot pass
 - Do not use `transition-all`
 - Do not use default Tailwind blue/indigo as primary color
+- Do not use obsolete HTML attributes (for example, `frameborder` on iframe elements).
