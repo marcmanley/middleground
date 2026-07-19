@@ -1,15 +1,17 @@
 # Structured Data (Schema.org) Audit
 
-Last reviewed: 2026-07-18. **Implemented: 2026-07-19** — see status update below. The recommendations section further down is now historical context for *why* each type was chosen; the permanent rules going forward live in [CLAUDE.md](../CLAUDE.md#structured-data-schemaorg).
+Last reviewed: 2026-07-18. **Implemented: 2026-07-19, corrected: 2026-07-19** — see status update below. The recommendations section further down is now historical context for *why* each type was chosen; the permanent rules going forward live in [CLAUDE.md](../CLAUDE.md#structured-data-schemaorg).
 
-## Current status (2026-07-19)
+## Current status (2026-07-19, corrected)
 
-**JSON-LD is now live on all 25 public pages except `404.html`.** Every page carries one `<script type="application/ld+json">` block, inserted before the favicon tag. Reusable entities (WebSite, ReligiousOrganization, Mosque, PostalAddress, Person, Blog) are each defined in full exactly once and referenced elsewhere via `{"@id": ...}` — verified programmatically: zero duplicate entity definitions, zero unresolved `@id` references, zero conflicting `@type` declarations.
+**JSON-LD is now live on all 25 public pages except `404.html`.** Every page carries one `<script type="application/ld+json">` block, inserted before the favicon tag. Reusable entities (WebSite, Organization, Mosque, PostalAddress, Person, Blog) are each defined in full exactly once and referenced elsewhere via `{"@id": ...}` — verified programmatically: zero duplicate entity definitions, zero unresolved `@id` references, zero conflicting `@type` declarations.
+
+The Organization entity originally shipped as `ReligiousOrganization`. validator.schema.org flagged this: the type validates as a legal Schema.org type on its own, but is not in the accepted range for the `publisher`/`about`/`worksFor` properties that reference it from every other page, so it surfaced as errors wherever those properties resolved. Corrected to `Organization` on 2026-07-19 — see [CLAUDE.md](../CLAUDE.md#structured-data-schemaorg) for the permanent rule. The same validator run flagged `founder` (index.html, referencing the Person node defined only on `imam.html`) as resolving to an unspecified type, since single-page validation can't see across pages; index.html's `founder` reference now carries a minimal inline `@type`/`name` stub alongside its `@id` to resolve independently, without duplicating the full Person definition.
 
 | Schema type | Pages found on |
 |---|---|
 | `WebSite` | `index.html` |
-| `ReligiousOrganization` | `index.html` (full def); referenced via `@id` elsewhere |
+| `Organization` | `index.html` (full def); referenced via `@id` elsewhere |
 | `Mosque` | `index.html` (full def) |
 | `PostalAddress` | `index.html` (full def) |
 | `AboutPage` | `about.html` |
@@ -22,7 +24,7 @@ Last reviewed: 2026-07-18. **Implemented: 2026-07-19** — see status update bel
 
 Not implemented, by design: `Event` (no stable published schedule), `PodcastSeries`/`PodcastEpisode` (podcast player is client-side/RSS-driven, not static content a crawler sees), `FAQPage` (no visible Q&A content), `dateModified` (no page displays a last-updated date), and `datePublished` on the 13 posts sharing the `2024-02-29T13:41` bulk-migration timestamp (not a real per-post date). See CLAUDE.md for the permanent rule.
 
-The original 2026-07-18 recommendations are preserved below for reference on *why* — note that the Organization type actually implemented is `ReligiousOrganization` (per explicit direction), not the `LocalBusiness`/`PlaceOfWorship` this section originally proposed before that direction was given.
+The original 2026-07-18 recommendations are preserved below for reference on *why* a dedicated organization/location split was chosen — note that the Organization type actually implemented is `Organization` (not `ReligiousOrganization`, corrected 2026-07-19; also not the `LocalBusiness`/`PlaceOfWorship` this section originally proposed before that direction was given).
 
 ## Recommended schema types for existing page types
 

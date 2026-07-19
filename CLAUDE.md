@@ -131,14 +131,23 @@
 - Use a single `@context`/`@graph` document per page. Never emit more than one `<script type="application/ld+json">` block on a page.
 - **Reusable entities — permanent `@id` values, defined once, referenced everywhere else:**
   - WebSite → `https://www.muslim.center/#website` (fully defined on `index.html` only)
-  - Organization → `https://www.muslim.center/#organization`, type `ReligiousOrganization` (fully defined on `index.html` only)
+  - Organization → `https://www.muslim.center/#organization`, type `Organization` (fully defined on `index.html` only). Never `ReligiousOrganization` — it validates as a legal Schema.org type but is not in the accepted range for the `publisher`/`about`/`worksFor` properties that reference it sitewide, which is what validator.schema.org flags as an error.
   - Mosque → `https://www.muslim.center/#mosque`, type `Mosque` (fully defined on `index.html` only) — the physical location; reached from the Organization via its `location` property. It is not a second organization.
   - PostalAddress → `https://www.muslim.center/#address` (fully defined on `index.html` only)
   - Person (Imam Marc Manley) → `https://www.muslim.center/imam.html#person` (fully defined on `imam.html` only)
   - Blog collection → `https://www.muslim.center/blog/#blog` (fully defined on `blog/index.html` only)
 - On every other page, reference these entities with a bare `{"@id": "..."}` object only — never re-declare their properties. This is how duplicate entities are avoided across 25+ hand-authored pages with no shared templating.
+- **Exception — `founder`:** because `founder` appears only on `index.html` and points to the Person node defined on `imam.html`, a single-page validator run against `index.html` alone cannot resolve the reference and reports it as an unspecified type. To keep `index.html` independently valid without duplicating the Person entity, the `founder` reference there also carries a minimal inline `@type`/`name` stub alongside its `@id`:
+  ```json
+  "founder": {
+    "@id": "https://www.muslim.center/imam.html#person",
+    "@type": "Person",
+    "name": "Marc Manley"
+  }
+  ```
+  This is not a full redefinition (no `jobTitle`, `image`, `worksFor`, etc.) and does not conflict with the full definition on `imam.html` — JSON-LD merges nodes that share an `@id`. Do not expand this stub with more properties; if a page needs the full Person data, it should be near `imam.html`'s own definition, not duplicated here.
 - Page-type mapping (do not deviate without a reason as strong as what justified these):
-  - Homepage (`index.html`) → `WebSite` + `ReligiousOrganization` (+ `Mosque`, `PostalAddress` as their supporting nodes)
+  - Homepage (`index.html`) → `WebSite` + `Organization` (+ `Mosque`, `PostalAddress` as their supporting nodes)
   - `about.html` → `AboutPage`, `about` → Organization
   - `imam.html` → `ProfilePage` wrapping the full `Person` node
   - `learning.html` → `WebPage` (not `LearningResource` — the page is a class schedule, not itself a standalone instructional resource; only switch to `LearningResource` if a future page genuinely is one)
