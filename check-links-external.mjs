@@ -32,7 +32,7 @@ async function run() {
     recurse: true,
     linksToSkip: ['/_vercel/'],
     urlRewriteExpressions: [
-      { pattern: '^https://(www\\.)?muslim\\.center', replacement: BASE_URL },
+      { pattern: /^https:\/\/(www\.)?muslim\.center/, replacement: BASE_URL },
     ],
   });
 

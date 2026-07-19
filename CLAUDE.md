@@ -13,6 +13,10 @@
 - Start the dev server: `node serve.mjs` (serves the project root at `http://localhost:3000`)
 - `serve.mjs` lives in the project root. Start it in the background before taking any screenshots.
 - If the server is already running, do not start a second instance.
+- **Hard rule: a `serve.mjs` instance must always be left running on port 3000 at the end of every turn, with no exceptions.** The user relies on `http://localhost:3000` to view the site live; if it's down they can't see anything.
+  - Before ending a turn, check `curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/` (or equivalent) and confirm it returns `200`.
+  - If any tooling (tests, `check-links`, one-off verification) started and then killed its own temporary server instance, or if a server was stopped for any reason during the turn, always restart `node serve.mjs` in the background before finishing — do not leave the user without a running server just because the task itself didn't need one left over.
+  - `serve.mjs` reads files fresh on every request (no caching), so ordinary file edits never require a restart — only restart when the server process itself is down.
 
 ## Screenshot Workflow
 - Puppeteer is installed at `C:/Users/nateh/AppData/Local/Temp/puppeteer-test/`. Chrome cache is at `C:/Users/nateh/.cache/puppeteer/`.

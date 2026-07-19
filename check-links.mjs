@@ -64,7 +64,7 @@ async function run() {
     checkCss: true,
     linksToSkip: [...EXTERNAL_HOST_SKIPS, '/_vercel/'],
     urlRewriteExpressions: [
-      { pattern: '^https://(www\\.)?muslim\\.center', replacement: BASE_URL },
+      { pattern: /^https:\/\/(www\.)?muslim\.center/, replacement: BASE_URL },
     ],
   });
 

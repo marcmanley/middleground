@@ -41,10 +41,29 @@ function waitForServer(url, timeoutMs = 10000) {
   })();
 }
 
+async function isServerRunning(url) {
+  try {
+    const res = await fetch(url);
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
+
 // Starts serve.mjs (same static server used for local dev, matching
 // production MIME types), waits until it responds, runs `fn`, then always
 // tears the server down -- even if `fn` throws.
+//
+// If a server is already listening on PORT (e.g. a developer's own preview
+// instance), reuse it instead of spawning a second one -- serve.mjs has no
+// error handler for a busy port, so a duplicate spawn would crash loudly,
+// and killing it afterward would kill someone else's server out from under
+// them.
 export async function withServer(fn) {
+  if (await isServerRunning(`${BASE_URL}/`)) {
+    return await fn();
+  }
+
   const server = spawn('node', ['serve.mjs'], { cwd: ROOT, stdio: 'inherit' });
   try {
     await waitForServer(`${BASE_URL}/`);

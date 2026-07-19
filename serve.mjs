@@ -21,7 +21,7 @@ const types = {
   '.txt': 'text/plain; charset=utf-8'
 };
 
-http.createServer((req, res) => {
+const server = http.createServer((req, res) => {
   const urlPath = decodeURIComponent(req.url.split('?')[0]);
   let filePath = path.join(root, urlPath === '/' ? '/index.html' : urlPath);
 
@@ -35,6 +35,16 @@ http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': types[ext] || 'application/octet-stream' });
     res.end(data);
   });
-}).listen(port, () => {
+});
+
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`Port ${port} is already in use -- another server (maybe an earlier serve.mjs) is already running. Not starting a second instance.`);
+    process.exit(1);
+  }
+  throw err;
+});
+
+server.listen(port, () => {
   console.log(`Serving ${root} at http://localhost:${port}`);
 });
