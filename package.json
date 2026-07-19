@@ -5,13 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node generate-sitemap.js"
+    "build": "node generate-sitemap.js",
+    "validate:html": "html-validate \"*.html\" \"blog/*.html\"",
+    "check:links": "node check-links.mjs",
+    "check:links:external": "node check-links-external.mjs",
+    "test:site": "npm run validate:html && npm run check:links"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "html-validate": "^11.5.6",
+    "linkinator": "^7.6.1",
     "puppeteer": "^25.3.0"
   },
   "dependencies": {

@@ -153,6 +153,23 @@
 - Before completing any sitewide or new-page HTML task, validate: every JSON-LD block is syntactically valid, every `{"@id": ...}` reference resolves to an entity defined somewhere on the site, no entity is redefined (with full properties) in more than one place, and no page introduces a conflicting `@type` for an existing `@id`.
 - Any new page type introduced in the future (event page, podcast page, donation page, etc.) must get an appropriate Schema.org model, following the reuse pattern above, before it is deployed.
 
+## Continuous Integration and Site Validation
+- The repository must maintain an automated CI workflow (`.github/workflows/validate-site.yml`) for HTML validation and internal link checking.
+- CI must run on pull requests and pushes to the production branch (`main`).
+- Every public HTML page must pass validation before deployment.
+- All internal page links, fragment identifiers, and local asset references must resolve correctly.
+- New pages and renamed files must be reflected in navigation, links, sitemap entries, and related metadata.
+- Public files must not be excluded merely to make CI pass.
+- Exceptions and ignore rules must be narrow, documented, and technically justified (see the comments in `.htmlvalidate.cjs`, `check-links.mjs`, and `check-links-external.mjs`).
+- External-link instability must not compromise the reliability of the primary internal-link check — external links are checked in a separate, non-blocking job (`check:links:external`).
+- Existing CI workflows must be updated rather than duplicated.
+- The project's existing package manager (npm), build process, and deployment configuration must be preserved.
+- Future changes must run `npm run test:site` locally before being considered complete.
+- A CI failure must be investigated rather than bypassed or disabled.
+- Validation tools and workflow action versions should be reviewed periodically for maintenance and security.
+- CI configuration changes must not alter visible site design or content unless separately approved.
+- **No public-page change is complete until HTML validation and internal link checking (`npm run test:site`) pass.**
+
 ## Hard Rules
 - Do not add sections, features, or content not in the reference
 - Do not "improve" a reference design — match it
@@ -164,3 +181,4 @@
 - Every public HTML page must include a valid reference to the approved site favicon.
 - Every `<img>` element must include explicit `width` and `height` attributes matching its source file's real intrinsic dimensions — never guessed.
 - Every public HTML page must include a complete Open Graph and Twitter Card metadata block, reusing the page's existing title/description and an absolute image URL — never invented copy or relative image paths.
+- No public-page change is complete until HTML validation and internal link checking (`npm run test:site`) pass.

@@ -1,0 +1,53 @@
+name: Validate site
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: HTML validation and internal links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - run: npm ci
+
+      # Mirrors the real Vercel build (regenerates sitemap.xml) so a broken
+      # build fails here too, not just after every check has already run.
+      - run: npm run build
+
+      - name: Validate HTML
+        run: npm run validate:html
+
+      - name: Check internal links, fragments, and local assets
+        run: npm run check:links
+
+  # Non-blocking by design: third-party sites can block bots, rate-limit, or
+  # have brief outages unrelated to this repo. This job reports real link
+  # rot (see check-links-external.mjs) without ever failing the build.
+  check-external-links:
+    name: Check external links (report only)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run check:links:external
+        continue-on-error: true
