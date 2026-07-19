@@ -88,6 +88,17 @@
 - Do not change page layout, header structure, navigation, or design while implementing this requirement.
 - Before completing any public-page task, verify that the skip link works using keyboard navigation.
 
+## Favicons and Site Icons
+- Every public HTML page must reference the approved site favicon.
+- The canonical favicon source for this project is: `media/images/logo-favicon.png`
+- Favicon paths must be written correctly relative to each page's directory.
+- Before adding favicon markup, check whether equivalent favicon markup already exists.
+- Do not create duplicate favicon declarations.
+- Do not replace, redesign, crop, recolor, or regenerate the approved favicon unless explicitly authorized.
+- All newly created public HTML pages must include the favicon declaration in the document `<head>`.
+- When moving or nesting a page, verify that its favicon path still resolves correctly.
+- Before completing any sitewide HTML task, verify that favicon references are present and valid on all created or modified public pages.
+
 ## Hard Rules
 - Do not add sections, features, or content not in the reference
 - Do not "improve" a reference design — match it
@@ -96,3 +107,4 @@
 - Do not use default Tailwind blue/indigo as primary color
 - Do not use obsolete HTML attributes (for example, `frameborder` on iframe elements).
 - Every public HTML page must include a working "Skip to main content" link as its first focusable element.
+- Every public HTML page must include a valid reference to the approved site favicon.
