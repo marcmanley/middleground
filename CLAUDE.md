@@ -72,6 +72,22 @@
 - Never perform unrelated cleanup, formatting, or restructuring while making validation fixes.
 - Before completing HTML work, check that no `frameborder=` attributes (or other obsolete HTML attributes) remain in files created or modified during the task.
 
+## Skip-to-Content Accessibility
+- Every public HTML page must include a keyboard-accessible "Skip to main content" link.
+- The skip link must be the first focusable element in the document body.
+- The link must target the page's primary `<main>` element.
+- The primary `<main>` element must have a stable unique ID, preferably `main-content`.
+- The skip link must be visually hidden when not focused.
+- It must become clearly visible when it receives keyboard focus.
+- When visible, it must not shift the page layout.
+- It must appear above all other page content and remain readable against the page background.
+- Its focused appearance must use the site's existing typography, brand colors, border-radius, and focus treatment.
+- It must have a clearly visible focus indicator.
+- Activating the link must move keyboard focus to the main content, not merely scroll the page.
+- Do not create duplicate skip links or duplicate `main-content` IDs.
+- Do not change page layout, header structure, navigation, or design while implementing this requirement.
+- Before completing any public-page task, verify that the skip link works using keyboard navigation.
+
 ## Hard Rules
 - Do not add sections, features, or content not in the reference
 - Do not "improve" a reference design — match it
@@ -79,3 +95,4 @@
 - Do not use `transition-all`
 - Do not use default Tailwind blue/indigo as primary color
 - Do not use obsolete HTML attributes (for example, `frameborder` on iframe elements).
+- Every public HTML page must include a working "Skip to main content" link as its first focusable element.
