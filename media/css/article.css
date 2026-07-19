@@ -1,0 +1,6 @@
+/* Shared article body-text sizing for blog posts.
+   Single source of truth — do not hardcode font-size on .article-prose
+   or .arabic-article inline in individual pages. */
+
+.article-prose { font-size: 21px; }
+.arabic-article { font-size: 25px !important; }

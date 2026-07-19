@@ -185,4 +185,5 @@
 - Every public HTML page must include a valid reference to the approved site favicon.
 - Every `<img>` element must include explicit `width` and `height` attributes matching its source file's real intrinsic dimensions — never guessed.
 - Every public HTML page must include a complete Open Graph and Twitter Card metadata block, reusing the page's existing title/description and an absolute image URL — never invented copy or relative image paths.
+- Every blog post (`blog/*.html`) must link `/media/css/article.css` and must never set `.article-prose` or `.arabic-article` `font-size` inline — see the `frontend-design` skill's typography reference for the full rule.
 - No public-page change is complete until HTML validation and internal link checking (`npm run test:site`) pass.

@@ -97,9 +97,17 @@ Do not center body paragraphs on mobile.
 
 Current sizing conventions:
 
-- English blog body text: approximately `27.5px`
+- English blog body text: `21px`, fixed, set once in `/media/css/article.css`
 - biography body text: approximately `22.5px`
-- Arabic article body text: approximately `25px`
+- Arabic article body text: `25px`, fixed, set once in `/media/css/article.css`
+
+`/media/css/article.css` is the single source of truth for `.article-prose` and `.arabic-article` font-size. Every blog post must link it:
+
+```html
+<link rel="stylesheet" href="/media/css/article.css">
+```
+
+Never set `font-size` on `.article-prose` or `.arabic-article` inline in a page's own `<style>` block — that recreates the per-page duplication this file replaced. If the body size ever needs to change, edit `/media/css/article.css` once; do not hand-edit individual posts.
 
 Preserve readable line-height.
 
