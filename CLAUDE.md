@@ -99,6 +99,13 @@
 - Because the path is root-relative, moving or nesting a page never requires updating its favicon path.
 - Before completing any sitewide HTML task, verify that favicon references are present and valid on all created or modified public pages.
 
+## Image Dimensions (Cumulative Layout Shift)
+- Every `<img>` element on a public page must include explicit `width` and `height` attributes set to the image source file's real intrinsic pixel dimensions (e.g. `width="1600" height="1067"`), so the browser can reserve the correct aspect ratio before the image loads.
+- Never guess dimensions. Read the actual source file (e.g. with `sips -g pixelWidth -g pixelHeight <file>`) and use its exact intrinsic size.
+- `width`/`height` attributes set the image's default aspect ratio only — they do not override sizing set by CSS or Tailwind classes (`w-full`, `h-full`, `object-cover`, etc.). Adding them must never change rendered appearance, cropping, or responsive behavior.
+- This applies to every new `<img>` added to any public page, including ones generated dynamically by JavaScript.
+- Before completing any task that adds or modifies an `<img>` element, verify it has correct `width` and `height` attributes matching its real source file.
+
 ## Hard Rules
 - Do not add sections, features, or content not in the reference
 - Do not "improve" a reference design — match it
@@ -108,3 +115,4 @@
 - Do not use obsolete HTML attributes (for example, `frameborder` on iframe elements).
 - Every public HTML page must include a working "Skip to main content" link as its first focusable element.
 - Every public HTML page must include a valid reference to the approved site favicon.
+- Every `<img>` element must include explicit `width` and `height` attributes matching its source file's real intrinsic dimensions — never guessed.
