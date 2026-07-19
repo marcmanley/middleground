@@ -106,6 +106,21 @@
 - This applies to every new `<img>` added to any public page, including ones generated dynamically by JavaScript.
 - Before completing any task that adds or modifies an `<img>` element, verify it has correct `width` and `height` attributes matching its real source file.
 
+## Open Graph and Twitter Card (Social-Sharing) Metadata
+- Every public HTML page must include a complete Open Graph and Twitter Card block in its `<head>`, immediately after the page's `<link rel="canonical">` tag (or immediately after the `<meta name="description">` tag on pages with no canonical, e.g. `404.html`).
+- The block must contain, in this order: `og:title`, `og:description`, `og:type`, `og:url` (see 404 exception below), `og:image`, `og:image:alt`, `og:site_name`, then a blank line, then `twitter:card`, `twitter:title`, `twitter:description`, `twitter:image`, `twitter:image:alt`.
+- `og:title` and `twitter:title` must exactly match the page's existing `<title>` content — do not write new title copy.
+- `og:description` and `twitter:description` must exactly match the page's existing `<meta name="description">` content — do not write new description copy.
+- `og:site_name` is always `Middle Ground`. `twitter:card` is always `summary_large_image`.
+- `og:type` is `article` for blog posts (individual essays/khutbahs in `blog/`), and `website` for every other page, including `blog/index.html` and reference-list pages (`blog/readinglist.html`, `blog/readinglist-articles.html`) that are not dated posts.
+- `og:url` must be an absolute URL matching the page's own `<link rel="canonical">` value exactly. **Exception:** `404.html` has no canonical (a 404 has no single canonical location) — omit `og:url` entirely on that page rather than inventing one.
+- `og:image` and `twitter:image` must be an absolute URL (`https://www.muslim.center/media/images/...`), never a relative path — social-media crawlers do not resolve relative URLs against the page.
+- Default sitewide image (use when a page has no dedicated hero/featured image at a usable landscape aspect ratio): `media/images/web/hero-imam.jpg` with alt `Imam Marc Manley`.
+- Prefer a page-specific image over the default when the page already has a dedicated hero/featured image at a landscape-ish ratio (roughly 1.5:1 to 2:1). Do not use a portrait-oriented image (taller than wide) as a social-preview image — it crops badly in the ~1.91:1 card shape every platform renders. Fall back to the sitewide default instead.
+- `og:image:alt` and `twitter:image:alt` must reuse the image's existing `alt` text from where it already appears on the page, when available, rather than writing new copy.
+- Before adding this block, check whether equivalent `og:`/`twitter:` metadata already exists on the page — do not create duplicates.
+- Before completing any sitewide HTML task, verify that every public page has exactly one of each required `og:`/`twitter:` tag (except `og:url` on `404.html`), and that every `og:image`/`twitter:image` URL is absolute and points to a file that actually exists.
+
 ## Hard Rules
 - Do not add sections, features, or content not in the reference
 - Do not "improve" a reference design — match it
@@ -116,3 +131,4 @@
 - Every public HTML page must include a working "Skip to main content" link as its first focusable element.
 - Every public HTML page must include a valid reference to the approved site favicon.
 - Every `<img>` element must include explicit `width` and `height` attributes matching its source file's real intrinsic dimensions — never guessed.
+- Every public HTML page must include a complete Open Graph and Twitter Card metadata block, reusing the page's existing title/description and an absolute image URL — never invented copy or relative image paths.
