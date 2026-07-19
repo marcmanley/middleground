@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node generate-sitemap.js",
+    "build": "node generate-blog-index.mjs && node generate-sitemap.js",
     "validate:html": "html-validate \"*.html\" \"blog/*.html\"",
     "check:links": "node check-links.mjs",
     "check:links:external": "node check-links-external.mjs",
-    "test:site": "npm run validate:html && npm run check:links"
+    "test:site": "npm run build && npm run validate:html && npm run check:links"
   },
   "keywords": [],
   "author": "",

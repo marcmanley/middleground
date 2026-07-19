@@ -166,6 +166,23 @@
 - Before completing any sitewide or new-page HTML task, validate: every JSON-LD block is syntactically valid, every `{"@id": ...}` reference resolves to an entity defined somewhere on the site, no entity is redefined (with full properties) in more than one place, and no page introduces a conflicting `@type` for an existing `@id`.
 - Any new page type introduced in the future (event page, podcast page, donation page, etc.) must get an appropriate Schema.org model, following the reuse pattern above, before it is deployed.
 
+## Automatic Blog Archive Generation
+- Individual blog posts (`blog/*.html`) are the single source of truth. `blog/index.html`'s card grid is **generated** from them by `generate-blog-index.mjs`, run automatically as the first step of `npm run build`.
+- `blog/index.html` must never be manually maintained. Manual placement, insertion, or reordering of blog cards in that file is prohibited — the generator owns everything between the `<!-- BLOG_CARDS:START -->` / `<!-- BLOG_CARDS:END -->` markers. Only the header above the grid and the footer below `</section>` are hand-edited (they're reused as-is by the generator, unchanged).
+- **If a manual edit to `blog/index.html`'s card grid would be overwritten by the generator, the correct fix is to modify the source blog post or the generator — not the generated output.**
+- The canonical publication date for sorting is each post's own `<time datetime="...">` value. Filesystem timestamps, Git history, filenames, and directory/discovery order must never affect sorting.
+- Existing HTML/metadata standards must always be reused before introducing new metadata: `<title>`, canonical `<link>`, `<time datetime>`, the post's own author byline, and its category eyebrow badge(s) are all read directly from the post page. Only three fields live in dedicated `<meta>` tags because nothing else on the page can supply them — do not remove them or treat them as redundant:
+  - `<meta name="card-excerpt" content="...">` — a short, card-specific blurb (deliberately different wording from the SEO meta description, which reads fine longform but not as an archive-card teaser).
+  - `<meta name="card-featured" content="true">` — opts a post into the highlighted "clay" card style; omitted means a normal card.
+  - `<meta name="card-title" content="...">` — only on posts whose own `<title>` isn't a plain English archive-card title (e.g. the Arabic-titled posts, or a post whose `<title>` carries a subtitle the card never showed); omitted means the card reuses `<title>` as-is.
+  - Do not invent further custom metadata fields for anything the post page can already answer (title, URL, date, author, category are never overridden this way).
+- Every `npm run build` regenerates the blog archive (and the sitemap right after it). Vercel Preview and Production builds run `npm run build`, so both regenerate the archive automatically — no manual step is ever required after publishing a new post.
+- Creating a new post requires only: create the HTML file in `blog/` with the fields above, then run `npm run build`. The archive updates itself.
+- Editing an article must not change its archive position unless its publication date (`<time datetime>`) changes. Back-dated posts automatically appear in their historical position on the next build.
+- To exclude a page from the generated archive (draft, template, reference page not meant to appear as a card), give it `<meta name="robots" content="noindex">` — the same convention `generate-sitemap.js` already uses, not a second exclusion mechanism.
+- Ties (posts sharing an identical datetime) are broken by filename for deterministic output — several older posts share a single non-authoritative bulk-migration timestamp (`2024-02-29T13:41`) rather than a real per-post publish date (see the `datePublished` note under Structured Data below), so there is no real signal to break those ties by.
+- The generator validates required fields (title, canonical URL, `<time datetime>`, category badge, an excerpt) while it runs and fails the build with a clear per-file error if any post is missing one — do not bypass or weaken this to force a bad post through. Fix the post instead.
+
 ## Continuous Integration and Site Validation
 - The repository must maintain an automated CI workflow (`.github/workflows/validate-site.yml`) for HTML validation and internal link checking.
 - CI must run on pull requests and pushes to the production branch (`main`).
@@ -195,4 +212,5 @@
 - Every `<img>` element must include explicit `width` and `height` attributes matching its source file's real intrinsic dimensions — never guessed.
 - Every public HTML page must include a complete Open Graph and Twitter Card metadata block, reusing the page's existing title/description and an absolute image URL — never invented copy or relative image paths.
 - Every blog post (`blog/*.html`) must link `/media/css/article.css` and must never set `.article-prose` or `.arabic-article` `font-size` inline — see the `frontend-design` skill's typography reference for the full rule.
+- `blog/index.html`'s card grid is generated, never hand-edited — see Automatic Blog Archive Generation above.
 - No public-page change is complete until HTML validation and internal link checking (`npm run test:site`) pass.
