@@ -324,10 +324,96 @@
     <h2 class="text-2xl sm:text-3xl mb-4">
       Prayers at Middle Ground
     </h2>
+    <!--
     <div class="text-[21px] text-ink/70 leading-relaxed space-y-3">
       <p>Middle Ground is <em>not open for all daily prayers</em>.</p>
       <p>We have a <em>WhatsApp group</em> dedicated to announcing the times in which Middle Ground is open for <em>specific prayers</em> (updated daily).</p>
       <p>If you wish to be included in the group, please email us at <a href="mailto:contact@muslim.center" class="text-clay underline underline-offset-2 hover:text-earth transition-colors">contact@muslim.center</a> and provide <em>your name and number</em>, and in sh&#257; All&#257;h we&rsquo;ll add you to the WhatsApp group &mdash; or <a href="https://chat.whatsapp.com/F6ii6nNyDQ4LpauI2nUJER?s=cl&amp;p=i&amp;ilr=0&amp;amv=1" target="_blank" rel="noopener noreferrer" class="text-clay underline underline-offset-2 hover:text-earth transition-colors">click this link to request to be added</a>.</p>
+    </div>
+    -->
+    <div class="text-[21px] text-ink/70 leading-relaxed space-y-3">
+      <p>Middle Ground has <em>volunteers</em> who open the masjid for daily prayers. The schedule below shows which prayers are currently being hosted and <em>who is opening the center</em> for which prayer.</p>
+      <p>Are you interested in <em>volunteering</em>? <a href="mailto:contact@muslim.center" class="text-clay underline underline-offset-2 hover:text-earth transition-colors">Contact us</a> to learn more, or <a href="https://chat.whatsapp.com/F6ii6nNyDQ4LpauI2nUJER?s=cl&amp;p=i&amp;ilr=0&amp;amv=1" target="_blank" rel="noopener noreferrer" class="text-clay underline underline-offset-2 hover:text-earth transition-colors">join our WhatsApp volunteer group</a> to receive updates and volunteer opportunities.</p>
+    </div>
+
+    <div class="mt-8">
+      <p class="text-[19px] tracking-widest uppercase font-medium text-earth mb-4">Today&rsquo;s Prayers</p>
+      <div id="prayerWidget" class="rounded-xl border border-ink/10 divide-y divide-ink/10 overflow-hidden bg-white/40">
+        <div class="prayer-row flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-5 py-4" data-prayer="fajr">
+          <div class="flex items-baseline gap-3">
+            <p class="text-[20px] font-medium text-ink w-[92px] shrink-0">Fajr</p>
+            <p class="text-[18px] text-ink/60">5:15 AM</p>
+          </div>
+          <div class="prayer-row-status flex items-center gap-3">
+            <span class="prayer-row-label text-[16px] text-ink/40">Checking&hellip;</span>
+            <button type="button" class="prayer-claim-btn hidden text-[15px] font-medium text-clay hover:text-earth transition-colors btn-focus underline underline-offset-2">Claim to open</button>
+          </div>
+        </div>
+        <div class="prayer-row flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-5 py-4" data-prayer="dhuhr">
+          <div class="flex items-baseline gap-3">
+            <p class="text-[20px] font-medium text-ink w-[92px] shrink-0">&#7788;huhr</p>
+            <p class="text-[18px] text-ink/60">1:30 PM</p>
+          </div>
+          <div class="prayer-row-status flex items-center gap-3">
+            <span class="prayer-row-label text-[16px] text-ink/40">Checking&hellip;</span>
+            <button type="button" class="prayer-claim-btn hidden text-[15px] font-medium text-clay hover:text-earth transition-colors btn-focus underline underline-offset-2">Claim to open</button>
+          </div>
+        </div>
+        <div class="prayer-row flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-5 py-4" data-prayer="asr">
+          <div class="flex items-baseline gap-3">
+            <p class="text-[20px] font-medium text-ink w-[92px] shrink-0">&#703;A&#7779;r</p>
+            <p class="text-[18px] text-ink/60">5:00 PM</p>
+          </div>
+          <div class="prayer-row-status flex items-center gap-3">
+            <span class="prayer-row-label text-[16px] text-ink/40">Checking&hellip;</span>
+            <button type="button" class="prayer-claim-btn hidden text-[15px] font-medium text-clay hover:text-earth transition-colors btn-focus underline underline-offset-2">Claim to open</button>
+          </div>
+        </div>
+        <div class="prayer-row flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-5 py-4" data-prayer="maghrib">
+          <div class="flex items-baseline gap-3">
+            <p class="text-[20px] font-medium text-ink w-[92px] shrink-0">Maghrib</p>
+            <p class="text-[18px] text-ink/60">8:15 PM</p>
+          </div>
+          <div class="prayer-row-status flex items-center gap-3">
+            <span class="prayer-row-label text-[16px] text-ink/40">Checking&hellip;</span>
+            <button type="button" class="prayer-claim-btn hidden text-[15px] font-medium text-clay hover:text-earth transition-colors btn-focus underline underline-offset-2">Claim to open</button>
+          </div>
+        </div>
+        <div class="prayer-row flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-5 py-4" data-prayer="isha">
+          <div class="flex items-baseline gap-3">
+            <p class="text-[20px] font-medium text-ink w-[92px] shrink-0">&#703;Ish&#257;&rsquo;</p>
+            <p class="text-[18px] text-ink/60">9:30 PM</p>
+          </div>
+          <div class="prayer-row-status flex items-center gap-3">
+            <span class="prayer-row-label text-[16px] text-ink/40">Checking&hellip;</span>
+            <button type="button" class="prayer-claim-btn hidden text-[15px] font-medium text-clay hover:text-earth transition-colors btn-focus underline underline-offset-2">Claim to open</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="prayerClaimForm" class="hidden mt-4 rounded-xl border border-ink/10 bg-white/60 p-5">
+        <p id="prayerClaimFormTitle" class="text-[18px] font-medium text-ink mb-3">Claiming Fajr</p>
+        <div class="grid sm:grid-cols-2 gap-3">
+          <div>
+            <label for="prayerClaimName" class="block text-[14px] tracking-wide uppercase text-ink/45 mb-1">Your name</label>
+            <input id="prayerClaimName" type="text" maxlength="60" autocomplete="off" class="w-full rounded-lg border border-ink/15 px-3 py-2 text-[17px] text-ink focus:outline-none focus:ring-2 focus:ring-clay/50" placeholder="e.g. Ahmad">
+          </div>
+          <div>
+            <label for="prayerClaimPasscode" class="block text-[14px] tracking-wide uppercase text-ink/45 mb-1">Passcode</label>
+            <input id="prayerClaimPasscode" type="password" autocomplete="current-password" class="w-full rounded-lg border border-ink/15 px-3 py-2 text-[17px] text-ink focus:outline-none focus:ring-2 focus:ring-clay/50" placeholder="Shared in the WhatsApp group">
+          </div>
+        </div>
+        <div class="prayer-claim-honeypot" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+          <label for="prayerClaimCompany">Leave this field blank</label>
+          <input id="prayerClaimCompany" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <p id="prayerClaimStatus" class="mt-3 text-[15px] min-h-[20px]"></p>
+        <div class="mt-3 flex flex-wrap items-center gap-4">
+          <button type="button" id="prayerClaimConfirm" class="btn-gradient text-cream text-[15px] tracking-wide uppercase px-6 py-2.5 rounded-full shadow-soft btn-focus">Confirm</button>
+          <button type="button" id="prayerClaimRelease" class="hidden text-[15px] font-medium text-clay hover:text-earth transition-colors btn-focus underline underline-offset-2">Release this prayer</button>
+          <button type="button" id="prayerClaimCancel" class="text-[15px] text-ink/50 hover:text-ink transition-colors btn-focus">Cancel</button>
+        </div>
+      </div>
     </div>
 
     <div class="mt-8 relative rounded-xl overflow-hidden shadow-soft">
@@ -979,6 +1065,149 @@
       heartIcon.classList.toggle('text-clay', liked);
       heartIcon.classList.toggle('text-ink/60', !liked);
     });
+  })();
+
+  (function () {
+    var PASSCODE_STORAGE_KEY = 'mgPrayerPasscode';
+    var PRAYER_LABELS = { fajr: 'Fajr', dhuhr: 'Ṭhuhr', asr: 'ʿAṣr', maghrib: 'Maghrib', isha: 'ʿIshā’' };
+
+    var widget = document.getElementById('prayerWidget');
+    if (!widget) return;
+
+    var rows = {};
+    Array.prototype.forEach.call(widget.querySelectorAll('.prayer-row'), function (row) {
+      rows[row.getAttribute('data-prayer')] = {
+        el: row,
+        label: row.querySelector('.prayer-row-label'),
+        button: row.querySelector('.prayer-claim-btn'),
+      };
+    });
+
+    var form = document.getElementById('prayerClaimForm');
+    var formTitle = document.getElementById('prayerClaimFormTitle');
+    var nameInput = document.getElementById('prayerClaimName');
+    var passcodeInput = document.getElementById('prayerClaimPasscode');
+    var companyInput = document.getElementById('prayerClaimCompany');
+    var statusEl = document.getElementById('prayerClaimStatus');
+    var confirmBtn = document.getElementById('prayerClaimConfirm');
+    var releaseBtn = document.getElementById('prayerClaimRelease');
+    var cancelBtn = document.getElementById('prayerClaimCancel');
+
+    var activePrayer = null;
+    var latestStatus = {};
+
+    function setRow(prayer, name) {
+      var row = rows[prayer];
+      if (!row) return;
+      if (name) {
+        row.label.textContent = 'Opened by ' + name;
+        row.label.className = 'prayer-row-label text-[16px] text-earth font-medium';
+        row.button.textContent = 'Edit';
+      } else {
+        row.label.textContent = 'Not yet claimed';
+        row.label.className = 'prayer-row-label text-[16px] text-ink/40';
+        row.button.textContent = 'Claim to open';
+      }
+      row.button.classList.remove('hidden');
+    }
+
+    function loadStatus() {
+      fetch('/api/prayer-status')
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+          latestStatus = data;
+          Object.keys(rows).forEach(function (prayer) {
+            setRow(prayer, data[prayer]);
+          });
+        })
+        .catch(function () {
+          Object.keys(rows).forEach(function (prayer) {
+            rows[prayer].label.textContent = 'Status unavailable';
+          });
+        });
+    }
+
+    function openForm(prayer) {
+      activePrayer = prayer;
+      formTitle.textContent = latestStatus[prayer] ? 'Editing ' + PRAYER_LABELS[prayer] : 'Claiming ' + PRAYER_LABELS[prayer];
+      nameInput.value = latestStatus[prayer] || '';
+      passcodeInput.value = localStorage.getItem(PASSCODE_STORAGE_KEY) || '';
+      companyInput.value = '';
+      statusEl.textContent = '';
+      statusEl.className = 'mt-3 text-[15px] min-h-[20px]';
+      releaseBtn.classList.toggle('hidden', !latestStatus[prayer]);
+      form.classList.remove('hidden');
+      form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function closeForm() {
+      form.classList.add('hidden');
+      activePrayer = null;
+    }
+
+    function submitClaim(action) {
+      var name = nameInput.value.trim();
+      var passcode = passcodeInput.value;
+
+      if (action === 'claim' && !name) {
+        statusEl.textContent = 'Please enter a name.';
+        statusEl.className = 'mt-3 text-[15px] text-clay';
+        return;
+      }
+      if (!passcode) {
+        statusEl.textContent = 'Please enter the passcode.';
+        statusEl.className = 'mt-3 text-[15px] text-clay';
+        return;
+      }
+
+      confirmBtn.disabled = true;
+      releaseBtn.disabled = true;
+      confirmBtn.classList.add('opacity-60', 'pointer-events-none');
+      statusEl.textContent = 'Saving…';
+      statusEl.className = 'mt-3 text-[15px] text-ink/60';
+
+      fetch('/api/prayer-status', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          prayer: activePrayer,
+          name: name,
+          passcode: passcode,
+          action: action,
+          company: companyInput.value,
+        }),
+      })
+        .then(function (response) {
+          return response.json().then(function (data) {
+            if (!response.ok) { throw new Error(data.error || 'Something went wrong. Please try again.'); }
+            return data;
+          });
+        })
+        .then(function (data) {
+          localStorage.setItem(PASSCODE_STORAGE_KEY, passcode);
+          latestStatus = data;
+          Object.keys(rows).forEach(function (prayer) { setRow(prayer, data[prayer]); });
+          closeForm();
+        })
+        .catch(function (err) {
+          statusEl.textContent = err.message || 'Something went wrong. Please try again.';
+          statusEl.className = 'mt-3 text-[15px] text-clay';
+        })
+        .finally(function () {
+          confirmBtn.disabled = false;
+          releaseBtn.disabled = false;
+          confirmBtn.classList.remove('opacity-60', 'pointer-events-none');
+        });
+    }
+
+    Object.keys(rows).forEach(function (prayer) {
+      rows[prayer].button.addEventListener('click', function () { openForm(prayer); });
+    });
+    confirmBtn.addEventListener('click', function () { submitClaim('claim'); });
+    releaseBtn.addEventListener('click', function () { submitClaim('release'); });
+    cancelBtn.addEventListener('click', closeForm);
+
+    loadStatus();
   })();
 </script>
 
