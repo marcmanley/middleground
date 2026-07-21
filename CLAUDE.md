@@ -200,6 +200,9 @@
 - CI configuration changes must not alter visible site design or content unless separately approved.
 - **No public-page change is complete until HTML validation and internal link checking (`npm run test:site`) pass.**
 
+## Newsletter Drafts
+- `drafts/mailchimp-newsletter.md` is auto-generated newsletter content (not a page/route), produced weekly by `.github/workflows/weekly-newsletter-draft.yml` via `scripts/generate-newsletter.mjs` — excluded from deployment via `.vercelignore`, not `.gitignore` (it must stay tracked in git so the workflow can open a PR with it).
+
 ## Hard Rules
 - Do not add sections, features, or content not in the reference
 - Do not "improve" a reference design — match it

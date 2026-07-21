@@ -1,0 +1,38 @@
+name: Weekly Newsletter Draft
+
+on:
+  schedule:
+    # GitHub Actions cron always runs in UTC — there is no `timezone` key.
+    # 16:00 UTC = 09:00 (9 AM) America/Los_Angeles during PDT (summer).
+    # During PST (winter) this lands at 8 AM local instead of 9 AM — a ~1hr
+    # drift twice a year that doesn't matter for a draft reviewed before
+    # Friday. Adjust the hour below if you want tighter precision.
+    - cron: '0 16 * * 4' # Thursday
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install --no-save googleapis
+      - name: Generate draft
+        env:
+          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+          GOOGLE_CALENDAR_ID: ${{ secrets.GOOGLE_CALENDAR_ID }}
+        run: node scripts/generate-newsletter.mjs
+      - name: Open pull request with the draft
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "Weekly newsletter draft"
+          branch: newsletter-draft-${{ github.run_number }}
+          title: "Weekly newsletter draft (auto-generated)"
+          body: "Auto-drafted from this week's Jumu'ah calendar event. Review, edit, then paste into Mailchimp manually."
+          add-paths: drafts/*
