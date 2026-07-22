@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.muslim.center/</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-07-21</lastmod>
   </url>
   <url>
     <loc>https://www.muslim.center/about.html</loc>
@@ -10,6 +10,10 @@
   </url>
   <url>
     <loc>https://www.muslim.center/blog/ai-is-more-artificial-than-you-think.html</loc>
+    <lastmod>2026-07-21</lastmod>
+  </url>
+  <url>
+    <loc>https://www.muslim.center/blog/american-imamate-beyond-the-mosque.html</loc>
   </url>
   <url>
     <loc>https://www.muslim.center/blog/dreaming-of-a-prophetic-life.html</loc>
@@ -41,7 +45,7 @@
   </url>
   <url>
     <loc>https://www.muslim.center/blog/index.html</loc>
-    <lastmod>2026-07-19</lastmod>
+    <lastmod>2026-07-21</lastmod>
   </url>
   <url>
     <loc>https://www.muslim.center/blog/islam-and-evolution-did-life-find-a-way.html</loc>
@@ -113,5 +117,6 @@
   </url>
   <url>
     <loc>https://www.muslim.center/newsletter-template.html</loc>
+    <lastmod>2026-07-21</lastmod>
   </url>
 </urlset>
