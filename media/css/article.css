@@ -4,3 +4,27 @@
 
 .article-prose { font-size: 21px; }
 .arabic-article { font-size: 25px !important; }
+
+/* Substack's embed.js gives the embedded note/post iframe flex-grow: 1
+   inside a flex container, so it stretches to fill whatever width it's
+   given — but the note's own internal padding is a fixed px value designed
+   for its native ~500px width, so simply stretching the iframe wider makes
+   Substack's own card reflow with much longer lines against that same
+   fixed padding, making it look thin/cramped instead of proportional.
+   Fix: cancel the flex-grow stretch so the iframe stays at its native
+   500px layout width, then use `zoom` (scaled via a container query, since
+   the available width varies per breakpoint) to visually scale the whole
+   card — text, avatar, and padding together — up or down to fill the
+   article column. This preserves Substack's own padding proportions
+   exactly, rather than us guessing a replacement value. */
+.article-prose .substack-post-embed {
+  container-type: inline-size;
+  max-width: 100% !important;
+  width: 100%;
+}
+.article-prose .substack-post-embed iframe {
+  flex-grow: 0 !important;
+  width: 500px !important;
+  max-width: none !important;
+  zoom: calc(100cqw / 500px);
+}
