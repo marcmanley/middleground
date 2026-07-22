@@ -308,5 +308,33 @@ In the secular West, the populace (including those who still cling to religion) 
   });
 </script>
 
+<script>
+  document.querySelectorAll('.substack-post-embed').forEach(function (container) {
+    var DESIGN_WIDTH = 500;
+    function sync(iframe) {
+      var scale = container.clientWidth / DESIGN_WIDTH;
+      iframe.style.transform = 'scale(' + scale + ')';
+      container.style.height = (iframe.offsetHeight * scale) + 'px';
+    }
+    function watch(iframe) {
+      sync(iframe);
+      new ResizeObserver(function () { sync(iframe); }).observe(iframe);
+      window.addEventListener('resize', function () { sync(iframe); });
+    }
+    var existing = container.querySelector('iframe');
+    if (existing) {
+      watch(existing);
+    } else {
+      new MutationObserver(function (mutations, observer) {
+        var iframe = container.querySelector('iframe');
+        if (iframe) {
+          observer.disconnect();
+          watch(iframe);
+        }
+      }).observe(container, { childList: true });
+    }
+  });
+</script>
+
 </body>
 </html>

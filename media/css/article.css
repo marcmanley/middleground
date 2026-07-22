@@ -11,20 +11,25 @@
    for its native ~500px width, so simply stretching the iframe wider makes
    Substack's own card reflow with much longer lines against that same
    fixed padding, making it look thin/cramped instead of proportional.
-   Fix: cancel the flex-grow stretch so the iframe stays at its native
-   500px layout width, then use `zoom` (scaled via a container query, since
-   the available width varies per breakpoint) to visually scale the whole
-   card — text, avatar, and padding together — up or down to fill the
-   article column. This preserves Substack's own padding proportions
-   exactly, rather than us guessing a replacement value. */
+   Fix: keep the iframe at its native 500px layout width (overriding the
+   flex-grow stretch and their own flex display), then visually scale the
+   whole card — text, avatar, and padding together — with `transform: scale`
+   to fill the article column. This preserves Substack's own padding
+   proportions exactly, rather than us guessing a replacement value.
+   `transform: scale` (not `zoom`) is used because Safari did not scale
+   iframe contents via `zoom` until Safari 26.4 (March 2026) — `transform`
+   has been reliably supported everywhere for well over a decade. Because
+   `transform` doesn't affect layout, the actual scale factor and the
+   container's reserved height are computed and kept in sync by the script
+   at the bottom of this page. */
 .article-prose .substack-post-embed {
-  container-type: inline-size;
+  display: block !important;
   max-width: 100% !important;
   width: 100%;
+  overflow: hidden;
 }
 .article-prose .substack-post-embed iframe {
-  flex-grow: 0 !important;
   width: 500px !important;
   max-width: none !important;
-  zoom: calc(100cqw / 500px);
+  transform-origin: top left;
 }
