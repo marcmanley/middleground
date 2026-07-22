@@ -63,6 +63,7 @@ const END_MARKER = '<!-- BLOG_CARDS:END -->';
 
 const DEFAULT_AVATAR = {
   src: '../media/images/web/hero-imam.jpg',
+  avifSrc: '../media/images/web/hero-imam.avif',
   width: '1400',
   height: '787',
 };
@@ -207,7 +208,10 @@ function renderCard(post, index) {
 ${badgesHtml}      <h2 class="${h2Class}">${title}</h2>
       <p class="${pClass}">${excerpt}</p>
       <div class="${metaClass}">
-        <img src="${DEFAULT_AVATAR.src}" alt="" width="${DEFAULT_AVATAR.width}" height="${DEFAULT_AVATAR.height}" class="h-6 w-6 rounded-full object-cover object-center">
+        <picture>
+          <source srcset="${DEFAULT_AVATAR.avifSrc}" type="image/avif">
+          <img src="${DEFAULT_AVATAR.src}" alt="" width="${DEFAULT_AVATAR.width}" height="${DEFAULT_AVATAR.height}" class="h-6 w-6 rounded-full object-cover object-center">
+        </picture>
         <span>Imam Marc Manley</span>
         <span>&middot;</span>
         <time datetime="${datetime}">${displayDate}</time>
