@@ -27,9 +27,16 @@ const CLAIM_TTL_SECONDS = 30 * 60 * 60; // fallback if a reset moment can't be c
 let clientPromise;
 function getRedis() {
   if (!clientPromise) {
-    const client = createClient({ url: process.env.UPSTASH_REDIS_REST_REDIS_URL });
+    const url = process.env.UPSTASH_REDIS_REST_REDIS_URL;
+    if (!url) {
+      return Promise.reject(new Error('UPSTASH_REDIS_REST_REDIS_URL is not set.'));
+    }
+    const client = createClient({ url });
     client.on('error', (err) => console.error('Redis client error:', err));
-    clientPromise = client.connect().then(() => client);
+    clientPromise = client.connect().then(() => client).catch((err) => {
+      clientPromise = null;
+      throw err;
+    });
   }
   return clientPromise;
 }
