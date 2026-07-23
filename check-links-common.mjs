@@ -19,6 +19,10 @@ export function listPageUrls() {
     for (const entry of fs.readdirSync(abs, { withFileTypes: true })) {
       if (!entry.isFile() || !entry.name.endsWith('.html')) continue;
       if (dir === '' && entry.name === 'index.html') continue; // already added as "/"
+      // newsletter-template.html is an HTML email template, not a website
+      // page -- it's never linked to or deployed as a route, and its
+      // Mailchimp merge tags (*|UNSUB|* etc.) aren't real URLs.
+      if (dir === '' && entry.name === 'newsletter-template.html') continue;
       urls.push(`${BASE_URL}/${dir ? `${dir}/` : ''}${entry.name}`);
     }
   }

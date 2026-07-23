@@ -1,0 +1,6 @@
+# newsletter-template.html is an HTML email template, not a website page. It
+# intentionally uses legacy email-compatible markup (Outlook conditional
+# comments, <center>, table presentation attributes) that will never conform
+# to modern HTML validation rules. Excluded here rather than in
+# .htmlvalidate.cjs since the exception applies to this one file, not a rule.
+newsletter-template.html
