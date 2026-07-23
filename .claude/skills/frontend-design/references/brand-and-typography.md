@@ -25,11 +25,11 @@ Arabic:
 font-family: 'Adobe Arabic', 'Noto Naskh Arabic', 'Traditional Arabic', serif;
 ```
 
-## Font pairing (ratified 2026-07-23)
+## Font pairing (ratified 2026-07-23, kit updated to 3 families same day)
 
 `font-display` (the serif stack above) stays on `<body>` and governs all long-form reading: headings, article/bio paragraphs, blockquotes. It is deliberately **not** paired with a sans for body copy — that pairing question is resolved by the UI-chrome rule below instead.
 
-`font-sans` now resolves to a real third family, Coolvetica, loaded via Adobe Fonts:
+The single Adobe Fonts (Typekit) kit below now serves **all three** site font families — Coolvetica (`font-sans`), Adobe Arabic (`font-arabic`), and Caslonian (`font-display`) — so this one `<link>` is sufficient on every page; no separate kit or link is needed to get Caslonian or Adobe Arabic to actually load (the Google Fonts / Georgia / Noto Naskh Arabic entries later in each stack remain fallbacks only, used if the kit fails to load):
 
 ```html
 <link rel="stylesheet" href="https://use.typekit.net/wzh5rqg.css">
