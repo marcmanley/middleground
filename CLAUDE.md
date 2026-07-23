@@ -53,6 +53,12 @@
 ## Footer "Explore" Column
 - The link to the Imam's bio page must always read **"Our Imām"** and point to `imam.html` (adjust relative path per page depth, e.g. `../imam.html` from `blog/`).
 
+## Primary Navigation Font Size
+- The site-wide standard, set on `index.html`, is `text-[19px]` on the desktop `<nav class="hidden lg:flex items-center gap-9 ...">` and `text-[20px]` on the mobile `<nav id="mobileNav" class="hidden lg:hidden pb-6 flex flex-col gap-4 ...">`.
+- Every page must use these exact values. Do not use `text-[15px]` or `text-base` for these two nav elements — those were the old, undersized values that every non-homepage page used before 2026-07-23, when the whole site was brought up to match `index.html`.
+- When creating a new page, copy the nav markup (including these two size classes) from an existing up-to-date page such as `about.html` — do not type the nav classes from memory.
+- Before completing any task that creates or edits a page's `<header>`/nav, grep the file for `text-[15px]` or `text-base tracking-wide uppercase` in the nav markup and confirm neither remains. See the `frontend-design` skill's `references/page-patterns.md` for the full rule.
+
 ## Vercel Web Analytics
 - Every public HTML page must include the following Vercel Analytics code immediately before the closing `</head>` tag:
 
@@ -215,5 +221,6 @@
 - Every `<img>` element must include explicit `width` and `height` attributes matching its source file's real intrinsic dimensions — never guessed.
 - Every public HTML page must include a complete Open Graph and Twitter Card metadata block, reusing the page's existing title/description and an absolute image URL — never invented copy or relative image paths.
 - Every blog post (`blog/*.html`) must link `/media/css/article.css` and must never set `.article-prose` or `.arabic-article` `font-size` inline — see the `frontend-design` skill's typography reference for the full rule.
+- Every page's primary nav must use `text-[19px]` (desktop) / `text-[20px]` (mobile), matching `index.html` — never `text-[15px]`/`text-base` — see Primary Navigation Font Size above.
 - `blog/index.html`'s card grid is generated, never hand-edited — see Automatic Blog Archive Generation above.
 - No public-page change is complete until HTML validation and internal link checking (`npm run test:site`) pass.

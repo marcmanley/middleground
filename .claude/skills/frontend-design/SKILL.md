@@ -159,6 +159,10 @@ target="_blank" rel="noopener noreferrer"
 
 The active page may use the clay accent and `aria-current="page"`.
 
+### Navigation font size
+
+The site-wide standard nav size (set on `index.html`) is `text-[19px]` for the desktop `<nav>` and `text-[20px]` for the mobile `#mobileNav`. Every new or edited page must use these exact values, copied from an existing up-to-date page, not `text-[15px]`/`text-base`. See `references/page-patterns.md` for the full rule and the required grep check. This is a fixed nav-chrome size, not "enlarging navigation as body copy" (see the Typography section above) — it's a deliberate, uniform UI size across the whole site.
+
 ## Footer
 
 The footer Explore link to the imam biography must always:
@@ -373,6 +377,7 @@ Before finishing frontend work, verify:
 - this skill was applied
 - brand colors are preserved
 - navigation order is correct
+- navigation font size matches `index.html` (`text-[19px]` desktop / `text-[20px]` mobile) — grep the page for `text-[15px]` or `text-base tracking-wide uppercase` in the nav markup and confirm neither remains
 - footer uses `Our Imām`
 - English prose is left-aligned
 - Arabic prose is RTL/right-aligned
