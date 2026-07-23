@@ -13,10 +13,12 @@
 
 Every page's primary nav must match the site-wide standard set on `index.html`:
 
-- Desktop nav (`<nav class="hidden lg:flex items-center gap-9 ...">`): `text-[19px]`
-- Mobile nav (`<nav id="mobileNav" class="hidden lg:hidden pb-6 flex flex-col gap-4 ...">`): `text-[20px]`
+- Desktop nav (`<nav class="hidden lg:flex items-center gap-9 ...">`): `text-[20px]`
+- Mobile nav (`<nav id="mobileNav" class="hidden lg:hidden pb-6 flex flex-col gap-4 ...">`): `text-[21px]`
 
-Do not use `text-[15px]` or `text-base` for these two nav elements — those were the old, undersized values used on every non-homepage page before 2026-07-23. Every new page must copy the nav markup (including these two classes) from an existing up-to-date page such as `about.html`, not from memory. Before completing any page-creation or navigation task, grep the file for `text-[15px]` or `text-base tracking-wide uppercase` in the nav markup and confirm neither is present.
+Both nav elements also carry `font-sans` (Coolvetica) rather than the site's serif — see the "Font pairing" section of `brand-and-typography.md` for the full UI-chrome font rule.
+
+Do not use `text-[15px]` or `text-base` for these two nav elements — those were the old, undersized values used on every non-homepage page before 2026-07-23. `text-[19px]`/`text-[20px]` were the standard from 2026-07-23 until the 5% size bump the same day. Every new page must copy the nav markup (including these two classes) from an existing up-to-date page such as `about.html`, not from memory. Before completing any page-creation or navigation task, grep the file for `text-[15px]` or `text-base tracking-wide uppercase` in the nav markup and confirm neither is present.
 
 ## Footer
 

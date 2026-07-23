@@ -181,7 +181,7 @@ function renderCard(post, index) {
   let cardClass, badgeClass, secondaryBadgeClass, h2Class, pClass, metaClass;
   if (featured) {
     cardClass = 'group flex flex-col bg-clay text-cream rounded-xl p-7 shadow-soft hover:shadow-soft-lg transition-shadow btn-focus';
-    badgeClass = 'inline-block self-start text-xs tracking-widest uppercase text-clay bg-cream rounded-full px-3 py-1';
+    badgeClass = 'inline-block self-start text-xs tracking-widest uppercase text-clay bg-cream rounded-full px-3 py-1 font-sans';
     secondaryBadgeClass = badgeClass;
     h2Class = 'text-2xl leading-snug mb-3';
     pClass = 'text-cream/85 text-sm leading-relaxed mb-6 flex-1';
@@ -190,8 +190,8 @@ function renderCard(post, index) {
     cardClass = isStone
       ? 'group flex flex-col bg-stone/30 rounded-xl p-7 shadow-soft hover:shadow-soft-lg transition-shadow btn-focus'
       : 'group flex flex-col bg-cream border border-ink/10 rounded-xl p-7 shadow-soft hover:shadow-soft-lg transition-shadow btn-focus';
-    badgeClass = `inline-block self-start text-xs tracking-widest uppercase text-earth ${isStone ? 'bg-cream' : 'bg-stone/40'} rounded-full px-3 py-1`;
-    secondaryBadgeClass = 'inline-block self-start text-xs tracking-widest uppercase text-cream bg-sky rounded-full px-3 py-1';
+    badgeClass = `inline-block self-start text-xs tracking-widest uppercase text-earth ${isStone ? 'bg-cream' : 'bg-stone/40'} rounded-full px-3 py-1 font-sans`;
+    secondaryBadgeClass = 'inline-block self-start text-xs tracking-widest uppercase text-cream bg-sky rounded-full px-3 py-1 font-sans';
     h2Class = 'text-2xl leading-snug mb-3 group-hover:text-clay transition-colors';
     pClass = 'text-ink/65 text-sm leading-relaxed mb-6 flex-1';
     metaClass = 'flex items-center gap-2 text-xs text-ink/50';
