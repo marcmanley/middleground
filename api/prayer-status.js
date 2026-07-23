@@ -2,8 +2,27 @@ const { createClient } = require('redis');
 const { get } = require('@vercel/edge-config');
 
 const PRAYERS = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'];
-const CLAIM_TTL_SECONDS = 30 * 60 * 60; // just over a day, so a claim always outlives its own prayer day
 const MAX_NAME_LENGTH = 60;
+
+// Today's prayer times, 24-hour "HH:MM", America/Los_Angeles. Update these as
+// the times shift through the year — each prayer's claim automatically resets
+// RESET_OFFSET_MINUTES after its own time, so nothing else needs adjusting.
+const PRAYER_TIMES = {
+  fajr: '05:30',
+  dhuhr: '13:15',
+  asr: '17:00',
+  maghrib: '20:05',
+  isha: '21:30',
+};
+// How long after each prayer's own time its claim stays open before resetting.
+const RESET_OFFSET_MINUTES = {
+  fajr: 60,
+  dhuhr: 30,
+  asr: 30,
+  maghrib: 30,
+  isha: 60,
+};
+const CLAIM_TTL_SECONDS = 30 * 60 * 60; // fallback if a reset moment can't be computed
 
 let clientPromise;
 function getRedis() {
@@ -17,6 +36,33 @@ function getRedis() {
 
 function todayKey() {
   return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Los_Angeles' }).format(new Date());
+}
+
+// Minutes that America/Los_Angeles is currently offset from UTC (negative — e.g. -420 during PDT).
+function laOffsetMinutes(instant) {
+  const part = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Los_Angeles',
+    timeZoneName: 'shortOffset',
+  }).formatToParts(instant).find((p) => p.type === 'timeZoneName').value;
+  const match = part.match(/GMT([+-]\d+)/);
+  return match ? parseInt(match[1], 10) * 60 : -480;
+}
+
+// UTC timestamp (ms) for RESET_OFFSET_MINUTES after a given prayer's time, on the given
+// America/Los_Angeles calendar date (YYYY-MM-DD). Resolves DST by reading the actual LA
+// offset for that date rather than assuming a fixed one.
+function resetMomentMs(prayer, dateStr) {
+  const time = PRAYER_TIMES[prayer];
+  const offset = RESET_OFFSET_MINUTES[prayer];
+  if (!time || offset == null) return null;
+  const [hour, minute] = time.split(':').map(Number);
+  const totalMinutes = hour * 60 + minute + offset;
+  const dayCarry = Math.floor(totalMinutes / 1440);
+  const h = Math.floor(totalMinutes / 60) % 24;
+  const m = totalMinutes % 60;
+  const naiveUtcMs = Date.parse(`${dateStr}T${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:00Z`)
+    + dayCarry * 86400000;
+  return naiveUtcMs - laOffsetMinutes(new Date(naiveUtcMs)) * 60000;
 }
 
 async function getStatus(date) {
@@ -72,7 +118,11 @@ module.exports = async (req, res) => {
         if (!trimmedName) {
           return res.status(400).json({ error: 'Please enter a name.' });
         }
-        await redis.set(key, trimmedName, { EX: CLAIM_TTL_SECONDS });
+        const resetMs = resetMomentMs(prayer, date);
+        const ttlSeconds = resetMs && resetMs > Date.now()
+          ? Math.ceil((resetMs - Date.now()) / 1000)
+          : CLAIM_TTL_SECONDS;
+        await redis.set(key, trimmedName, { EX: ttlSeconds });
       }
 
       return res.status(200).json(await getStatus(date));
